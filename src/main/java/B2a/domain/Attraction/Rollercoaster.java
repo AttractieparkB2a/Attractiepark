@@ -13,11 +13,6 @@ public class Rollercoaster extends Attraction {
     }
 
     @Override
-    public void start() {
-        System.out.println("Starting the rollercoaster!");
-    }
-
-    @Override
     public void stop() {
         System.out.println("Using brakes to stop the rollercoaster");
     }

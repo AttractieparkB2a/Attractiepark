@@ -5,15 +5,36 @@ package B2a.domain.AttractionState;
  */
 public abstract class State {
 
-    public abstract void goNext(State state);
+    public void open(){
+        System.out.println("Invalid method");
+    }
 
-    public abstract void start();
+    public void close(){
+        System.out.println("Invalid method");
+    };
 
-    public abstract void stop();
+    public void start(){
+        System.out.println("Invalid method");
+    };
 
-    public abstract void pause();
+    public void stop(){
+        System.out.println("Invalid method");
+    };
 
-    public abstract void repair();
+    //java object has the standard method named wait. Therefore the name waiting was used.
+    public void waiting(){
+        System.out.println("Invalid method");
+    }
+
+    //public abstract void pause();
+
+    public void repair(){
+        System.out.println("Invalid method");
+    };
+
+    public void damaged(){
+        System.out.println("The attration got damaged and is now defect.");
+    }
 
 
 

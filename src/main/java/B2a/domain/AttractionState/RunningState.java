@@ -1,37 +1,23 @@
 package B2a.domain.AttractionState;
 
+import B2a.domain.Attraction.Attraction;
+
 /**
  * Created by ferdinand on 13-3-2017.
  */
 public class RunningState extends State {
+    Attraction attraction;
 
 
-    public RunningState(){
-
-    }
-
-    @Override
-    public void goNext(State state) {
-
-    }
-
-    @Override
-    public void start() {
+    public RunningState(Attraction attraction){
+        this.attraction = attraction;
 
     }
 
     @Override
     public void stop() {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void repair() {
+        System.out.println("Stopping the attraction");
+        attraction.setState(new WaitingState(attraction));
 
     }
 
