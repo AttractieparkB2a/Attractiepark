@@ -18,4 +18,10 @@ public class ClosedState extends State {
         attraction.setState(new WaitingState(attraction));
     }
 
+    @Override
+    public void damaged(){
+        System.out.println("Attraction was damaged");
+        attraction.setState(new DefectState(attraction));
+    }
+
 }

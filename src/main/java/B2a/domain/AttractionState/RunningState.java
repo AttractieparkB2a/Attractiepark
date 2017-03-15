@@ -21,4 +21,11 @@ public class RunningState extends State {
 
     }
 
+
+    @Override
+    public void damaged(){
+        System.out.println("Attraction was damaged");
+        attraction.setState(new DefectState(attraction));
+    }
+
 }

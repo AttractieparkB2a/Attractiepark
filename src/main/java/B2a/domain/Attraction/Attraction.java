@@ -16,18 +16,18 @@ public abstract class Attraction {
     protected int minimumAge;
     protected String transportType;
 
-    private State closedState;
-    private State runningState;
-    private State waitingState;
-    private State defectState;
+//    private State closedState;
+//    private State runningState;
+//    private State waitingState;
+//    private State defectState;
     protected State currentState;
 
 
     public Attraction(){
-        closedState = new ClosedState(this);
-        runningState = new RunningState(this);
-        waitingState = new WaitingState(this);
-        defectState = new DefectState(this);
+//        closedState = new ClosedState(this);
+//        runningState = new RunningState(this);
+//        waitingState = new WaitingState(this);
+//        defectState = new DefectState(this);
 
         currentState = new ClosedState(this);
 

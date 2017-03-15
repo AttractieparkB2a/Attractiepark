@@ -25,4 +25,11 @@ public class WaitingState extends State {
         attraction.setState( new RunningState(attraction));
     }
 
+
+    @Override
+    public void damaged(){
+        System.out.println("Attraction was damaged");
+        attraction.setState(new DefectState(attraction));
+    }
+
 }
