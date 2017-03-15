@@ -42,6 +42,15 @@ public abstract class Attraction {
         currentState.stop();
     };
 
+    public void close(){
+        currentState.close();
+    }
+
+    public void  damaged(){
+        currentState.damaged();
+    }
+
+
     public void setState(State state){
         this.currentState = state;
     }
