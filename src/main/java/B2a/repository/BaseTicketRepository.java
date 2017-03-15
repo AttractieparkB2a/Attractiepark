@@ -1,7 +1,10 @@
 package B2a.repository;
 
-/**
- * Created by MCharif on 9-3-2017.
- */
-public interface BaseTicketRepository {
+import B2a.domain.Ticket.BaseTicket;
+import org.springframework.data.repository.CrudRepository;
+
+public interface BaseTicketRepository extends CrudRepository<BaseTicket, Long> {
+    @Override
+    Iterable<BaseTicket> findAll();
 }
+
