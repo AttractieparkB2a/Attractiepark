@@ -4,6 +4,7 @@ import B2a.controller.interfaces.IMember;
 import B2a.controller.interfaces.INewsMessage;
 
 import javax.mail.*;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class NewsMessage implements INewsMessage {
         }
     }
 
-    public void sendNewsLetter() {
+    public void sendNewsLetter(List<String> email) {
         final String username = "AttractieparkB2a@gmail.com";
         final String password = "B2aAttractiepar";
 
@@ -35,7 +36,7 @@ public class NewsMessage implements INewsMessage {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        props.put("mail.smtp.ssl.trust", "*");
 
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
@@ -45,11 +46,12 @@ public class NewsMessage implements INewsMessage {
                 });
 
         try {
-
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("nielskerdel1996@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("nskerdel@hotmail.com"));
+            message.setFrom(new InternetAddress("AttractieparkB2a@gmail.com"));
+            for (String anEmail : email) {
+                message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(anEmail));
+            }
+
             message.setSubject("Testing Subject");
             message.setText("Dear Mail Crawler,"
                     + "\n\n No spam to my email, please!");
