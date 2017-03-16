@@ -4,7 +4,6 @@ import B2a.controller.interfaces.IMember;
 import B2a.controller.interfaces.INewsMessage;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.ArrayList;
@@ -22,18 +21,18 @@ public class NewsMessage implements INewsMessage {
     }
 
     @Override
-    public void notifyMembers() {
+    public void notifyMembers(String subject, String message) {
         for(IMember m : members) {
             String email = m.update();
             emails.add(email);
         }
 
         if(!emails.isEmpty()) {
-            sendNewsLetter(emails);
+            sendNewsLetter(emails, subject, message);
         }
     }
 
-    public void sendNewsLetter(List<String> email) {
+    private void sendNewsLetter(List<String> email, String subject, String content) {
         final String username = "AttractieparkB2a@gmail.com";
         final String password = "B2aAttractiepar";
 
@@ -58,14 +57,10 @@ public class NewsMessage implements INewsMessage {
                 message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(anEmail));
             }
 
-            message.setSubject("Testing Subject");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n No spam to my email, please!");
+            message.setSubject(subject);
+            message.setContent(content, "text/html");
 
             Transport.send(message);
-
-            System.out.println("Done");
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
