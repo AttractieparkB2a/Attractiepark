@@ -1,8 +1,11 @@
 package B2a.domain.AttractionState;
 
+import javax.persistence.Embeddable;
+
 /**
  * Created by ferdinand on 13-3-2017.
  */
+@Embeddable
 public abstract class State {
 
     public void open(){

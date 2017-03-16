@@ -37,7 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/home",
                             "/registration",
                             "/shop",
-                            "/ticketOrder"
+                            "/ticketOrder",
+                            "/attractionsList"
                         ).permitAll()
                     .anyRequest().authenticated()
                     .and()

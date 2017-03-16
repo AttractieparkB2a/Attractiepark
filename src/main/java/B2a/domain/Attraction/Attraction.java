@@ -4,14 +4,24 @@ import B2a.domain.AttractionState.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Created by ferdinand on 12-3-2017.
  */
 
 @Getter
 @Setter
+@Entity
 public abstract class Attraction {
     //ATTRIBUTES
+    @Id
+    @GeneratedValue
+    protected int Id;
+
     protected int duration ;
     protected int minimumAge;
     protected String transportType;
@@ -20,6 +30,7 @@ public abstract class Attraction {
 //    private State runningState;
 //    private State waitingState;
 //    private State defectState;
+    @Embedded
     protected State currentState;
 
 
