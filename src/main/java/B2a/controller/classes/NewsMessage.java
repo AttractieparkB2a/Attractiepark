@@ -14,6 +14,7 @@ import java.util.Properties;
 public class NewsMessage implements INewsMessage {
 
     private List<IMember> members = new ArrayList<>();
+    private List<String> emails = new ArrayList<>();
 
     @Override
     public void attach(IMember member) {
@@ -23,7 +24,12 @@ public class NewsMessage implements INewsMessage {
     @Override
     public void notifyMembers() {
         for(IMember m : members) {
-            m.update();
+            String email = m.update();
+            emails.add(email);
+        }
+
+        if(!emails.isEmpty()) {
+            sendNewsLetter(emails);
         }
     }
 

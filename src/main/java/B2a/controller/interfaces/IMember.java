@@ -2,5 +2,5 @@ package B2a.controller.interfaces;
 
 public abstract class IMember {
     protected INewsMessage newsMessage;
-    public abstract void update();
+    public abstract String update();
 }

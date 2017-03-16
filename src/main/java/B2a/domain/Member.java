@@ -53,7 +53,8 @@ public class Member extends IMember {
     }
 
     @Override
-    public void update() {
-        System.out.println(this.firstName + " received the message!");
+    public String update() {
+        System.out.println(firstName + " received the email!");
+        return email;
     }
 }
