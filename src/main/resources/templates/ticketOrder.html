@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Order Ticket</title>
+    <title>Order your ticket</title>
 </head>
 <body>
-    <h2>Ticket bestellen</h2>
+<h1>TICKETS</h1>
+
+<button>
+    <a href="ticketOrderForm.html" th:href="@{/ticketOrderForm}">Order</a>
+    $(ticket.Name)
+</button>
+
 </body>
 </html>

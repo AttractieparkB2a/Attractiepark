@@ -1,13 +1,13 @@
 package B2a.domain.Ticket;
 
 
-import B2a.domain.Account.Account;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +15,20 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "Ticket")
 public class Ticket extends BaseTicket {
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL)
-    private List<Account> ticketItems = new ArrayList<>();
+    private List<Ticket> ticketItems = new ArrayList<>();
     private String name;
     private String date;
 
-    public void add(Account p) {
+    public Ticket(String name, String date) {
+        this.name = name;
+        this.date = date;
+    }
+
+    public void add(Ticket p) {
         ticketItems.add(p);
     }
 
@@ -39,17 +45,16 @@ public class Ticket extends BaseTicket {
     @Override
     public int price() {
         int price = 0;
-        for(Account item : ticketItems) {
-
-            price += item.getAge();
-        }
+           if(getName() == "gold"){
+               price = 50;
+           }
         return price;
     }
 
     @Override
     public String toString() {
         String s = "";
-        for(Account item : ticketItems) {
+        for(Ticket item : ticketItems) {
             s += "product: " + item.getName() + "; ";
         }
         return s;

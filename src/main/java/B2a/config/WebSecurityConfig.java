@@ -38,6 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/registration",
                             "/shop",
                             "/ticketOrder",
+                            "/ticketOrderForm"
+                            "/ticketOrder",
                             "attraction/attractionsList",
                             "/attraction/attractionForm",
                             "/attraction/rollercoasterForm"
