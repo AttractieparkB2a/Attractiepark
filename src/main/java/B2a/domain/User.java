@@ -59,7 +59,6 @@ public class User extends IUser{
 
     @Override
     public String update() {
-        System.out.println(firstName + " received the email!");
         return username;
     }
 }

@@ -1,6 +1,7 @@
 package B2a.controller;
 
 import B2a.domain.NewsMessage.NewsMessage;
+import B2a.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -28,14 +30,12 @@ public class NewsMessageController {
     @RequestMapping(value = "/newsmessage", method = RequestMethod.POST)
     public String newsmessage(@ModelAttribute("messageForm") NewsMessage messageForm, BindingResult bindingResult, Model model) {
 
-            String subject = "Winter sales";
-
-            String content = "<b>Greetings,</b><br><br>";
-            content += "Winter sales are coming and you can be the first the profit from it.<br>";
-            content += "Head quick to our website to see what we can offer you!<br><br>";
-            content += "-The AttractieparkB2a team";
+            String subject = messageForm.getSubject();
+            String content = messageForm.getMessage();
 
             NewsMessage message = new NewsMessage(subject, content);
+
+            //new User("nskerdel@hotmail.com", "Kerdel","Kerdel", "Niels", "Kerdel", new Date(26-02-1996) , "Dr. blomsingel 31", "Krimpen aan den IJssel", "2922CD", true, message);
 
             List<String> emails = message.notifyUsers();
 
