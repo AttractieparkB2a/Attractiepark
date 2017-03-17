@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Order your ticket</title>
+    <title>Image | View</title>
+
+    <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div role="navigation">
@@ -15,11 +18,10 @@
         <a th:href="@{/login}" class="navbar-brand">Login</a>
     </div>
 </div>
-<h1>TICKETS</h1>
-
-<button>
-    <a href="ticketOrderForm.html" th:href="@{/ticketOrderForm}">Order</a>
-</button>
-
+<form th:action="@{/image}" method="post">
+    <div><input type="submit" name="action" value="1"/></div>
+    <div><input type="submit" name="action" value="2"/></div>
+    <div><input type="submit" name="action" value="3"/></div>
+</form>
 </body>
 </html>

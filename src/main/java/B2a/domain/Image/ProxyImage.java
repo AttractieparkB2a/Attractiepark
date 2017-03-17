@@ -1,6 +1,4 @@
-package B2a.domain;
-
-import B2a.controller.interfaces.Image;
+package B2a.domain.Image;
 
 public class ProxyImage implements Image {
 
