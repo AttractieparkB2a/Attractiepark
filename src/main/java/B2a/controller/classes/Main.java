@@ -1,10 +1,7 @@
 package B2a.controller.classes;
 
 import B2a.controller.interfaces.Image;
-import B2a.domain.Member;
 import B2a.domain.ProxyImage;
-
-import java.util.Date;
 
 public class Main {
     public static void main(String args[]) {

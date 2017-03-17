@@ -1,7 +1,5 @@
-package B2a.domain;
+package B2a.domain.NewsMessage;
 
-import B2a.controller.interfaces.IMember;
-import B2a.controller.interfaces.INewsMessage;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
