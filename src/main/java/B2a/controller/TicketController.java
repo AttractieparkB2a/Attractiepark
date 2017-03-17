@@ -24,17 +24,14 @@ public class TicketController {
     }
 
     private void createTicket() {
-        System.out.println("***** You reached Ticket1");
         Ticket ticket = new Ticket("Gold", "11-05-2017");
         ticket = baseTicketRepository.save(ticket);
         ticket.add(ticket);
-        System.out.println("***** You reached Ticket2");
     }
 
     private void createNewTicket(Ticket ticket) {
         ticket = baseTicketRepository.save(ticket);
         ticket.add(ticket);
-        System.out.println("you created new ticket");
     }
 
     private void decorateTicket() {
@@ -45,8 +42,6 @@ public class TicketController {
         baseTicketRepository.save(decoratedTicket2);
         BaseTicket decoratedTicket3 = new TicketOption("option3", 25, "Lunch", "19-1-19", decoratedTicket2);
         baseTicketRepository.save(decoratedTicket3);
-        System.out.println("***** Your ticket has: " + decoratedTicket3);
-        System.out.println("***** price: " + decoratedTicket3.price());
     }
 
     @RequestMapping(value = "/ticketOrder", method = RequestMethod.GET)
