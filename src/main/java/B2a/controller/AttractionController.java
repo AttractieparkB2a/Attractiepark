@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -32,22 +33,29 @@ public class AttractionController {
         attractionRepository.save(a);
     }
 
-    @RequestMapping(value = "/attractionsList", method = RequestMethod.GET)
+    @RequestMapping(value = "attraction/attractionsList", method = RequestMethod.GET)
     public String attractionsList(Model model) {
-        //model.addAttribute("userForm", new User());
-        return "attractionsList";
+
+        return "/attraction/attractionsList";
     }
 
-    @RequestMapping(value = "/attractionForm", method = RequestMethod.GET)
+    @RequestMapping(value = "/attraction/attractionAdmin", method = RequestMethod.GET)
+    public ModelAndView attractionAdmin(Attraction attraction) {
+
+        return new ModelAndView("attractionAdmin", "Attraction", null);
+    }
+    
+
+    @RequestMapping(value = "attraction/attractionForm", method = RequestMethod.GET)
     public String attractionForm(Model model) {
         //model.addAttribute("rollercoasterForm", new Rollercoaster());
 
-        return "attractionForm";
+        return "attraction/attractionForm";
     }
 
     @RequestMapping(value = "/attraction/rollercoasterForm", method = RequestMethod.GET)
     public String rollercoasterForm(Model model) {
-        model.addAttribute("rollercoasterForm", new Rollercoaster("emptyname"));
+        model.addAttribute("/attraction/rollercoasterForm", new Rollercoaster("emptyname"));
 
         return "attraction/rollercoasterForm";
     }

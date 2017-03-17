@@ -2,9 +2,6 @@ package B2a.domain.AttractionState;
 
 import B2a.domain.Attraction.Attraction;
 
-/**
- * Created by ferdinand on 13-3-2017.
- */
 public class DefectState extends State{
     Attraction attraction;
 

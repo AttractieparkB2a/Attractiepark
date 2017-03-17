@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Attractiepark | Registreer</title>
+    <title>Email | Create</title>
+
+    <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div role="navigation">
@@ -15,17 +16,10 @@
         <a th:href="@{/login}" class="navbar-brand">Login</a>
     </div>
 </div>
-<div th:if="${param.error}">
-    Ongeldige email of wachtwoord.
-</div>
-<div th:if="${param.logout}">
-    Je bent uitgelogd.
-</div>
-<form th:action="@{/registration}" method="post">
-    <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
-    <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
-    <input type="password" name="passwordConfirm" class="form-control" placeholder="Herhaal wachtwoord"/>
-    <div><input type="submit" value="Registreer"/></div>
+<form th:action="@{/newsmessage}" method="newsmessage">
+    <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
+    <input type="text" name="message" class="form-control" placeholder="Tekst"/>
+    <div><input type="submit" value="Send mail"/></div>
 </form>
 </body>
 </html>

@@ -7,10 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-/**
- * Created by ferdinand on 12-3-2017.
- */
-
 @Getter
 @Setter
 @Entity
