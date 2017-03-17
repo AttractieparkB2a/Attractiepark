@@ -31,6 +31,12 @@ public class TicketController {
         System.out.println("***** You reached Ticket2");
     }
 
+    private void createNewTicket(Ticket ticket) {
+        ticket = baseTicketRepository.save(ticket);
+        ticket.add(ticket);
+        System.out.println("you created new ticket");
+    }
+
     private void decorateTicket() {
         BaseTicket concreteTicket  = baseTicketRepository.findOne(1L);
         BaseTicket decoratedTicket1 = new TicketOption("option1", 75, "basis", "19-1-19", concreteTicket);
@@ -45,21 +51,23 @@ public class TicketController {
 
     @RequestMapping(value = "/ticketOrder", method = RequestMethod.GET)
     public ModelAndView ticketOrder(Ticket ticket) {
-       createTicket();
         return new ModelAndView("ticketOrder", "Ticket", null);
     }
 
     @RequestMapping(value = "/ticketOrderForm", method = RequestMethod.GET)
     public ModelAndView ticketOrderForm(Ticket ticket) {
-            decorateTicket();
+
         return new ModelAndView("ticketOrderForm", "ticket", ticket);
     }
 
     @RequestMapping(value = "/ticketOrderForm", method = RequestMethod.POST)
     public ModelAndView ticketOrderForm(@ModelAttribute("ticketOrderForm") Ticket ticket, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return new ModelAndView("ticketOrderForm", "ticket", ticket);
-        }
+        createNewTicket(ticket);
+        decorateTicket();
+
+//        if (bindingResult.hasErrors()) {
+//            return new ModelAndView("ticketOrderForm", "ticket", ticket);
+//        }
         return new ModelAndView("ticketOrder", "ticket", ticket);
     }
 }
