@@ -1,12 +1,13 @@
 package B2a.domain.Attraction;
 
-/**
- * Created by ferdinand on 12-3-2017.
- */
+import javax.persistence.Entity;
+
+@Entity
 public class Rollercoaster extends Attraction {
 
 
-    public Rollercoaster(){
+    public Rollercoaster(String name){
+        this.name = name;
         duration = 5;
         minimumAge = 12;
         transportType = "rollercoaster carts";

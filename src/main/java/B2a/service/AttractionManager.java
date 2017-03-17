@@ -1,4 +1,4 @@
-package B2a.BusinessLogic;
+package B2a.service;
 
 import B2a.domain.Attraction.Attraction;
 import B2a.domain.Attraction.AttractionBuilder;

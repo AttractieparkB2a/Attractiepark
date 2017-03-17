@@ -45,15 +45,13 @@ public class TicketController {
 
     @RequestMapping(value = "/ticketOrder", method = RequestMethod.GET)
     public ModelAndView ticketOrder(Ticket ticket) {
-        System.out.println("***** Your ticket has: baksfbas");
-      //  createTicket();
+       createTicket();
         return new ModelAndView("ticketOrder", "Ticket", null);
     }
 
     @RequestMapping(value = "/ticketOrderForm", method = RequestMethod.GET)
     public ModelAndView ticketOrderForm(Ticket ticket) {
-//        createTicket();
-//        decorateTicket();
+            decorateTicket();
         return new ModelAndView("ticketOrderForm", "ticket", ticket);
     }
 
