@@ -59,9 +59,8 @@ public class TicketController {
     }
 
     @Transactional
-    @GetMapping(params = "form")
-    public String createForm(@ModelAttribute Ticket ticket) {
-
+    @GetMapping(params = "ticketOrderForm")
+    public String ticketOrderForm(@ModelAttribute Ticket ticket) {
         createTicket();
         decorateTicket();
         return "ticketOrder";

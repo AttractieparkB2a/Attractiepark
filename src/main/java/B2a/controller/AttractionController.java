@@ -22,8 +22,6 @@ public class AttractionController {
             builder = new PendulumBuilder();
         }
         Attraction a = builder.buildAttraction("type");
-
-
     }
 
 

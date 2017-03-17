@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Messages : Create</title>
+</head>
+<body>
+<h1 layout:fragment="header">Ticket : Create</h1>
+<div layout:fragment="content" class="container">
+    <form id="ticketOrderForm" th:action="@{/(ticketOrderForm)}" th:object="${ticket}"
+          action="#" method="post">
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+            <p th:each="error : ${#fields.errors('*')}" th:text="${error}">
+                Validation error</p>
+        </div>
+        <div class="pull-right">
+            <a th:href="@{/ticketOrder}" href="ticketOrder.html"> mainTicket </a>
+        </div>
+        <h1>TICKET FORM</h1>
+        <div class="form-actions">
+            <input type="submit" value="Save" />
+        </div>
+    </form>
+</div>
+</body>
+</html>
