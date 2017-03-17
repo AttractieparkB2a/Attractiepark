@@ -1,5 +1,5 @@
 package B2a.domain.NewsMessage;
 
-public abstract class IMember {
+public abstract class IUser {
     public abstract String update();
 }

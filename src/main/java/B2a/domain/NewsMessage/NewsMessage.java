@@ -4,16 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 @NoArgsConstructor
 @Setter
@@ -29,7 +25,7 @@ public class NewsMessage implements INewsMessage {
     private String message;
 
     @Transient
-    private List<IMember> members = new ArrayList<>();
+    private List<IUser> users = new ArrayList<>();
 
     public NewsMessage(String subject, String message) {
         this.subject = subject;
@@ -37,15 +33,15 @@ public class NewsMessage implements INewsMessage {
     }
 
     @Override
-    public void attach(IMember member) {
-        members.add(member);
+    public void attach(IUser user) {
+        users.add(user);
     }
 
     @Override
-    public List<String> notifyMembers() {
+    public List<String> notifyUsers() {
         List<String> emails = new ArrayList<>();
 
-        for (IMember m : members) {
+        for (IUser m : users) {
             String email = m.update();
             emails.add(email);
         }
