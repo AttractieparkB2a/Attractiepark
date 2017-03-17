@@ -1,12 +1,10 @@
 package B2a.controller;
 
-import B2a.domain.NewsMessage.Member;
 import B2a.domain.NewsMessage.NewsMessage;
-import B2a.domain.Ticket.Ticket;
+import B2a.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,27 +30,18 @@ public class NewsMessageController {
     @RequestMapping(value = "/newsmessage", method = RequestMethod.POST)
     public String newsmessage(@ModelAttribute("messageForm") NewsMessage messageForm, BindingResult bindingResult, Model model) {
 
-        System.out.println("Doet iets");
-
-            String subject = "Winter sales";
-
-            String content = "<b>Greetings,</b><br><br>";
-            content += "Winter sales are coming and you can be the first the profit from it.<br>";
-            content += "Head quick to our website to see what we can offer you!<br><br>";
-            content += "-The AttractieparkB2a team";
+            String subject = messageForm.getSubject();
+            String content = messageForm.getMessage();
 
             NewsMessage message = new NewsMessage(subject, content);
 
-            new Member("Niels", "Kerdel", new Date(26-2-1996), "Dr. blomsingel 31", "Krimpen aan den IJssel", "2922CD", "NielsKerdel", "1234", "nskerdel@hotmail.com", true, message);
-            new Member("Bart", "Helleman", new Date(2-9-1996), "Schuwacht", "Lekkerkerk", "1234AA", "BartHelleman", "1234", "nielskerdel1996@gmail.com", false, message);
+            //new User("nskerdel@hotmail.com", "Kerdel","Kerdel", "Niels", "Kerdel", new Date(26-02-1996) , "Dr. blomsingel 31", "Krimpen aan den IJssel", "2922CD", true, message);
 
-
-            List<String> emails = message.notifyMembers();
+            List<String> emails = message.notifyUsers();
 
             if(!emails.isEmpty()) {
                 sendNewsLetter(emails, subject, content);
             }
-            System.out.println("Should have worked");
 
         return "redirect:/";
     }

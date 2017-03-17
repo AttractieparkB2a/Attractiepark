@@ -1,59 +1,64 @@
 package B2a.domain;
 
+import B2a.domain.NewsMessage.INewsMessage;
+import B2a.domain.NewsMessage.IUser;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "user")
-public class User {
-    private Long id;
-    private String username;
-    private String password;
-    private String passwordConfirm;
-    private Set<Role> roles;
+public class User extends IUser{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
+    private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    private String username;
+    private String password;
     @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
+    private String passwordConfirm;
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
+    private String firstName;
+    private String lastName;
+    private Date birthday;
+
+    private String address;
+    private String city;
+    private String zipcode;
+
+    private boolean newsletter;
 
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
-        return roles;
+    private Set<Role> roles;
+
+    public User(String username, String password, String passwordConfirm, String firstName, String lastName, Date birthday, String address, String city, String zipcode, boolean newsletter, INewsMessage newsMessage) {
+        this.username = username;
+        this.password = password;
+        this.passwordConfirm = passwordConfirm;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.address = address;
+        this.city = city;
+        this.zipcode = zipcode;
+        this.newsletter = newsletter;
+
+        if(newsletter) {
+            newsMessage.attach(this);
+        }
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    @Override
+    public String update() {
+        return username;
     }
 }
