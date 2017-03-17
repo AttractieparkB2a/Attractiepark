@@ -44,7 +44,7 @@ public class AttractionController {
 
         return new ModelAndView("attractionAdmin", "Attraction", null);
     }
-    
+
 
     @RequestMapping(value = "attraction/attractionForm", method = RequestMethod.GET)
     public String attractionForm(Model model) {
