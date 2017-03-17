@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Attractiepark | Registreer</title>
 </head>
 <body>
-
+<div role="navigation">
+    <div class="navbar navbar-inverse">
+        <a th:href="@{/registration}" class="navbar-brand">Register</a>
+        <a th:href="@{/login}" class="navbar-brand">Login</a>
+    </div>
+</div>
+<div th:if="${param.error}">
+    Ongeldige email of wachtwoord.
+</div>
+<div th:if="${param.logout}">
+    Je bent uitgelogd.
+</div>
+<form th:action="@{/register}" method="post">
+    <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
+    <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
+    <input type="passwordConfirm" name="passwordConfirm" class="form-control" placeholder="Herhaal wachtwoord"/>
+    <div><input type="submit" value="Registreer"/></div>
+</form>
 </body>
 </html>
