@@ -4,19 +4,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "Base_Ticket")
 public abstract class BaseTicket {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     public abstract String name();
     public abstract String date();

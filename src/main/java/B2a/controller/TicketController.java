@@ -1,33 +1,34 @@
 package B2a.controller;
 
-import B2a.domain.Account.Account;
 import B2a.domain.Ticket.BaseTicket;
 import B2a.domain.Ticket.Ticket;
 import B2a.domain.Ticket.TicketOption;
 import B2a.repository.BaseTicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.transaction.Transactional;
-
+@Controller
 public class TicketController {
 
     @Autowired
     private final BaseTicketRepository baseTicketRepository;
-
 
     public TicketController(BaseTicketRepository baseTicketRepository) {
         this.baseTicketRepository = baseTicketRepository;
     }
 
     private void createTicket() {
-        Account acc = new Account();
-        Ticket ticket = new Ticket();
+        System.out.println("***** You reached Ticket1");
+        Ticket ticket = new Ticket("Gold", "11-05-2017");
         ticket = baseTicketRepository.save(ticket);
-        ticket.add(acc);
+        ticket.add(ticket);
+        System.out.println("***** You reached Ticket2");
     }
 
     private void decorateTicket() {
@@ -42,27 +43,25 @@ public class TicketController {
         System.out.println("***** price: " + decoratedTicket3.price());
     }
 
-    @Transactional
-    @GetMapping
-    public ModelAndView list() {
-        createTicket();
-        decorateTicket();
-        Iterable<BaseTicket> tickets = baseTicketRepository.findAll();
-        return new ModelAndView("ticketOrder", "ticket", tickets);
+    @RequestMapping(value = "/ticketOrder", method = RequestMethod.GET)
+    public ModelAndView ticketOrder(Ticket ticket) {
+        System.out.println("***** Your ticket has: baksfbas");
+      //  createTicket();
+        return new ModelAndView("ticketOrder", "Ticket", null);
     }
 
-    @GetMapping("{id}")
-    public ModelAndView view(@PathVariable("id") Ticket ticket) {
-        createTicket();
-        decorateTicket();
+    @RequestMapping(value = "/ticketOrderForm", method = RequestMethod.GET)
+    public ModelAndView ticketOrderForm(Ticket ticket) {
+//        createTicket();
+//        decorateTicket();
+        return new ModelAndView("ticketOrderForm", "ticket", ticket);
+    }
+
+    @RequestMapping(value = "/ticketOrderForm", method = RequestMethod.POST)
+    public ModelAndView ticketOrderForm(@ModelAttribute("ticketOrderForm") Ticket ticket, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("ticketOrderForm", "ticket", ticket);
+        }
         return new ModelAndView("ticketOrder", "ticket", ticket);
-    }
-
-    @Transactional
-    @GetMapping(params = "ticketOrderForm")
-    public String ticketOrderForm(@ModelAttribute Ticket ticket) {
-        createTicket();
-        decorateTicket();
-        return "ticketOrder";
     }
 }

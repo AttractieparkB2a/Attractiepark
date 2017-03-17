@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorator="layout">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Order your ticket</title>
 </head>
 <body>
 <h1>TICKETS</h1>
-<div class="pull-right">
-    <a href="ticketOrderForm.html" th:href="@{/(ticketOrderForm)}">Order</a>
-</div>
+
+<button>
+    <a href="ticketOrderForm.html" th:href="@{/ticketOrderForm}">Order</a>
+    $(ticket.Name)
+</button>
+
 </body>
 </html>
