@@ -23,12 +23,14 @@ import java.util.Properties;
 public class NewsMessageController {
 
     @RequestMapping(value = "/newsmessage", method = RequestMethod.GET)
-    public ModelAndView newsmessage(NewsMessage newsMessage) {
-        return new ModelAndView("newsmessage", "newsmessage", null);
+    public String newsmessage(Model model) {
+       model.addAttribute("messageForm", new NewsMessage());
+
+       return "newsmessage";
     }
 
     @RequestMapping(value = "/newsmessage", method = RequestMethod.POST)
-    public ModelAndView newsmessage() {
+    public String newsmessage(@ModelAttribute("messageForm") NewsMessage messageForm, BindingResult bindingResult, Model model) {
 
         System.out.println("Doet iets");
 
@@ -52,7 +54,7 @@ public class NewsMessageController {
             }
             System.out.println("Should have worked");
 
-        return new ModelAndView("newsletter", "newsMessage", null);
+        return "redirect:/";
     }
 
     private void sendNewsLetter(List<String> email, String subject, String content) {

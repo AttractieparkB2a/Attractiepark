@@ -1,4 +1,4 @@
-package B2a.controller.interfaces;
+package B2a.domain.Image;
 
 public interface Image {
     void display();

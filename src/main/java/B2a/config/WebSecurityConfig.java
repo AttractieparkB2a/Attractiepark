@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/resources/**",
                             "/",
                             "/home",
+                            "/image",
                             "/newsmessage",
                             "/registration",
                             "/shop",

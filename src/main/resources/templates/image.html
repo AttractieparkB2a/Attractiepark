@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Email | Create</title>
+    <title>Image | View</title>
 
     <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
 </head>
@@ -16,10 +16,9 @@
         <a th:href="@{/login}" class="navbar-brand">Login</a>
     </div>
 </div>
-<form th:action="@{/newsmessage}" method="newsmessage">
-    <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
-    <input type="text" name="message" class="form-control" placeholder="Tekst"/>
-    <div><input type="submit" value="Send mail"/></div>
-</form>
+
+<input type="submit" name="photo" value="1"/>
+<input type="submit" name="photo" value="2"/>
+<input type="submit" name="photo" value="3"/>
 </body>
 </html>
