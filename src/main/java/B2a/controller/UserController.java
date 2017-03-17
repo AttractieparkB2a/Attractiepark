@@ -49,9 +49,4 @@ public class UserController {
     public ModelAndView login(Model model, String error, String logout) {
         return new ModelAndView("login", "User", "user");
     }
-
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "welcome";
-    }
 }

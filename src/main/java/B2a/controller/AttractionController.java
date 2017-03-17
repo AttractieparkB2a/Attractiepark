@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 
-/**
- * Created by ferdinand on 12-3-2017.
- */
 @Controller
 public class AttractionController {
     private AttractionBuilder builder;
@@ -24,26 +21,16 @@ public class AttractionController {
     @Autowired
     private final AttractionRepository attractionRepository;
 
-
     public AttractionController(AttractionRepository attractionRepository){
         this.attractionRepository = attractionRepository;
         createProductCatalogAndProducts();
     }
 
-
-
     @Transactional
     private void createProductCatalogAndProducts() {
-
         Attraction a = new Rollercoaster("invoernaam");
         attractionRepository.save(a);
-
-
-
     }
-
-
-
 
     @RequestMapping(value = "/attractionsList", method = RequestMethod.GET)
     public String attractionsList(Model model) {
@@ -65,19 +52,12 @@ public class AttractionController {
         return "attraction/rollercoasterForm";
     }
 
-
-
-
 //    public void buttonCreateNewAttractionPressed(String attractionType){
 //        if(attractionType == "Pendulum"){
 //            builder = new PendulumBuilder();
 //        }
 //        Attraction a = builder.buildAttraction("type");
-//
-//
 //    }
-//
-//
 //
 //    public void testStartState(){
 //
@@ -85,5 +65,4 @@ public class AttractionController {
 //        b.setState( new RunningState(b));
 //
 //    }
-
 }

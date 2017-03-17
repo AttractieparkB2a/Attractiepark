@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/ticketOrder",
                             "/ticketOrderForm",
                             "/ticketOrder",
-                            "attraction/attractionsList",
+                            "/attraction/attractionsList",
                             "/attraction/attractionForm",
                             "/attraction/rollercoasterForm"
                         ).permitAll()
