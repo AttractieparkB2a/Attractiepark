@@ -28,8 +28,6 @@ public class NewsMessageController {
     @RequestMapping(value = "/newsmessage", method = RequestMethod.POST)
     public String newsmessage(@ModelAttribute("messageForm") NewsMessage messageForm, BindingResult bindingResult, Model model) {
 
-        System.out.println("Doet iets");
-
             String subject = "Winter sales";
 
             String content = "<b>Greetings,</b><br><br>";
@@ -44,7 +42,6 @@ public class NewsMessageController {
             if(!emails.isEmpty()) {
                 sendNewsLetter(emails, subject, content);
             }
-            System.out.println("Should have worked");
 
         return "redirect:/";
     }
