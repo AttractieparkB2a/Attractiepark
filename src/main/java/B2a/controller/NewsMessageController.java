@@ -1,12 +1,9 @@
 package B2a.controller;
 
-import B2a.domain.NewsMessage.Member;
 import B2a.domain.NewsMessage.NewsMessage;
-import B2a.domain.Ticket.Ticket;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -43,11 +39,7 @@ public class NewsMessageController {
 
             NewsMessage message = new NewsMessage(subject, content);
 
-            new Member("Niels", "Kerdel", new Date(26-2-1996), "Dr. blomsingel 31", "Krimpen aan den IJssel", "2922CD", "NielsKerdel", "1234", "nskerdel@hotmail.com", true, message);
-            new Member("Bart", "Helleman", new Date(2-9-1996), "Schuwacht", "Lekkerkerk", "1234AA", "BartHelleman", "1234", "nielskerdel1996@gmail.com", false, message);
-
-
-            List<String> emails = message.notifyMembers();
+            List<String> emails = message.notifyUsers();
 
             if(!emails.isEmpty()) {
                 sendNewsLetter(emails, subject, content);

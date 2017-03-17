@@ -5,17 +5,16 @@
     <title>Attractiepark | Home</title>
 </head>
 <body>
-<p th:text="#{home.welcome}">Welkom!</p>
-<div sec:authorize="isAuthenticated()">TEST</div>
+    <p>Welkom!</p>
 
-<div role="navigation">
-    <div class="navbar navbar-inverse">
-        <a th:href="@{/}" class="navbar-brand">Home</a>
-        <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
-        <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
-        <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
-        <a th:href="@{/login}" class="navbar-brand">Login</a>
+    <div role="navigation">
+        <div class="navbar navbar-inverse">
+            <a th:href="@{/}" class="navbar-brand">Home</a>
+            <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
+            <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
+            <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
+            <a th:href="@{/login}" class="navbar-brand">Login</a>
+        </div>
     </div>
-</div>
 </body>
 </html>
