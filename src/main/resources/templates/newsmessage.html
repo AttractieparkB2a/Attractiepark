@@ -16,7 +16,7 @@
         <a th:href="@{/login}" class="navbar-brand">Login</a>
     </div>
 </div>
-<form th:action="@{/newsmessage}" method="newsmessage">
+<form th:action="@{/newsmessage}" method="post">
     <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
     <input type="text" name="message" class="form-control" placeholder="Tekst"/>
     <div><input type="submit" value="Send mail"/></div>
