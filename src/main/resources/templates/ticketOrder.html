@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
 <head>
-    <title>Order your ticket</title>
+    <title>Attractiepark | Ticket</title>
 </head>
+
 <body>
-<div role="navigation">
-    <div class="navbar navbar-inverse">
-        <a th:href="@{/}" class="navbar-brand">Home</a>
-        <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
-        <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
-        <a th:href="@{/image}" class="navbar-brand">Images</a>
-        <a th:href="@{/newsmessage}" class="navbar-brand">Email</a>
-        <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
-        <a th:href="@{/login}" class="navbar-brand">Login</a>
-    </div>
-</div>
+
+<div layout:fragment="content">
+
 <h1>TICKETS</h1>
 
 <button>
     <a href="ticketOrderForm.html" th:href="@{/ticketOrderForm}">Order</a>
 </button>
+
+</div>
 
 </body>
 </html>

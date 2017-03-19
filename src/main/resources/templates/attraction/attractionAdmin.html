@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
 <head>
-    <meta charset="UTF-8"/>
-    <title>Attraction Admin</title>
+    <title>Attractiepark | Admin</title>
 </head>
+
 <body>
+
+<div layout:fragment="content">
+
  The attraction Admin page
 
  <button>
      <a href="attractionForm.html" th:href="@{attraction/attractionForm}">Add New Attraction</a>
  </button>
+
+</div>
 
 </body>
 </html>

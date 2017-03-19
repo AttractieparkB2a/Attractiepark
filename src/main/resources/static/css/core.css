@@ -1,0 +1,17 @@
+.main {
+    position: relative;
+    top: 100px;
+    height: 1080px;
+    text-align: center;
+    z-index: -1;
+}
+
+.main h1 {
+    padding-top: 180px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 70px;
+    margin-top: 0;
+    margin-bottom: 80px;
+    text-transform: uppercase;
+}

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="_layout">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+    <meta charset="UTF-8"/>
     <title>Attractiepark | Registreer</title>
 </head>
-
 <body>
-
-<div layout:fragment="content">
-
+<div role="navigation">
+    <div class="navbar navbar-inverse">
+        <a th:href="@{/}" class="navbar-brand">Home</a>
+        <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
+        <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
+        <a th:href="@{/image}" class="navbar-brand">Images</a>
+        <a th:href="@{/newsmessage}" class="navbar-brand">Email</a>
+        <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
+        <a th:href="@{/login}" class="navbar-brand">Login</a>
+    </div>
+</div>
 <form th:action="@{/registration}" method="post">
     <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
     <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
@@ -25,8 +30,5 @@
     <input type="checkbox" name="newsletter" class="form-control" placeholder="Aanmelden voor nieuwsbrief?"/><br/>
     <div><input type="submit" value="Registreer"/></div>
 </form>
-
-</div>
-
 </body>
 </html>
