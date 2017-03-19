@@ -34,7 +34,23 @@
 </div>
 
 <footer>
-
+    <div class="footer-content">
+        <div class="col-lg-6">
+                <h4>Navigeer</h4>
+                <ul>
+                    <li class="park"><a th:href="@{/}">Park</a></li>
+                    <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
+                    <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
+                    <li class="news"><a th:href="@{/}">Newsletter</a></li>
+                </ul>
+        </div>
+        <div class="col-lg-6">
+            <h4><b>Nieuwsbrief</b></h4>
+            <p>Blijf of de hoogte van B2a dankzij de nieuwsbrief. Ontvang 1 a 2 keer per maand bericht over aanbiedingen, nieuws, kijkjes achter de schermen en meer.</p>
+            <input type="text" name="newsmessage" class="input-subscribe" placeholder="E-mailadres" />
+            <input type="submit" value="submit" class="btn-subscribe" />
+        </div>
+    </div>
 </footer>
 
 <script type="text/javascript" src="/webjars/jquery/1.11.1/jquery.min.js"></script>
