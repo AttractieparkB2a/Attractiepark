@@ -6,30 +6,31 @@
     <meta charset="UTF-8"/>
     <title>Default</title>
 
+    <link rel="shortcut icon" href="/static/favicon.ico" />
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css"/>
     <link href="/static/css/core.css" rel="stylesheet" />
 </head>
 <body>
 
-<div role="navigation">
-    <div class="navbar navbar-default">
-        <a th:href="@{/}" class="navbar-brand">Home</a>
-        <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
-        <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
-        <a th:href="@{/image}" class="navbar-brand">Images</a>
-        <a th:href="@{/newsmessage}" class="navbar-brand">Email</a>
-        <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
-        <a th:href="@{/login}" class="navbar-brand">Login</a>
+<header>
+    <div class="nav">
+        <ul class="upper-nav no-padding">
+            <li class="login"><a th:href="@{/login}">Login</a></li>
+            <li class="contact"><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+        <ul class="no-padding">
+            <li class="logo-holder"><a th:href="@{/}"><img src="/static/img/logo.png" class="logo" /></a></li>
+            <li class="news"><a th:href="@{/}">Newsletter</a></li>
+            <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
+            <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
+            <li class="park"><a th:href="@{/}">Park</a></li>
+        </ul>
     </div>
-</div>
+</header>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12" layout:fragment="content">
-            Page content goes here
-        </div>
-    </div>
+<div class="row" layout:fragment="content">
+    Page content goes here
 </div>
 
 <footer>
