@@ -32,7 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers(
+                            "/webjars/**",
                             "/resources/**",
+                            "/static/**",
                             "/",
                             "/home",
                             "/image",
