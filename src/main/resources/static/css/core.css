@@ -4,11 +4,12 @@
 }
 
 body {
+    background-color: #888888;
     overflow-x: hidden;
 }
 
-.extra-margin {
-    margin-top: 100px;
+header {
+    height: 100px;
 }
 
 .home-section {
@@ -21,11 +22,25 @@ body {
     text-align: center;
 }
 
-.home-section h1 {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
+.home-bg {
+    height: 100%;
+    width: 100%;
+    background-image: url(/static/img/bg.jpg);
+}
+
+.welcome-text {
+    padding-top: 200px;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.welcome-text h1 {
+    font-family: 'OptimusPrinceps', sans-serif;
+    font-weight: 400;
     font-size: 70px;
-    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
 }
 
 .no-padding {

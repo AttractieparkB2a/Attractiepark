@@ -12,19 +12,21 @@
 
 <div layout:fragment="content">
 
-<form th:action="@{/registration}" method="post">
-    <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
-    <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
-    <input type="password" name="passwordConfirm" class="form-control" placeholder="Herhaal wachtwoord"/><br/><br/>
-    <input type="text" name="firstName" class="form-control" placeholder="Voornaam"/>
-    <input type="text" name="lastName" class="form-control" placeholder="Achternaam"/>
-    <input type="date" name="birthday" class="form-control" placeholder="Geboortedatum"/><br/><br/>
-    <input type="text" name="address" class="form-control" placeholder="Adres"/>
-    <input type="text" name="city" class="form-control" placeholder="Plaats"/>
-    <input type="text" name="zipcode" class="form-control" placeholder="Postcode"/><br/><br/>
-    <input type="checkbox" name="newsletter" class="form-control" placeholder="Aanmelden voor nieuwsbrief?"/><br/>
-    <div><input type="submit" value="Registreer"/></div>
-</form>
+    <section id="home" class="home-section">
+        <form th:action="@{/registration}" method="post">
+            <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
+            <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
+            <input type="password" name="passwordConfirm" class="form-control" placeholder="Herhaal wachtwoord"/><br/><br/>
+            <input type="text" name="firstName" class="form-control" placeholder="Voornaam"/>
+            <input type="text" name="lastName" class="form-control" placeholder="Achternaam"/>
+            <input type="date" name="birthday" class="form-control" placeholder="Geboortedatum"/><br/><br/>
+            <input type="text" name="address" class="form-control" placeholder="Adres"/>
+            <input type="text" name="city" class="form-control" placeholder="Plaats"/>
+            <input type="text" name="zipcode" class="form-control" placeholder="Postcode"/><br/><br/>
+            <input type="checkbox" name="newsletter" class="form-control" placeholder="Aanmelden voor nieuwsbrief?"/><br/>
+            <div><input type="submit" value="Registreer"/></div>
+        </form>
+    </section>
 
 </div>
 

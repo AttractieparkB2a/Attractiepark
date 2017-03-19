@@ -12,11 +12,13 @@
 
 <div layout:fragment="content">
 
-    <form th:action="@{/image}" method="post">
-        <div><input type="submit" name="action" value="1"/></div>
-        <div><input type="submit" name="action" value="2"/></div>
-        <div><input type="submit" name="action" value="3"/></div>
-    </form>
+    <section id="home" class="home-section">
+        <form th:action="@{/image}" method="post">
+            <div><input type="submit" name="action" value="1"/></div>
+            <div><input type="submit" name="action" value="2"/></div>
+            <div><input type="submit" name="action" value="3"/></div>
+        </form>
+    </section>
 
 </div>
 

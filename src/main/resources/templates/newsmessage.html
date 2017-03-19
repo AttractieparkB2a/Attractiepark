@@ -12,11 +12,13 @@
 
 <div layout:fragment="content">
 
-<form th:action="@{/newsmessage}" method="post">
-    <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
-    <input type="text" name="message" class="form-control" placeholder="Tekst"/>
-    <div><input type="submit" value="Send mail"/></div>
-</form>
+    <section id="home" class="home-section">
+        <form th:action="@{/newsmessage}" method="post">
+            <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
+            <input type="text" name="message" class="form-control" placeholder="Tekst"/>
+            <div><input type="submit" value="Send mail"/></div>
+        </form>
+    </section>
 
 </div>
 

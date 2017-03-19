@@ -12,12 +12,14 @@
 
 <div layout:fragment="content">
 
-    <form th:action="@{/ticketOrderForm}" method="post">
-        <input type="text" name="name" class="form-control" placeholder="naam" autofocus="true"/>
-        <input type="text" name="date" class="form-control" placeholder="datum"/>
-        <input type="text" name="price" class="form-control" placeholder="prijs"/>
-        <div><input type="submit" value="koop"/></div>
-    </form>
+    <section id="home" class="home-section">
+        <form th:action="@{/ticketOrderForm}" method="post">
+            <input type="text" name="name" class="form-control" placeholder="naam" autofocus="true"/>
+            <input type="text" name="date" class="form-control" placeholder="datum"/>
+            <input type="text" name="price" class="form-control" placeholder="prijs"/>
+            <div><input type="submit" value="koop"/></div>
+        </form>
+    </section>
 
 </div>
 
