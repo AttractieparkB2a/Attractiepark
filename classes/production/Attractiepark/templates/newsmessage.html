@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Email | Create</title>
+
+    <link th:href="@{/static/css/test.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/resources/static/css/test.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/test.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/css/test.css" th:href="@{/static/css/test.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/css/test.css" th:href="@{/static/css/test.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/css/test.css" th:href="@{/static/css/test.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div role="navigation">
+    <div class="navbar navbar-inverse">
+        <a th:href="@{/}" class="navbar-brand">Home</a>
+        <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
+        <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
+        <a th:href="@{/image}" class="navbar-brand">Images</a>
+        <a th:href="@{/newsmessage}" class="navbar-brand">Email</a>
+        <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
+        <a th:href="@{/login}" class="navbar-brand">Login</a>
+    </div>
+</div>
+<div class="test">
+    <p>oi</p>
+</div>
+<form th:action="@{/newsmessage}" method="post">
+    <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
+    <input type="text" name="message" class="form-control" placeholder="Tekst"/>
+    <div><input type="submit" value="Send mail"/></div>
+</form>
+</body>
+</html>

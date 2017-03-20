@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Attractiepark | Home</title>
+</head>
+<body>
+    <p>Welkom!</p>
+
+    <div role="navigation">
+        <div class="navbar navbar-inverse">
+            <a th:href="@{/}" class="navbar-brand">Home</a>
+            <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
+            <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
+            <a th:href="@{/image}" class="navbar-brand">Images</a>
+            <a th:href="@{/newsmessage}" class="navbar-brand">Email</a>
+            <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
+            <a th:href="@{/login}" class="navbar-brand">Login</a>
+        </div>
+    </div>
+</body>
+</html>
