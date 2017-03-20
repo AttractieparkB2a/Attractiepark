@@ -1,41 +1,28 @@
 package B2a.controller;
 
 import B2a.domain.Attraction.*;
-import B2a.model.AttractionsList;
 import B2a.repository.AttractionRepository;
+import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 
 @Controller
 public class AttractionController {
-    private AttractionBuilder builder;
+    AttractionManagerIF attractionManagerIF;
 
-    @Autowired
-    private final AttractionRepository attractionRepository;
-
-    public AttractionController(AttractionRepository attractionRepository){
-        this.attractionRepository = attractionRepository;
-        createProductCatalogAndProducts();
-    }
-
-    @Transactional
-    private void createProductCatalogAndProducts() {
-        Attraction a = new Rollercoaster("invoernaam");
-        attractionRepository.save(a);
+    public AttractionController(AttractionManagerIF attractionManagerIF){
+        this.attractionManagerIF = attractionManagerIF;
     }
 
     @RequestMapping(value = "attraction/attractionsList", method = RequestMethod.GET)
     public String attractionsList(Model model) {
-
         return "/attraction/attractionsList";
     }
 
@@ -59,6 +46,36 @@ public class AttractionController {
 
         return "attraction/rollercoasterForm";
     }
+
+
+
+    @RequestMapping(value = "/attraction/attractionChooser", method = RequestMethod.GET)
+    public String attractionChooser(){
+        return "attraction/attractionChooser";
+    }
+
+    @RequestMapping(value = "/attraction/attractionChooser", method = RequestMethod.POST)
+    public String attractionChooser(Model model, @RequestParam(value="action", required = true) String action) {
+        switch (action) {
+            case "rollercoaster":
+                createAttraction(action);
+                return "attraction/rollercoasterForm";
+            case "pendulum":
+                createAttraction(action);
+                return "attraction/pendulumForm";
+            default:
+                return "attraction/attractionChooser";
+
+        }
+    }
+
+    public Attraction createAttraction(String type){
+        return attractionManagerIF.createNewAttraction(type);
+    }
+
+
+
+
 
 //    public void buttonCreateNewAttractionPressed(String attractionType){
 //        if(attractionType == "Pendulum"){

@@ -22,15 +22,12 @@ public abstract class Attraction {
     protected int minimumAge;
     protected String transportType;
 
-
     @Embedded
     protected State currentState;
 
 
     public Attraction(){
-
         currentState = new ClosedState(this);
-
     }
 
     //METHODS START HERE
@@ -49,7 +46,6 @@ public abstract class Attraction {
     public void  damaged(){
         currentState.damaged();
     }
-
 
     public void setState(State state){
         this.currentState = state;

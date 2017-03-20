@@ -11,7 +11,6 @@ public class PendulumBuilder extends AttractionBuilder {
         else{
             return null;
         }
-
-
     }
+
 }

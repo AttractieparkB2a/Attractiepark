@@ -47,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/attraction/attractionsList",
                             "/attraction/attractionForm",
                             "/attraction/rollercoasterForm",
-                            "/attraction/attractionAdmin"
+                            "/attraction/attractionAdmin",
+                            "/attraction/attractionChooser"
                         ).permitAll()
                     .anyRequest().authenticated()
                     .and()

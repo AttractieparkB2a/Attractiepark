@@ -5,4 +5,6 @@ public abstract class AttractionBuilder {
     public abstract Attraction buildAttraction(String type); // THIS IS THE FACTORY METHOD
 
 
+    //public abstract Attraction createAttraction();
+
 }
