@@ -15,17 +15,19 @@
 
 <header>
     <div class="nav">
-        <ul class="upper-nav no-padding">
-            <li class="login"><a th:href="@{/login}">Login</a></li>
-            <li class="contact"><a th:href="@{/contact}">Contact</a></li>
-        </ul>
-        <ul class="no-padding">
-            <li class="logo-holder"><a th:href="@{/}"><img src="/static/img/logo.png" class="logo" /></a></li>
-            <li class="news"><a th:href="@{/}">Newsletter</a></li>
-            <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
-            <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
-            <li class="park"><a th:href="@{/}">Park</a></li>
-        </ul>
+        <div class="container">
+            <ul class="upper-nav no-padding">
+                <li class="login"><a th:href="@{/login}">Login</a></li>
+                <li class="contact"><a th:href="@{/contact}">Contact</a></li>
+            </ul>
+            <ul class="no-padding">
+                <li class="logo-holder"><a th:href="@{/}"><img src="/static/img/logo.png" class="logo" /></a></li>
+                <li class="news"><a th:href="@{/}">Newsletter</a></li>
+                <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
+                <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
+                <li class="park"><a th:href="@{/}">Park</a></li>
+            </ul>
+        </div>
     </div>
 </header>
 
