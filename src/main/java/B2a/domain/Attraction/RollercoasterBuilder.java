@@ -1,19 +1,20 @@
 package B2a.domain.Attraction;
 
 public class RollercoasterBuilder extends AttractionBuilder {
+    Rollercoaster rollercoaster;
 
 
     @Override
-    public Attraction buildAttraction(String type) {
-        if(type.equals("rollercoaster") ){
-            return new Rollercoaster("hardcoded");
-        }
-        else if(type.equals("rollercoastertype2") ){
-            return null;
-        }
-        else{
-            return null;
-        }
+    public Attraction createNewAttraction(String name, int duration) {
+
+        rollercoaster = new Rollercoaster();
+        rollercoaster.setName( name );
+        rollercoaster.setDuration( duration );
+        //rollercoaster.setMaxSpeed();
+        //rollercoaster.setMinimumAge();
+        rollercoaster.setTransportType("rollercoaster-carts");
+
+        return rollercoaster;
 
     }
 }

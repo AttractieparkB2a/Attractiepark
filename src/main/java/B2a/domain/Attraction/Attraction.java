@@ -19,8 +19,10 @@ public abstract class Attraction {
     protected String name;
 
     protected int duration ;
-    protected int minimumAge;
+    protected int minimumHeight;
     protected String transportType;
+    protected int amountStaff;
+    protected byte[] image;
 
     @Embedded
     protected State currentState;
