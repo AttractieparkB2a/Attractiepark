@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: #888888;
+    background-color: #fafaf7;
     overflow-x: hidden;
 }
 
@@ -17,7 +17,7 @@ header {
     width: 100%;
     padding: 0;
     margin: 0;
-    background-color: #888888;
+    background-color: #fafaf7;
     position: relative;
     text-align: center;
 }
@@ -61,7 +61,7 @@ header {
     padding: 0;
     margin: 0;
     background-color: #ffffff;
-    border-bottom: 1px solid #888;
+    border-bottom: 1px solid #ede5d5;
     position: fixed;
     z-index: 1;
 }
@@ -143,6 +143,7 @@ footer {
     background-color: #ffffff;
     margin: 0;
     padding: 0;
+    border-top: 1px solid #ede5d5;
 }
 
 .footer-content {
@@ -210,4 +211,59 @@ footer {
 .btn-subscribe:hover {
     background: #942b3b;
     text-decoration: none;
+}
+
+/* Modify on page width */
+
+.page-container {
+    display: table;
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 100px auto;
+    border-radius: 10px;
+    border: 1px solid #ede5d5;
+}
+@media (min-width: 768px) {
+    .page-container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .page-container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .page-container {
+        width: 1170px;
+    }
+}
+
+.extra-padding {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.printchatbox-holder {
+    padding: 15px;
+}
+
+.printchatbox
+{
+    background-color: #ffffff;
+    line-height: 2;
+    color:#6E6A6B;
+    font-size: 14pt;
+    text-align:left;
+    border: 1px solid #b91329;
+}
+
+h5 {
+    font-size: 20px;
+    color: #b91329;
+}
+
+.input-margin {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
