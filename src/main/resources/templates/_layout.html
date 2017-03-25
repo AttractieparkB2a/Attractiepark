@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      th:with="lang=${#locale.language}"
-      th:lang="${lang}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="UTF-8"/>
@@ -28,16 +26,16 @@
 
             <!-- Upper navigation -->
             <ul class="meta-navigation">
-                <li class="login"><a th:href="@{/login}">Login</a></li>
-                <li class="contact"><a th:href="@{/contact}">Contact</a></li>
+                <li class="login"><a th:text="#{header.meta.item1}" th:href="@{/login}"></a></li>
+                <li class="contact"><a th:text="#{header.meta.item2}" th:href="@{/contact}"></a></li>
             </ul>
 
             <!-- Lower navigation -->
             <ul class="site-navigation">
-                <li class="news"><a th:href="@{/}">Newsletter</a></li>
-                <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
-                <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
-                <li class="park"><a th:href="@{/}">Park</a></li>
+                <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
+                <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
+                <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
+                <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
             </ul>
         </nav>
     </header>
@@ -49,7 +47,7 @@
         <a class="header_logo" th:href="@{/}"><img class="logo_img" src="/static/img/logo.png" alt="B2a logo" /></a>
 
         <!-- Hamburger menu -->
-        <div class="menu">Menu</div>
+        <div th:text="#{header.menu}" class="menu"></div>
         <div id="hamburger">
             <span></span>
             <span></span>
@@ -59,17 +57,17 @@
 
         <!-- Expanded menu -->
         <ul class="responsive-navigation">
-            <li class="park"><a th:href="@{/}">Park</a></li>
-            <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
-            <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
-            <li class="news"><a th:href="@{/}">Newsletter</a></li>
+            <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
+            <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
+            <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
+            <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
         </ul>
 
     </header>
 </div>
 
 <div class="row" layout:fragment="content">
-    Page content goes here
+
 </div>
 
 <!-- Footer -->
@@ -79,12 +77,12 @@
         <!-- Footer navigation -->
         <div class="footer-navigation display">
             <div class="footer-text-wrapper">
-                <h4>Navigeer</h4>
+                <h4 th:text="#{footer.navigation}"></h4>
                 <ul>
-                    <li class="park"><a th:href="@{/}">Park</a></li>
-                    <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
-                    <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
-                    <li class="news"><a th:href="@{/}">Newsletter</a></li>
+                    <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
+                    <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
+                    <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
+                    <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
                 </ul>
             </div>
         </div>
@@ -92,29 +90,29 @@
         <!-- Footer newsletter -->
         <div class="footer-newsletter display">
             <div class="footer-text-wrapper">
-                <h4><b>Nieuwsbrief</b></h4>
-                <p>Blijf of de hoogte van B2a dankzij de nieuwsbrief. Ontvang 1 a 2 keer per maand bericht over aanbiedingen, nieuws, kijkjes achter de schermen en meer.</p>
-                <input type="text" name="newsmessage" class="input-subscribe" placeholder="E-mailadres" />
-                <input type="submit" value="submit" class="btn-subscribe" />
+                <h4 th:text="#{footer.newsletter.title}"><b></b></h4>
+                <p th:text="#{footer.newsletter.paragraph}"></p>
+                <input type="text" name="newsmessage" class="input-subscribe" th:placeholder="#{footer.input}" />
+                <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
             </div>
         </div>
 
         <!-- Mobile footer -->
         <div class="responsive-footer responsive-display">
             <div class="footer-text-layout">
-                <h4><a th:href="@{/}">Park</a></h4>
+                <h4><a th:text="#{header.site.item4}" th:href="@{/}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:href="@{/attraction/attractionsList}">Attracties</a></h4>
+                <h4><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:href="@{/ticketOrder}">Tickets</a></h4>
+                <h4><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:href="@{/}">Newsletter</a></h4>
+                <h4><a th:text="#{header.site.item1}" th:href="@{/}"></a></h4>
             </div>
-            <h4><b>Nieuwsbrief</b></h4>
-            <p>Blijf of de hoogte van B2a dankzij de nieuwsbrief. Ontvang 1 a 2 keer per maand bericht over aanbiedingen, nieuws, kijkjes achter de schermen en meer.</p>
+            <h4 th:text="#{footer.newsletter.title}"><b></b></h4>
+            <p th:text="#{footer.newsletter.paragraph}"></p>
             <input type="text" name="newsmessage" class="input-subscribe" placeholder="E-mailadres" />
             <input type="submit" value="submit" class="btn-subscribe" />
         </div>
