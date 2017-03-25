@@ -4,7 +4,7 @@ public class LogFlumeBuilder extends AttractionBuilder {
 
 
     @Override
-    public Attraction buildAttraction(String type) {
-        return new LogFlume();
+    public Attraction createNewAttraction(String name, int duration) {
+        return null;
     }
 }

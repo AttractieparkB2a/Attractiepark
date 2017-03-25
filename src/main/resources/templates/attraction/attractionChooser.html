@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
 <head>
     <meta charset="UTF-8"/>
     <title>Create Attraction Chooser</title>
 </head>
 <body>
 
+<div layout:fragment="content">
 
-<form action="#" data-th-action="@{/attraction/attractionChooser}" data-th-object="${model}" method="post">
-    <button type="submit" name="action" value="rollercoaster">Rollercoaster</button>
-    <button type="submit" name="action" value="pendulum">Pendulum</button>
-</form>
+    <div>
 
+    </div>
+    <form action="#" data-th-action="@{/attraction/attractionChooser}" data-th-object="${model}" method="post">
+        <button class="btn-attractionType" type="submit" name="action" value="rollercoaster">Rollercoaster</button>
+        <button class="btn-attractionType" type="submit" name="action" value="pendulum">Pendulum</button>
+    </form>
 
+</div>
 
 </body>
 </html>

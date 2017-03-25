@@ -9,13 +9,14 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 public class Rollercoaster extends Attraction {
-    int maxSpeed;
+    protected int maxSpeed;
+    protected boolean hasLooping;
 
-    public Rollercoaster(String name){
-        this.name = name;
-        duration = 5;
-        minimumAge = 12;
-        transportType = "rollercoaster carts";
+    public Rollercoaster(){
+    }
+
+    public void setMaxSpeed(int maxSpeed){
+        this.maxSpeed = maxSpeed;
     }
 
     @Override

@@ -13,7 +13,32 @@
 <div layout:fragment="content">
 
     <section id="home" class="home-section">
-        I am the attractions list!
+        Attracties in het B2a pretpark!
+        <div th:each="attraction : ${attractions}" class="center">
+            <div>
+                Picture here
+            </div>
+            <div>
+                <table>
+                    <tr >
+                        <td>Naam </td><td th:text="${attraction.name}"></td>
+                    </tr>
+                    <tr>
+                        <td> Duur </td><td th:text="${attraction.duration}"> </td>
+                    </tr>
+                    <tr>
+                        <td> Mimimum lengte </td><td th:text="${attraction.minimumHeight}"> </td>
+                    </tr>
+                    <tr>
+                        <td> Soort attractie </td><td th:text="${attraction.transportType}"> </td>
+                    </tr>
+                </table>
+            </div>
+
+            <input type="button" value="Meer informatie.."/>
+
+        </div>
+
 
         <p>
             Test to go to the admin page.
