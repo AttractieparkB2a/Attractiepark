@@ -1,9 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
 <head>
-    <title>rollercoasterForm</title>
+    <title>Attractiepark | Form</title>
 </head>
+
 <body>
- I am a rollercoasterForm
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+
+        <h2>Rollercoaster Form</h2>
+
+        <form th:action="@{/attraction/attractionChooser}" method="post">
+            <label>Attractie naam: </label><input type="text" name="name" class="form-control" placeholder="name" autofocus="true"/>
+            <label> Duur in minuten: </label><input type="text" name="duration"/>
+            <label> Minimum lengte: </label><input type="text" name="minimumAge"/><br/><br/>
+            <label> Transport-type: </label><input type="text" name="transportType"/>
+            <div class="form-actions"><input type="submit" name="action" value="Maak aan"/></div>
+        </form>
+    </section>
+</div>
+
 </body>
 </html>

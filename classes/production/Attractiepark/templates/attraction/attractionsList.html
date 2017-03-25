@@ -1,27 +1,54 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
 <head>
-    <title>AttractionsList</title>
+    <title>Attractiepark | List</title>
 </head>
+
 <body>
-<div role="navigation">
-    <div class="navbar navbar-inverse">
-        <a th:href="@{/}" class="navbar-brand">Home</a>
-        <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
-        <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
-        <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
-        <a th:href="@{/login}" class="navbar-brand">Login</a>
-    </div>
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+        Attracties in het B2a pretpark!
+        <div th:each="attraction : ${attractions}" class="center">
+            <div>
+                Picture here
+            </div>
+            <div>
+                <table>
+                    <tr >
+                        <td>Naam </td><td th:text="${attraction.name}"></td>
+                    </tr>
+                    <tr>
+                        <td> Duur </td><td th:text="${attraction.duration}"> </td>
+                    </tr>
+                    <tr>
+                        <td> Mimimum lengte </td><td th:text="${attraction.minimumHeight}"> </td>
+                    </tr>
+                    <tr>
+                        <td> Soort attractie </td><td th:text="${attraction.transportType}"> </td>
+                    </tr>
+                </table>
+            </div>
+
+            <input type="button" value="Meer informatie.."/>
+
+        </div>
+
+
+        <p>
+            Test to go to the admin page.
+            <button>
+                <a href="attractionAdmin.html" th:href="@{attraction/attractionAdmin}">Admin page</a>
+            </button>
+        </p>
+    </section>
+
 </div>
 
-I am the attractions list!
-
-<p>
-    Test to go to the admin page.
-    <button>
-        <a href="attractionAdmin.html" th:href="@{attraction/attractionAdmin}">Admin page</a>
-    </button>
-</p>
 </body>
 </html>

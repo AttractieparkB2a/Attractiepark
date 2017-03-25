@@ -1,35 +1,40 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <title>Email | Create</title>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
 
-    <link th:href="@{/static/css/test.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/resources/static/css/test.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/css/test.css}" rel="stylesheet" type="text/css" />
-    <link href="../static/css/test.css" th:href="@{/static/css/test.css}" rel="stylesheet" type="text/css" />
-    <link href="../static/css/test.css" th:href="@{/static/css/test.css}" rel="stylesheet" type="text/css" />
-    <link href="../static/css/test.css" th:href="@{/static/css/test.css}" rel="stylesheet" type="text/css" />
+<head>
+    <title>Attractiepark | Email</title>
 </head>
+
 <body>
-<div role="navigation">
-    <div class="navbar navbar-inverse">
-        <a th:href="@{/}" class="navbar-brand">Home</a>
-        <a th:href="@{/attraction/attractionsList}" class="navbar-brand">Attracties</a>
-        <a th:href="@{/ticketOrder}" class="navbar-brand">Tickets</a>
-        <a th:href="@{/image}" class="navbar-brand">Images</a>
-        <a th:href="@{/newsmessage}" class="navbar-brand">Email</a>
-        <a th:href="@{/registration}" class="navbar-brand">Registreer</a>
-        <a th:href="@{/login}" class="navbar-brand">Login</a>
-    </div>
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+        <div class="page-container">
+            <div class="col-lg-6 extra-padding">
+                <h5>Create mail</h5>
+                <form th:action="@{/newsmessage}" method="post">
+                    <input id="subject" type="text" name="subject" class="form-control input-margin" placeholder="Onderwerp" autofocus="true"/>
+                    <input type="text" name="message" class="chatinput form-control input-margin" id="chatinput" placeholder="Tekst"/>
+                    <div><input type="submit" value="Send mail" class="btn-subscribe"/></div>
+                </form>
+            </div>
+            <div class="col-lg-6 extra-padding">
+                <h5>Output</h5>
+
+                <div class='printchatbox input-margin' id='printchatbox'></div>
+            </div>
+        </div>
+    </section>
+
+
 </div>
-<div class="test">
-    <p>oi</p>
-</div>
-<form th:action="@{/newsmessage}" method="post">
-    <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
-    <input type="text" name="message" class="form-control" placeholder="Tekst"/>
-    <div><input type="submit" value="Send mail"/></div>
-</form>
+
+<th:block layout:fragment="scripts">
+    <script type="text/javascript" src="/static/js/mail.result.js"></script>
+</th:block>
 </body>
 </html>

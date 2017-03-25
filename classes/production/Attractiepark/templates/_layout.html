@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Default</title>
+
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css"/>
+    <link href="/static/css/core.css" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="fixed-header">
+
+    <!-- Tablet & PC Header -->
+    <header class="site-header display">
+        <nav class="nav">
+
+            <!-- Logo -->
+            <a class="header_logo" th:href="@{/}"><img class="logo_img" src="/static/img/logo.png" alt="B2a logo" /></a>
+
+            <!-- Upper navigation -->
+            <ul class="meta-navigation">
+                <li class="login"><a th:text="#{header.meta.item1}" th:href="@{/login}"></a></li>
+                <li class="contact"><a th:text="#{header.meta.item2}" th:href="@{/contact}"></a></li>
+            </ul>
+
+            <!-- Lower navigation -->
+            <ul class="site-navigation">
+                <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
+                <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
+                <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
+                <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mobile header -->
+    <header class="site-header responsive-display">
+
+        <!-- Logo -->
+        <a class="header_logo" th:href="@{/}"><img class="logo_img" src="/static/img/logo.png" alt="B2a logo" /></a>
+
+        <!-- Hamburger menu -->
+        <div th:text="#{header.menu}" class="menu"></div>
+        <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Expanded menu -->
+        <ul class="responsive-navigation">
+            <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
+            <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
+            <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
+            <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
+        </ul>
+
+    </header>
+</div>
+
+<div class="row" layout:fragment="content">
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+
+        <!-- Footer navigation -->
+        <div class="footer-navigation display">
+            <div class="footer-text-wrapper">
+                <h4 th:text="#{footer.navigation}"></h4>
+                <ul>
+                    <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
+                    <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
+                    <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
+                    <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer newsletter -->
+        <div class="footer-newsletter display">
+            <div class="footer-text-wrapper">
+                <h4 th:text="#{footer.newsletter.title}"><b></b></h4>
+                <p th:text="#{footer.newsletter.paragraph}"></p>
+                <input type="text" name="newsmessage" class="input-subscribe" th:placeholder="#{footer.input}" />
+                <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
+            </div>
+        </div>
+
+        <!-- Mobile footer -->
+        <div class="responsive-footer responsive-display">
+            <div class="footer-text-layout">
+                <h4><a th:text="#{header.site.item4}" th:href="@{/}"></a></h4>
+            </div>
+            <div class="footer-text-layout">
+                <h4><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></h4>
+            </div>
+            <div class="footer-text-layout">
+                <h4><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></h4>
+            </div>
+            <div class="footer-text-layout">
+                <h4><a th:text="#{header.site.item1}" th:href="@{/}"></a></h4>
+            </div>
+            <h4 th:text="#{footer.newsletter.title}"><b></b></h4>
+            <p th:text="#{footer.newsletter.paragraph}"></p>
+            <input type="text" name="newsmessage" class="input-subscribe" th:placeholder="#{footer.input}" />
+            <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/nav.js"></script>
+<th:block layout:fragment="scripts">
+
+</th:block>
+</body>
+</html>
