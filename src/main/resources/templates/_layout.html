@@ -113,8 +113,8 @@
             </div>
             <h4 th:text="#{footer.newsletter.title}"><b></b></h4>
             <p th:text="#{footer.newsletter.paragraph}"></p>
-            <input type="text" name="newsmessage" class="input-subscribe" placeholder="E-mailadres" />
-            <input type="submit" value="submit" class="btn-subscribe" />
+            <input type="text" name="newsmessage" class="input-subscribe" th:placeholder="#{footer.input}" />
+            <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
         </div>
     </div>
 </footer>
