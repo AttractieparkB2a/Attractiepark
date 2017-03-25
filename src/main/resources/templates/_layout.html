@@ -13,31 +13,69 @@
 </head>
 <body>
 
-<header>
-    <div class="nav">
-        <div class="container">
-            <ul class="upper-nav no-padding">
+<!-- Navigation -->
+<div class="fixed-header">
+
+    <!-- Tablet & PC Header -->
+    <header class="site-header display">
+        <nav class="nav">
+
+            <!-- Logo -->
+            <a class="header_logo" th:href="@{/}"><img class="logo_img" src="/static/img/logo.png" alt="B2a logo" /></a>
+
+            <!-- Upper navigation -->
+            <ul class="meta-navigation">
                 <li class="login"><a th:href="@{/login}">Login</a></li>
                 <li class="contact"><a th:href="@{/contact}">Contact</a></li>
             </ul>
-            <ul class="no-padding">
-                <li class="logo-holder"><a th:href="@{/}"><img src="/static/img/logo.png" class="logo" /></a></li>
+
+            <!-- Lower navigation -->
+            <ul class="site-navigation">
                 <li class="news"><a th:href="@{/}">Newsletter</a></li>
                 <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
                 <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
                 <li class="park"><a th:href="@{/}">Park</a></li>
             </ul>
+        </nav>
+    </header>
+
+    <!-- Mobile header -->
+    <header class="site-header responsive-display">
+
+        <!-- Logo -->
+        <a class="header_logo" th:href="@{/}"><img class="logo_img" src="/static/img/logo.png" alt="B2a logo" /></a>
+
+        <!-- Hamburger menu -->
+        <div class="menu">Menu</div>
+        <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </div>
-</header>
+
+        <!-- Expanded menu -->
+        <ul class="responsive-navigation">
+            <li class="park"><a th:href="@{/}">Park</a></li>
+            <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
+            <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
+            <li class="news"><a th:href="@{/}">Newsletter</a></li>
+        </ul>
+
+    </header>
+</div>
 
 <div class="row" layout:fragment="content">
     Page content goes here
 </div>
 
+<!-- Footer -->
 <footer>
     <div class="footer-content">
-        <div class="col-lg-6">
+
+        <!-- Footer navigation -->
+        <div class="footer-navigation display">
+            <div class="footer-text-wrapper">
                 <h4>Navigeer</h4>
                 <ul>
                     <li class="park"><a th:href="@{/}">Park</a></li>
@@ -45,8 +83,33 @@
                     <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
                     <li class="news"><a th:href="@{/}">Newsletter</a></li>
                 </ul>
+            </div>
         </div>
-        <div class="col-lg-6">
+
+        <!-- Footer newsletter -->
+        <div class="footer-newsletter display">
+            <div class="footer-text-wrapper">
+                <h4><b>Nieuwsbrief</b></h4>
+                <p>Blijf of de hoogte van B2a dankzij de nieuwsbrief. Ontvang 1 a 2 keer per maand bericht over aanbiedingen, nieuws, kijkjes achter de schermen en meer.</p>
+                <input type="text" name="newsmessage" class="input-subscribe" placeholder="E-mailadres" />
+                <input type="submit" value="submit" class="btn-subscribe" />
+            </div>
+        </div>
+
+        <!-- Mobile footer -->
+        <div class="responsive-footer responsive-display">
+            <div class="footer-text-layout">
+                <h4><a th:href="@{/}">Park</a></h4>
+            </div>
+            <div class="footer-text-layout">
+                <h4><a th:href="@{/attraction/attractionsList}">Attracties</a></h4>
+            </div>
+            <div class="footer-text-layout">
+                <h4><a th:href="@{/ticketOrder}">Tickets</a></h4>
+            </div>
+            <div class="footer-text-layout">
+                <h4><a th:href="@{/}">Newsletter</a></h4>
+            </div>
             <h4><b>Nieuwsbrief</b></h4>
             <p>Blijf of de hoogte van B2a dankzij de nieuwsbrief. Ontvang 1 a 2 keer per maand bericht over aanbiedingen, nieuws, kijkjes achter de schermen en meer.</p>
             <input type="text" name="newsmessage" class="input-subscribe" placeholder="E-mailadres" />
@@ -57,6 +120,7 @@
 
 <script type="text/javascript" src="/webjars/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/nav.js"></script>
 <th:block layout:fragment="scripts">
 
 </th:block>
