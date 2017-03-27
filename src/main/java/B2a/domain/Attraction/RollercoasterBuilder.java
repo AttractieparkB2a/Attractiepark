@@ -5,13 +5,13 @@ public class RollercoasterBuilder extends AttractionBuilder {
 
 
     @Override
-    public Attraction createNewAttraction(String name, int duration) {
+    public Attraction createNewAttraction() {
 
         rollercoaster = new Rollercoaster();
-        rollercoaster.setName( name );
-        rollercoaster.setDuration( duration );
-        //rollercoaster.setMaxSpeed();
-        //rollercoaster.setMinimumAge();
+        rollercoaster.setName("rollercoaster name");
+        rollercoaster.setDuration( 3 );
+        rollercoaster.setMaxSpeed( 50 );
+        rollercoaster.setMinimumHeight( 100 );
         rollercoaster.setTransportType("rollercoaster-carts");
 
         return rollercoaster;

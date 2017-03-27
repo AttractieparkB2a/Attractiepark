@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
+<head>
+    <title>Attractiepark | Login</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+        <div th:if="${param.error}">
+            Ongeldige email of wachtwoord.
+        </div>
+        <div th:if="${param.logout}">
+            Je bent uitgelogd.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
+            <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
+            <div><input type="submit" value="Log in"/></div>
+        </form>
+    </section>
+
+</div>
+
+</body>
+</html>

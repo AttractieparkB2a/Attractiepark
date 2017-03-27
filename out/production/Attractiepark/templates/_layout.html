@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Default</title>
+
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css"/>
+    <link href="/static/css/core.css" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+    <div class="nav">
+        <ul class="upper-nav no-padding">
+            <li class="login"><a th:href="@{/login}">Login</a></li>
+            <li class="contact"><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+        <ul class="no-padding">
+            <li class="logo-holder"><a th:href="@{/}"><img src="/static/img/logo.png" class="logo" /></a></li>
+            <li class="news"><a th:href="@{/}">Newsletter</a></li>
+            <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
+            <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
+            <li class="park"><a th:href="@{/}">Park</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="row" layout:fragment="content">
+    Page content goes here
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="col-lg-6">
+                <h4>Navigeer</h4>
+                <ul>
+                    <li class="park"><a th:href="@{/}">Park</a></li>
+                    <li class="attractions"><a th:href="@{/attraction/attractionsList}">Attracties</a></li>
+                    <li class="about"><a th:href="@{/ticketOrder}">Tickets</a></li>
+                    <li class="news"><a th:href="@{/}">Newsletter</a></li>
+                </ul>
+        </div>
+        <div class="col-lg-6">
+            <h4><b>Nieuwsbrief</b></h4>
+            <p>Blijf of de hoogte van B2a dankzij de nieuwsbrief. Ontvang 1 a 2 keer per maand bericht over aanbiedingen, nieuws, kijkjes achter de schermen en meer.</p>
+            <input type="text" name="newsmessage" class="input-subscribe" placeholder="E-mailadres" />
+            <input type="submit" value="submit" class="btn-subscribe" />
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<th:block layout:fragment="scripts"></th:block>
+</body>
+</html>
