@@ -2,6 +2,7 @@ package B2a.controller;
 
 import B2a.domain.NewsMessage.NewsMessage;
 import B2a.domain.User;
+import B2a.service.NewsMessageServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,44 +41,10 @@ public class NewsMessageController {
             List<String> emails = message.notifyUsers();
 
             if(!emails.isEmpty()) {
-                sendNewsLetter(emails, subject, content);
+                NewsMessageServiceImpl impl = new NewsMessageServiceImpl();
+                impl.sendNewsLetter(emails, subject, content);
             }
 
         return "redirect:/";
-    }
-
-    private void sendNewsLetter(List<String> email, String subject, String content) {
-        final String username = "AttractieparkB2a@gmail.com";
-        final String password = "B2aAttractiepar";
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.ssl.trust", "*");
-
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("AttractieparkB2a@gmail.com"));
-            for (String anEmail : email) {
-                message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(anEmail));
-            }
-
-            message.setSubject(subject);
-            message.setContent(content, "text/html");
-
-            Transport.send(message);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 }
