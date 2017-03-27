@@ -1,7 +1,7 @@
 package B2a.domain;
 
-import B2a.domain.NewsMessage.INewsMessage;
-import B2a.domain.NewsMessage.IUser;
+import B2a.domain.newsMessage.INewsMessage;
+import B2a.domain.newsMessage.IUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
