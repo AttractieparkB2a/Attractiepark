@@ -1,8 +1,8 @@
 package B2a.controller;
 
-import B2a.domain.Ticket.BaseTicket;
-import B2a.domain.Ticket.Ticket;
-import B2a.domain.Ticket.TicketOption;
+import B2a.domain.ticket.BaseTicket;
+import B2a.domain.ticket.Ticket;
+import B2a.domain.ticket.TicketOption;
 import B2a.repository.BaseTicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

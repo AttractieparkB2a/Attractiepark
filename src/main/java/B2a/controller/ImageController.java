@@ -1,14 +1,12 @@
 package B2a.controller;
 
-import B2a.domain.Image.Image;
-import B2a.domain.Image.ProxyImage;
-import B2a.domain.NewsMessage.NewsMessage;
+import B2a.domain.image.Image;
+import B2a.domain.image.ProxyImage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ImageController {
