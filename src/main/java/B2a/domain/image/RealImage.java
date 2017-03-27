@@ -5,11 +5,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RealImage implements Image {
 
     private String fileName;
     private BufferedImage image;
+    private static final Logger log = Logger.getLogger(RealImage.class.getName());
 
     public RealImage(String fileName){
         this.fileName = fileName;
@@ -31,7 +34,7 @@ public class RealImage implements Image {
                 FileInputStream fis = new FileInputStream(file);
                 image = ImageIO.read(fis);
             } catch (IOException e) {
-                e.printStackTrace();
+               log.log(Level.WARNING,"Exception: " + e);
             }
         }
         return image;
