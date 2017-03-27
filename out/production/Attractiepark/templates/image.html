@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
+<head>
+    <title>Image | View</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+        <form th:action="@{/image}" method="post">
+            <div><input type="submit" name="action" value="1"/></div>
+            <div><input type="submit" name="action" value="2"/></div>
+            <div><input type="submit" name="action" value="3"/></div>
+        </form>
+    </section>
+
+</div>
+
+</body>
+</html>

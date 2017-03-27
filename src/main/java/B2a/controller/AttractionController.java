@@ -26,6 +26,17 @@ public class AttractionController {
 
         return new ModelAndView("/attraction/attractionsList", "attractions", attractions);
     }
+
+    @GetMapping("{id}")
+    public ModelAndView info(@PathVariable("id") Attraction attraction){
+        return new ModelAndView("/attraction/info", "attraction", attraction);
+    }
+
+    @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.GET)
+    public ModelAndView adminAttractionList(Model model){
+        Iterable<Attraction> attractions = attractionManagerIF.findAllAttractions();
+        return new ModelAndView("/attraction/adminAttractionsList", "attractions", attractions);
+    }
 //
 //    @RequestMapping(value = "/attraction/attractionAdmin", method = RequestMethod.GET)
 //    public ModelAndView attractionAdmin(attraction attraction) {
@@ -72,41 +83,21 @@ public class AttractionController {
 
     @RequestMapping(value = "/attraction/attractionChooser", method = RequestMethod.POST)
     public String attractionChooser(Model model, @RequestParam(value="action", required = true) String action) {
-        switch (action) {
-            case "rollercoaster":
-                //createAttraction(action);
-                builder = new RollercoasterBuilder();
-                System.out.println("Rollercoaster chosen");
-                return "attraction/rollercoasterForm";
-            case "pendulum":
-                //createAttraction(action);
-                builder = new PendulumBuilder();
-                System.out.println("Pendulum chosen");
-                return "attraction/pendulumForm";
-            default:
-                return "attraction/attractionChooser";
+        System.out.println("actie = " + action);
+        attractionManagerIF.createNewAttraction(action);
 
-        }
-    }
-
-    public Attraction createAttractionTest(String type){
-        return attractionManagerIF.createNewAttraction(type);
+        return "redirect:/attraction/attractionsList";
     }
 
 
-    @RequestMapping(value = "/attraction/createAttraction", method = RequestMethod.POST)
-    public Attraction createAttraction(Model model){
-        String name = "hardcoded";
-        int duration = 1;
-        System.out.println("fucking rollercoaster");
-        Attraction attraction = builder.createNewAttraction(name, duration);
-        return attraction;
-    }
-
-
-    private void createNewRollercoaster(Rollercoaster rollercoaster) {
-
-    }
+//    @RequestMapping(value = "/attraction/createAttraction", method = RequestMethod.POST)
+//    public Attraction createAttraction(Model model){
+//        String name = "hardcoded";
+//        int duration = 1;
+//        System.out.println("fucking rollercoaster");
+//        Attraction attraction = builder.createNewAttraction();
+//        return attraction;
+//    }
 
 
 //    public void buttonCreateNewAttractionPressed(String attractionType){

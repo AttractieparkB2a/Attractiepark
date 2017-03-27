@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
+<head>
+    <title>Attractiepark | Email</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+        <form th:action="@{/newsmessage}" method="post">
+            <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
+            <input type="text" name="message" class="form-control" placeholder="Tekst"/>
+            <div><input type="submit" value="Send mail"/></div>
+        </form>
+    </section>
+
+</div>
+
+</body>
+</html>

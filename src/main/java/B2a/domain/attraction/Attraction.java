@@ -14,7 +14,7 @@ public abstract class Attraction {
     //ATTRIBUTES
     @Id
     @GeneratedValue
-    protected int Id;
+    protected int id;
     protected String name;
 
     protected int duration ;

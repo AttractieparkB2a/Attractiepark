@@ -20,23 +20,21 @@ public class AttractionManager implements AttractionManagerIF{
     public Attraction createNewAttraction(String type) {
         switch(type){
             case "rollercoaster":
-//                builder = new RollercoasterBuilder();
-//                Rollercoaster rollercoaster = (Rollercoaster) builder.buildAttraction("rollercoaster");
-//                rollercoaster.setName("Reversed Rollercoaster");
-//                rollercoaster.setDuration( 4 );
-//                return rollercoaster;
-
+                System.out.println("rollercoaster");
+                builder = new RollercoasterBuilder();
+                break;
             case "pendulum":
-//                builder = new PendulumBuilder();
-//                PendulumRide pendulumRide = (PendulumRide) builder.buildAttraction("pirateShip");
-//                pendulumRide.setName("Big Pirate Boat");
-//                pendulumRide.setDuration( 3 );
-//                pendulumRide.setTransportType("pirate boat");
-//
-//                return pendulumRide;
+                System.out.println("pendulum");
+                builder = new PendulumBuilder();
+                break;
+            case "water attraction":
+                builder = new WaterBuilder();
+            default:
+                System.out.println("Default reached");
         }
-
-        return null;
+        Attraction attraction = builder.createNewAttraction();
+        attractionRepository.save(attraction);
+        return attraction;
     }
 
     @Override
@@ -47,12 +45,14 @@ public class AttractionManager implements AttractionManagerIF{
     @Override
     public Iterable<Attraction> findAllAttractions() {
         Attraction testData1 = new Rollercoaster();
+        testData1.setId(10);
         testData1.setName("testdata1");
         testData1.setDuration(2);
         testData1.setMinimumHeight(110);
 
 
         Rollercoaster testData2 = new Rollercoaster();
+        testData2.setId(20);
         testData2.setName("testdata2");
         testData2.setDuration(4);
         testData2.setMaxSpeed(100);

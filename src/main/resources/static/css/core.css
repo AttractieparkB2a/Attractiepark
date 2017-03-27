@@ -497,3 +497,37 @@ h5 {
 .btn-attractionType{
     padding: 30px;
 }
+
+.attractionListHeader{
+    align=text-center;
+    font-weight: bold;
+}
+
+.attractionList{
+    margin: 180px;
+    background-color: white;
+}
+
+.attractionListItem{
+    margin: 10px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.attractionListText{
+    margin-left: 10px;
+}
+
+.attractionImage{
+    min-width: 100px;
+    min-height: 100px;
+    padding: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.btn-attractionInfo{
+    align:right;
+}
