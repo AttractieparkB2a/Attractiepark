@@ -92,8 +92,10 @@
             <div class="footer-text-wrapper">
                 <h4 th:text="#{footer.newsletter.title}"><strong></strong></h4>
                 <p th:text="#{footer.newsletter.paragraph}"></p>
-                <input type="text" name="newsmessage" class="input-subscribe" th:placeholder="#{footer.input}" />
-                <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
+                <form th:action="@{/}" method="post">
+                    <input type="text" name="emailaddress" class="input-subscribe" th:placeholder="#{footer.input}" />
+                    <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
+                </form>
             </div>
         </div>
 
@@ -113,8 +115,10 @@
             </div>
             <h4 th:text="#{footer.newsletter.title}"><strong></strong></h4>
             <p th:text="#{footer.newsletter.paragraph}"></p>
-            <input type="text" name="newsmessage" class="input-subscribe" th:placeholder="#{footer.input}" />
-            <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
+            <form th:action="@{/}" method="post">
+                <input type="text" name="emailaddress" class="input-subscribe" th:placeholder="#{footer.input}" />
+                <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
+            </form>
         </div>
     </div>
 </footer>

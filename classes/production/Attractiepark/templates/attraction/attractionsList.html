@@ -10,32 +10,32 @@
 
 <body>
 
-<div layout:fragment="content">
+<div layout:fragment="content" class="attractionList">
+    <header class="attractionListHeader"> Attracties in het B2a pretpark </header>
 
-    <section id="home" class="home-section">
-        Attracties in het B2a pretpark!
-        <div th:each="attraction : ${attractions}" class="center">
-            <div>
+        <div th:each="attraction : ${attractions}" class="attractionListItem">
+            <div class="col-md-4">
                 Picture here
             </div>
-            <div>
+            <div class="col-md-8">
                 <table>
                     <tr >
-                        <td>Naam </td><td th:text="${attraction.name}"></td>
+                        <td>Naam </td><td th:text="${attraction.name}" class="attractionListItemText"></td>
                     </tr>
                     <tr>
-                        <td> Duur </td><td th:text="${attraction.duration}"> </td>
+                        <td> Duur </td><td th:text="${attraction.duration}" class="attractionListItemText"> </td>
                     </tr>
                     <tr>
-                        <td> Mimimum lengte </td><td th:text="${attraction.minimumHeight}"> </td>
+                        <td> Mimimum lengte </td><td th:text="${attraction.minimumHeight}" class="attractionListItemText"> </td>
                     </tr>
                     <tr>
-                        <td> Soort attractie </td><td th:text="${attraction.transportType}"> </td>
+                        <td> Soort attractie </td><td th:text="${attraction.transportType}" class="attractionListItemText"> </td>
                     </tr>
                 </table>
             </div>
-
-            <input type="button" value="Meer informatie.."/>
+            <div>
+                <a href="attraction/info.html" th:href="@{'/attraction/' + ${attraction.id}}"> Meer informatie </a>
+            </div>
 
         </div>
 
@@ -46,7 +46,6 @@
                 <a href="attractionAdmin.html" th:href="@{attraction/attractionAdmin}">Admin page</a>
             </button>
         </p>
-    </section>
 
 </div>
 
