@@ -531,3 +531,23 @@ h5 {
 .btn-attractionInfo{
     align:right;
 }
+
+.photo-holder {
+    float: left;
+    width: 70px;
+    padding: 20px;
+}
+
+.user-image {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+}
+
+.u-image {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+}
