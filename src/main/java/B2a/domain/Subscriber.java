@@ -1,6 +1,5 @@
 package B2a.domain;
 
-import B2a.domain.newsMessage.INewsMessage;
 import B2a.domain.newsMessage.IUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,12 +21,6 @@ public class Subscriber extends IUser {
     private Long id;
 
     private String emailaddress;
-
-    public Subscriber(String emailaddress, INewsMessage newsMessage) {
-        this.emailaddress = emailaddress;
-
-        newsMessage.attach(this);
-    }
 
     @Override
     public String update() {
