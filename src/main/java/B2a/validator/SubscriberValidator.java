@@ -23,7 +23,7 @@ public class SubscriberValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Subscriber subscriber = (Subscriber) o;
 
-        ValidationUtils.rejectIfEmpty(errors, "emailaddress", "NotEmpty", "Emailaddress may not be empty");
+        ValidationUtils.rejectIfEmpty(errors, "email", "NotEmpty", "Email may not be empty");
 
     }
 }

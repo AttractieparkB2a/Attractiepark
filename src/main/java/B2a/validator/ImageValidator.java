@@ -27,5 +27,12 @@ public class ImageValidator implements Validator {
 
         if(userImage.getFile() != null && userImage.getFile().isEmpty())
             errors.rejectValue("file", "file.empty", "File may not be empty");
+
+        if(!userImage.getFile().getOriginalFilename().endsWith("png") && !userImage.getFile().getOriginalFilename().endsWith("jpg") && !userImage.getFile().getOriginalFilename().endsWith("jpeg"))
+            errors.rejectValue("file", "file.empty", "Incorrect type extension");
+
+        if(userImage.getFile().getSize() > 5256000) {
+            errors.rejectValue("file", "file.empty", "File has to be smaller as 5MB");
+        }
     }
 }

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.*;
 
@@ -22,7 +21,6 @@ public class UserImage {
     @Transient
     MultipartFile file;
 
-  //  @Column( name = "FILEIMAGE" )
     @Lob()
     private byte[] image;
 

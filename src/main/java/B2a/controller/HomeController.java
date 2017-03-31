@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -16,11 +17,18 @@ import javax.validation.Valid;
 public class HomeController {
 
     private SubscriberRepository subscriberRepository;
-    private SubscriberValidator subscriberValidator;
+  //  private SubscriberValidator subscriberValidator;
 
-    public HomeController(SubscriberRepository subscriberRepository, SubscriberValidator subscriberValidator) {
+    public HomeController(SubscriberRepository subscriberRepository
+                        //  SubscriberValidator subscriberValidator
+    ) {
         this.subscriberRepository = subscriberRepository;
-        this.subscriberValidator = subscriberValidator;
+     //   this.subscriberValidator = subscriberValidator;
+    }
+
+    @ModelAttribute(value = "subscriberForm")
+    public Subscriber newSubscriber() {
+        return new Subscriber();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -33,7 +41,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String index(@Valid @ModelAttribute("subscriberForm") Subscriber subscriberForm, BindingResult bindingResult, Model model) {
 
-        subscriberValidator.validate(subscriberForm, bindingResult);
+    //    subscriberValidator.validate(subscriberForm, bindingResult);
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("subscriberForm", subscriberForm);
@@ -44,4 +52,5 @@ public class HomeController {
 
         return "home";
     }
+
 }

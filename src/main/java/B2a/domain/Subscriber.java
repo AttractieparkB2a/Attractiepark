@@ -20,11 +20,11 @@ public class Subscriber extends IUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String emailaddress;
+    private String email;
 
     @Override
     public String update() {
-        return emailaddress;
+        return email;
     }
 
 }
