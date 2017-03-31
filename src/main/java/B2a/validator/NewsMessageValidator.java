@@ -14,7 +14,6 @@ public class NewsMessageValidator implements Validator {
     @Autowired
     NewsMessageRepository newsMessageRepository;
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return NewsMessage.class.equals(clazz);

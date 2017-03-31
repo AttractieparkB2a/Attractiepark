@@ -1,34 +1,30 @@
 package B2a.controller;
 
-import B2a.domain.image.Image;
-import B2a.domain.image.ProxyImage;
 import B2a.domain.image.UserImage;
-import B2a.domain.newsMessage.NewsMessage;
 import B2a.repository.ImageRepository;
+import B2a.validator.ImageValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.File;
+import javax.validation.Valid;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Controller
 public class ImageController {
 
-    ImageRepository imageRepository;
+    private ImageRepository imageRepository;
+    private ImageValidator imageValidator;
 
-    public ImageController(ImageRepository imageRepository) {
+    public ImageController(ImageRepository imageRepository, ImageValidator imageValidator) {
         this.imageRepository = imageRepository;
+        this.imageValidator = imageValidator;
     }
 
     @RequestMapping(value = "/image", method = RequestMethod.GET)
@@ -39,10 +35,13 @@ public class ImageController {
     }
 
     @RequestMapping(value="/image", method = RequestMethod.POST)
-    public String image(@RequestParam("file") MultipartFile file, UserImage imageForm, BindingResult result) {
+    public String image(@Valid @ModelAttribute("imageForm") UserImage imageForm, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
 
-        if (file.isEmpty()) {
-            return "redirect:/";
+        imageValidator.validate(imageForm, bindingResult);
+
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("imageForm", imageForm);
+            return "image";
         }
 
         byte[] fileContent = null;
@@ -55,9 +54,6 @@ public class ImageController {
 
         imageForm.setImage(fileContent);
 
-        if (result.hasErrors()) {
-            return "image";
-        }
         imageRepository.save(imageForm);
 
         return "redirect:/";
