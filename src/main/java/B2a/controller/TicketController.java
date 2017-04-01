@@ -1,8 +1,7 @@
 package B2a.controller;
 
-import B2a.domain.Ticket.Ticket;
-import B2a.domain.Ticket.TicketOption;
 import B2a.model.TicketModel;
+import B2a.domain.Ticket.*;
 import B2a.repository.BaseTicketRepository;
 import B2a.service.abstractService.TicketManagerIF;
 import B2a.service.concreteService.TicketManager;

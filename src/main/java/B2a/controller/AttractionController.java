@@ -1,18 +1,13 @@
 package B2a.controller;
 
-import B2a.domain.Attraction.*;
+import B2a.domain.attraction.*;
 import B2a.repository.AttractionRepository;
 import B2a.service.abstractService.AttractionManagerIF;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.transaction.Transactional;
-import javax.validation.Valid;
 
 @Controller
 public class AttractionController {
@@ -44,9 +39,9 @@ public class AttractionController {
     }
 //
 //    @RequestMapping(value = "/attraction/attractionAdmin", method = RequestMethod.GET)
-//    public ModelAndView attractionAdmin(Attraction attraction) {
+//    public ModelAndView attractionAdmin(attraction attraction) {
 //
-//        return new ModelAndView("attractionAdmin", "Attraction", null);
+//        return new ModelAndView("attractionAdmin", "attraction", null);
 //    }
 
 
@@ -58,7 +53,7 @@ public class AttractionController {
 //    }
 //
 //    @RequestMapping(value = "/attraction/rollercoasterForm", method = RequestMethod.GET)
-//    public ModelAndView rollercoasterForm(Attraction attraction) {
+//    public ModelAndView rollercoasterForm(attraction attraction) {
 //        return new ModelAndView("attraction/rollercoasterForm", "attraction", attraction);
 //    }
 
@@ -109,12 +104,12 @@ public class AttractionController {
 //        if(attractionType == "Pendulum"){
 //            builder = new PendulumBuilder();
 //        }
-//        Attraction a = builder.buildAttraction("type");
+//        attraction a = builder.buildAttraction("type");
 //    }
 //
 //    public void testStartState(){
 //
-//        Attraction b = new LogFlume();
+//        attraction b = new LogFlume();
 //        b.setState( new RunningState(b));
 //
 //    }

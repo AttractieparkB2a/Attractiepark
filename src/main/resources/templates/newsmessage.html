@@ -16,9 +16,11 @@
         <div class="page-container">
             <div class="col-lg-6 extra-padding">
                 <h5>Create mail</h5>
-                <form th:action="@{/newsmessage}" method="post">
-                    <input id="subject" type="text" name="subject" class="form-control input-margin" placeholder="Onderwerp" autofocus="true"/>
-                    <input type="text" name="message" class="chatinput form-control input-margin" id="chatinput" placeholder="Tekst"/>
+                <form th:action="@{/newsmessage}" th:object="${messageForm}" method="post">
+                    <input id="subject" th:classappend="${#fields.hasErrors('subject')} ? 'has-error'" type="text" name="subject" class="form-control input-margin" placeholder="Onderwerp" autofocus="true"/>
+                    <div class="error-message" th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
+                    <input type="text" th:classappend="${#fields.hasErrors('message')} ? 'has-error'" name="message" class="chatinput form-control input-margin" id="chatinput" placeholder="Tekst"/>
+                    <div class="error-message" th:each="err : ${#fields.errors('message')}" th:text="${err}"></div>
                     <div><input type="submit" value="Send mail" class="btn-subscribe"/></div>
                 </form>
             </div>

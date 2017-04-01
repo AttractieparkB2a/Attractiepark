@@ -499,7 +499,7 @@ h5 {
 }
 
 .attractionListHeader{
-    align=text-center;
+    text-align:center;
     font-weight: bold;
 }
 
@@ -510,9 +510,7 @@ h5 {
 
 .attractionListItem{
     margin: 10px;
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
+    border: 2px solid black;
 }
 
 .attractionListText{
@@ -523,11 +521,38 @@ h5 {
     min-width: 100px;
     min-height: 100px;
     padding: 20px;
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
+    border: 2px solid black;
 }
 
 .btn-attractionInfo{
-    align:right;
+    text-align:right;
+}
+
+.photo-holder {
+    float: left;
+    width: 70px;
+    padding: 20px;
+}
+
+.user-image {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+}
+
+.u-image {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.has-error {
+    border: 1px solid #d63131;
+}
+
+.error-message {
+    text-align: left;
+    color: #d63131;
 }

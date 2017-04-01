@@ -497,3 +497,57 @@ h5 {
 .btn-attractionType{
     padding: 30px;
 }
+
+.attractionListHeader{
+    align=text-center;
+    font-weight: bold;
+}
+
+.attractionList{
+    margin: 180px;
+    background-color: white;
+}
+
+.attractionListItem{
+    margin: 10px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.attractionListText{
+    margin-left: 10px;
+}
+
+.attractionImage{
+    min-width: 100px;
+    min-height: 100px;
+    padding: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.btn-attractionInfo{
+    align:right;
+}
+
+.photo-holder {
+    float: left;
+    width: 70px;
+    padding: 20px;
+}
+
+.user-image {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+}
+
+.u-image {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+}

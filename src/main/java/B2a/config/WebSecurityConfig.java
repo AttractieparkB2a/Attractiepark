@@ -50,7 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/attraction/attractionAdmin",
                             "/attraction/attractionChooser",
                             "/attraction/info/**",
-                            "/attraction/adminAttractionsList"
+                            "/attraction/adminAttractionsList",
+                            "/userPhoto"
                         ).permitAll()
                     .anyRequest().authenticated()
                     .and()

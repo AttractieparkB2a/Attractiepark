@@ -1,4 +1,4 @@
-package B2a.domain.Attraction;
+package B2a.domain.attraction;
 
 public class WaterBuilder extends AttractionBuilder {
 
