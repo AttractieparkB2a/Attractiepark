@@ -13,8 +13,8 @@ public abstract class State {
         System.out.println("Invalid method");
     };
 
-    public void start(){
-        System.out.println("Invalid method");
+    public String start(){
+        return "Invalid method";
     };
 
     public void stop(){

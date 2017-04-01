@@ -17,9 +17,9 @@ public class WaitingState extends State {
     }
 
     @Override
-    public void start() {
-        System.out.println("Starting the attraction");
+    public String start() {
         attraction.setState( new RunningState(attraction));
+        return "Starting the attraction";
     }
 
 

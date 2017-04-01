@@ -13,6 +13,7 @@ public class RollercoasterBuilder extends AttractionBuilder {
         rollercoaster.setMaxSpeed( 50 );
         rollercoaster.setMinimumHeight( 100 );
         rollercoaster.setTransportType("rollercoaster-carts");
+        rollercoaster.customSetImage("rollercoaster");
 
         return rollercoaster;
 

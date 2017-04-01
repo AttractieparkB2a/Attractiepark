@@ -44,23 +44,6 @@ public class AttractionManager implements AttractionManagerIF{
 
     @Override
     public Iterable<Attraction> findAllAttractions() {
-        Attraction testData1 = new Rollercoaster();
-        testData1.setId(10);
-        testData1.setName("testdata1");
-        testData1.setDuration(2);
-        testData1.setMinimumHeight(110);
-
-
-        Rollercoaster testData2 = new Rollercoaster();
-        testData2.setId(20);
-        testData2.setName("testdata2");
-        testData2.setDuration(4);
-        testData2.setMaxSpeed(100);
-
-
-        attractionRepository.save( testData1 );
-        attractionRepository.save( testData2 );
-
         return attractionRepository.findAll();
     }
 
