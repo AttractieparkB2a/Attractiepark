@@ -43,7 +43,8 @@ public class NewsMessage implements INewsMessage {
 
         for (IUser m : users) {
             String email = m.update();
-            emails.add(email);
+            if(!emails.contains(email))
+                emails.add(email);
         }
         return emails;
     }
