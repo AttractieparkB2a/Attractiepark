@@ -2,7 +2,9 @@ package B2a.controller;
 
 import B2a.domain.image.UserImage;
 import B2a.repository.ImageRepository;
+import B2a.service.ImageService;
 import B2a.validator.ImageValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,15 +16,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.io.IOException;
 
 @Controller
 public class ImageController {
 
+    private ImageService imageService;
     private ImageRepository imageRepository;
     private ImageValidator imageValidator;
 
-    public ImageController(ImageRepository imageRepository, ImageValidator imageValidator) {
+    @Autowired
+    public ImageController(ImageService imageService, ImageRepository imageRepository, ImageValidator imageValidator) {
+        this.imageService = imageService;
         this.imageRepository = imageRepository;
         this.imageValidator = imageValidator;
     }
@@ -44,23 +48,13 @@ public class ImageController {
             return "image";
         }
 
-        byte[] fileContent = null;
-
-        try {
-            fileContent = file.getBytes();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        imageForm.setImage(fileContent);
-
-        imageRepository.save(imageForm);
+        imageService.addImage(file, imageForm);
 
         return "redirect:/";
     }
 
     @RequestMapping(value = "/userPhoto", method = RequestMethod.GET)
-    public ModelAndView userPhoto(Model model) {
+    public ModelAndView userPhoto() {
         Iterable<UserImage> images = imageRepository.findAll();
 
         return new ModelAndView("userPhoto", "images", images);
