@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +19,8 @@ public class NewsMessage implements INewsMessage {
     private Long id;
 
     private String subject;
+
+    @Column(length = 2000)
     private String message;
 
     @Transient
@@ -43,7 +42,8 @@ public class NewsMessage implements INewsMessage {
 
         for (IUser m : users) {
             String email = m.update();
-            emails.add(email);
+            if(!emails.contains(email))
+                emails.add(email);
         }
         return emails;
     }

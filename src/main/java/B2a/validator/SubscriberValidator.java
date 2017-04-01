@@ -14,6 +14,10 @@ public class SubscriberValidator implements Validator {
     @Autowired
     SubscriberRepository subscriberRepository;
 
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
     @Override
     public boolean supports(Class<?> clazz) {
         return Subscriber.class.equals(clazz);
@@ -23,7 +27,9 @@ public class SubscriberValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Subscriber subscriber = (Subscriber) o;
 
-        ValidationUtils.rejectIfEmpty(errors, "emailaddress", "NotEmpty", "Emailaddress may not be empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "not.empty");
 
+        if(!subscriber.getEmail().matches(EMAIL_PATTERN))
+            errors.rejectValue("email", "incorrect.email");
     }
 }

@@ -5,7 +5,7 @@
       layout:decorator="_layout">
 
 <head>
-    <title>Attractiepark | Email</title>
+    <title th:text="#{newsmessage.title}"></title>
 </head>
 
 <body>
@@ -15,17 +15,17 @@
     <section id="home" class="home-section">
         <div class="page-container">
             <div class="col-lg-6 extra-padding">
-                <h5>Create mail</h5>
+                <h5 th:text="#{newsmessage.form}"></h5>
                 <form th:action="@{/newsmessage}" th:object="${messageForm}" method="post">
-                    <input id="subject" th:classappend="${#fields.hasErrors('subject')} ? 'has-error'" type="text" name="subject" class="form-control input-margin" placeholder="Onderwerp" autofocus="true"/>
+                    <input id="subject" th:classappend="${#fields.hasErrors('subject')} ? 'has-error'" type="text" name="subject" class="form-control input-margin" th:placeholder="#{newsmessage.subject}" autofocus="true"/>
                     <div class="error-message" th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
-                    <input type="text" th:classappend="${#fields.hasErrors('message')} ? 'has-error'" name="message" class="chatinput form-control input-margin" id="chatinput" placeholder="Tekst"/>
+                    <input type="text" th:classappend="${#fields.hasErrors('message')} ? 'has-error'" name="message" class="chatinput form-control input-margin" id="chatinput" th:placeholder="#{newsmessage.message}"/>
                     <div class="error-message" th:each="err : ${#fields.errors('message')}" th:text="${err}"></div>
-                    <div><input type="submit" value="Send mail" class="btn-subscribe"/></div>
+                    <div><input type="submit" th:value="#{newsmessage.btn.send}" class="btn-subscribe"/></div>
                 </form>
             </div>
             <div class="col-lg-6 extra-padding">
-                <h5>Output</h5>
+                <h5 th:text="#{newsmessage.output}"></h5>
 
                 <div class='printchatbox input-margin' id='printchatbox'></div>
             </div>
