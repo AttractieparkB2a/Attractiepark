@@ -33,7 +33,7 @@
             <!-- Lower navigation -->
             <ul class="site-navigation">
                 <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
-                <li class="about"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
+                <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
                 <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
                 <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
             </ul>
@@ -57,10 +57,10 @@
 
         <!-- Expanded menu -->
         <ul class="responsive-navigation">
-            <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
-            <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
-            <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
-            <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
+            <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+            <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+            <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
+            <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
         </ul>
 
     </header>
@@ -79,10 +79,10 @@
             <div class="footer-text-wrapper">
                 <h4 th:text="#{footer.navigation}"></h4>
                 <ul>
-                    <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
-                    <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
-                    <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
-                    <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
+                    <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+                    <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+                    <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
+                    <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
                 </ul>
             </div>
         </div>
@@ -102,16 +102,16 @@
         <!-- Mobile footer -->
         <div class="responsive-footer responsive-display">
             <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.item4}" th:href="@{/}"></a></h4>
+                <h4><a th:text="#{header.site.park}" th:href="@{/}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></h4>
+                <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></h4>
+                <h4><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.item1}" th:href="@{/}"></a></h4>
+                <h4><a th:text="#{header.site.news}" th:href="@{/}"></a></h4>
             </div>
             <h4 th:text="#{footer.newsletter.title}"><strong></strong></h4>
             <p th:text="#{footer.newsletter.paragraph}"></p>

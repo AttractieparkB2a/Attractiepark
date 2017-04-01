@@ -5,7 +5,7 @@
       layout:decorator="_layout">
 
 <head>
-    <title>Attractiepark | Registreer</title>
+    <title th:text="#{userphoto.title}">Attractiepark | Registreer</title>
 </head>
 
 <body>
@@ -17,8 +17,8 @@
             <div class="col-lg-12 extra-padding">
                 <div th:each="image : ${images}">
                     <div class="photo-holder">
-                        <p th:text="${image.name}"></p>
                         <div class="user-image"><img class="u-image" th:src="@{'data:image/jpeg;base64,'+${image.generateBase64Image()}}" /></div>
+                        <p th:text="${image.name}"></p>
                     </div>
                 </div>
             </div>
