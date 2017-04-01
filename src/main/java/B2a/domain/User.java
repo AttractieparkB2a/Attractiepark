@@ -41,7 +41,7 @@ public class User extends IUser{
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     List<UserImage> userImages;
 
     public User(String username, String password, String passwordConfirm, String firstName, String lastName, Date birthday, String address, String city, String zipcode, boolean newsletter) {
