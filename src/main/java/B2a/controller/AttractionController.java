@@ -1,9 +1,10 @@
 package B2a.controller;
 
-import B2a.domain.Attraction.*;
+import B2a.domain.attraction.*;
 import B2a.repository.AttractionRepository;
 import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,6 @@ import javax.validation.Valid;
 @Controller
 public class AttractionController {
     AttractionManagerIF attractionManagerIF;
-    AttractionBuilder builder;
 
     public AttractionController(AttractionManagerIF attractionManagerIF){
         this.attractionManagerIF = attractionManagerIF;
@@ -31,29 +31,33 @@ public class AttractionController {
         return new ModelAndView("/attraction/attractionsList", "attractions", attractions);
     }
 
-    @GetMapping("{id}")
+
+    @RequestMapping(value = "attraction/info/{id}", method = RequestMethod.GET)
     public ModelAndView info(@PathVariable("id") Attraction attraction){
         return new ModelAndView("/attraction/info", "attraction", attraction);
     }
 
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.GET)
-    public ModelAndView adminAttractionList(Model model){
+    public ModelAndView adminAttractionList(){
         Iterable<Attraction> attractions = attractionManagerIF.findAllAttractions();
         return new ModelAndView("/attraction/adminAttractionsList", "attractions", attractions);
     }
 
+
+//    @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
+//    public ModelAndView adminAttractionList(Model model, @RequestParam(value="action", required = true) String action){
+//        Iterable<Attraction> attractions = attractionManagerIF.findAllAttractions();
+//        System.out.println("test");
+//
+//        return new ModelAndView("/attraction/adminAttractionsList", "attractions", attractions);
+//    }
 
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
-    public ModelAndView adminAttractionList(Model model, @RequestParam(value="action", required = true) String action){
-        Iterable<Attraction> attractions = attractionManagerIF.findAllAttractions();
-        System.out.println("test");
-
-        return new ModelAndView("/attraction/adminAttractionsList", "attractions", attractions);
-    }
-
-    @RequestMapping(value = "attraction/test")
-    public void test(){
-        System.out.println("testing");
+    public String adminAttractionsList(Rollercoaster attraction, @RequestParam(value="action", required = true) String action){
+        //Parameter should be Attraction, but can't instantiate abstract class..
+        System.out.println("actie = " + action);
+        attractionManagerIF.changeState(attraction, action);
+        return "redirect:/attraction/adminAttractionsList";
     }
 
 //
@@ -102,7 +106,6 @@ public class AttractionController {
 
     @RequestMapping(value = "/attraction/attractionChooser", method = RequestMethod.POST)
     public String attractionChooser(Model model, @RequestParam(value="action", required = true) String action) {
-        System.out.println("actie = " + action);
         attractionManagerIF.createNewAttraction(action);
 
         return "redirect:/attraction/attractionsList";

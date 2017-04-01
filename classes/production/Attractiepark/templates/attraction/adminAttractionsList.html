@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
+<head>
+    <title>Attractiepark | AdminList</title>
+</head>
+
+<body>
+
+<div layout:fragment="content" class="attractionList">
+    <header class="attractionListHeader"> Attracties in het B2a pretpark </header>
+
+    <div th:each="attraction : ${attractions}" class="attractionListItem">
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <td> Attractie </td>
+                    <td> Huidige Status </td>
+                    <td colspan="6"> -------- </td>
+                </tr>
+                </thead>
+                <tr >
+                    <td th:text="${attraction.name}" class="attractionListItemText"></td>
+                    <td> kleurcode </td>
+                    <td> <input type="button" value="open"/> </td>
+                    <td> <input type="button" value="start"/> </td>
+                    <td> <input type="button" value="stop"/> </td>
+                    <td> <input type="button" value="close"/> </td>
+                    <td> <input type="button" value="destroy"/> </td>
+                    <td> <input type="button" value="repair"/> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <p>
+        Test to go to the admin page.
+        <button>
+            <a href="attractionAdmin.html" th:href="@{attraction/attractionAdmin}">Admin page</a>
+        </button>
+    </p>
+
+</div>
+
+</body>
+</html>

@@ -1,7 +1,6 @@
 package B2a.domain;
 
-import B2a.domain.NewsMessage.INewsMessage;
-import B2a.domain.NewsMessage.IUser;
+import B2a.domain.newsMessage.IUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,7 +39,7 @@ public class User extends IUser{
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User(String username, String password, String passwordConfirm, String firstName, String lastName, Date birthday, String address, String city, String zipcode, boolean newsletter, INewsMessage newsMessage) {
+    public User(String username, String password, String passwordConfirm, String firstName, String lastName, Date birthday, String address, String city, String zipcode, boolean newsletter) {
         this.username = username;
         this.password = password;
         this.passwordConfirm = passwordConfirm;
@@ -51,10 +50,6 @@ public class User extends IUser{
         this.city = city;
         this.zipcode = zipcode;
         this.newsletter = newsletter;
-
-        if(newsletter) {
-            newsMessage.attach(this);
-        }
     }
 
     @Override

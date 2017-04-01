@@ -18,10 +18,7 @@
             var x = document.getElementById("colorcell");
             var colorButton = document.getElementByTagName("input");
             x.style.backgroundColor = "green";
-            var test = [[${attraction.start()}]];
-            console.log(test);
-            alert("fuck you");
-            alert(test);
+            alert("pressed");
         }
     </script>
     <header class="attractionListHeader"> Attracties in het B2a pretpark </header>
@@ -30,7 +27,7 @@
         <div th:if="${attractions.empty}">
             No Attractions
         </div>
-        <div>
+        <div th:if="${attractions != null}">
             <table id="stateTable">
                 <thead>
                 <tr>
@@ -41,19 +38,19 @@
                 </thead>
                 <tbody>
                 <tr >
-                    <td th:text="${attraction.name}" class="attractionListItemText"></td>
-                    <td id="colorcell"> kleurcode </td>
-                    <td> <input type="button" value="open" id="open" class="colorButton" th:onclick="@{${attraction.start()}"/> </td>
-                    <td> <input type="button" value="start" id="start" onclick="myFunction()"/> </td>
-                    <td> <input type="button" value="stop" id="stop" onclick="myFunction"/> </td>
-                    <td> <input type="button" value="close" id="close" class="colorButton" onclick="myFunction()"/> </td>
-                    <td> <button class="colorButton" onclick="myFunction()"> destroy </button></td>
-                    <td> <input type="button" onclick="myFunction()" value="repair" class="colorButton"/> </td>
+                    <form action="#" th:action="@{/attraction/adminAttractionsList}" data-th-object="${model}" method="post">
+                        <td th:text="${attraction.name}" class="attractionListItemText"></td>
+                        <td id="colorcell"> kleurcode </td>
+                        <td> <input type="submit" value="open" name="action"/> </td>
+                        <td> <input type="submit" value="start" name="action"/> </td>
+                        <td> <input type="submit" value="stop" name="action"/> </td>
+                        <td> <input type="submit" value="close" name="action" onclick="myFunction()"/> </td>
+                        <td> <input type="submit" value="damage" name="action"/></td>
+                        <td> <input type="submit" onclick="myFunction()" value="repair"/> </td>
+                    </form>
                 </tr>
                 </tbody>
-
             </table>
-
         </div>
     </div>
     <p>

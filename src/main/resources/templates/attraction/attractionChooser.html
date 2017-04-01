@@ -11,14 +11,20 @@
 
 <div layout:fragment="content">
     <div class="col-md-12">
-        <div>
+        <div class="col-md-12">
             Choose A type
         </div>
-        <div>
+        <div class="col-md-12">
             <form action="#" data-th-action="@{/attraction/attractionChooser}" data-th-object="${model}" method="post">
-                <button class="btn btn-primary btn-attractionType" type="submit" name="action" value="rollercoaster">Rollercoaster</button>
-                <button class="btn btn-primary btn-attractionType" type="submit" name="action" value="pendulum">Pendulum</button>
-                <button class="btn btn-primary btn-attractionType" type="submit" name="action" value="waterattraction">Pendulum</button>
+                <div class="col-md-4">
+                    <input type="submit" value="rollercoaster" name="action" class="btn-attractionType"/>
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="pendulum" name="action" class="btn-attractionType"/>
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="waterattraction" name="action" class="btn-attractionType"/>
+                </div>
             </form>
         </div>
 

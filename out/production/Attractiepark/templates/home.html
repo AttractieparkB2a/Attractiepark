@@ -5,7 +5,7 @@
       layout:decorator="_layout">
 
 <head>
-    <title>Attractiepark | Home</title>
+    <title th:text="#{home.title}"></title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <section id="home" class="home-section">
         <div class="home-bg">
             <div class="welcome-text">
-                <h1>De meest ongelofelijke ervaring</h1>
+                <h1 th:text="#{home.welcome}"></h1>
             </div>
         </div>
     </section>
