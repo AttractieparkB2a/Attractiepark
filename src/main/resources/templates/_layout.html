@@ -92,8 +92,9 @@
             <div class="footer-text-wrapper">
                 <h4 th:text="#{footer.newsletter.title}"><strong></strong></h4>
                 <p th:text="#{footer.newsletter.paragraph}"></p>
-                <form th:action="@{/}"  method="post">
-                    <input type="text" name="emailaddress" class="input-subscribe" th:placeholder="#{footer.input}" />
+                <form th:action="@{/_layout}" th:object="${subscriberForm}" method="post">
+                    <input id="email" type="text" th:classappend="${#fields.hasErrors('email')} ? 'has-error'" name="email" class="input-subscribe" th:placeholder="#{footer.input}" />
+                    <div class="error-message" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
                     <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
                 </form>
             </div>
@@ -115,8 +116,9 @@
             </div>
             <h4 th:text="#{footer.newsletter.title}"><strong></strong></h4>
             <p th:text="#{footer.newsletter.paragraph}"></p>
-            <form th:action="@{/}" method="post">
-                <input type="text"  name="emailaddress" class="input-subscribe" th:placeholder="#{footer.input}" />
+            <form th:action="@{/_layout}" th:object="${subscriberForm}" method="post">
+                <input type="text" th:classappend="${#fields.hasErrors('email')} ? 'has-error'" name="emailaddress" class="input-subscribe" th:placeholder="#{footer.input}" />
+                <div class="error-message" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
                 <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
             </form>
         </div>
