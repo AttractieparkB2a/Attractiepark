@@ -21,8 +21,8 @@ public class NewsMessageValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors, "subject", "NotEmpty", "Subject may not be empty");
+        ValidationUtils.rejectIfEmpty(errors, "subject", "not.empty");
 
-        ValidationUtils.rejectIfEmpty(errors, "message", "NotEmpty", "Message may not be empty");
+        ValidationUtils.rejectIfEmpty(errors, "message", "not.empty");
     }
 }

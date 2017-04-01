@@ -1,9 +1,10 @@
 package B2a.controller;
 
-import B2a.domain.ticket.BaseTicket;
-import B2a.domain.ticket.Ticket;
-import B2a.domain.ticket.TicketOption;
+import B2a.model.TicketModel;
+import B2a.domain.Ticket.*;
 import B2a.repository.BaseTicketRepository;
+import B2a.service.abstractService.TicketManagerIF;
+import B2a.service.concreteService.TicketManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,56 +14,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class TicketController {
 
     @Autowired
     private final BaseTicketRepository baseTicketRepository;
+    private TicketManagerIF manager;
+    private TicketModel ticketModel;
 
     public TicketController(BaseTicketRepository baseTicketRepository) {
+        this.ticketModel = new TicketModel();
         this.baseTicketRepository = baseTicketRepository;
+        this.manager = new TicketManager(baseTicketRepository);
     }
 
-    private void createTicket() {
-        Ticket ticket = new Ticket("Gold", "11-05-2017");
-        ticket = baseTicketRepository.save(ticket);
-        ticket.add(ticket);
+    private void createTicket(TicketModel model) {
+        manager.createTicket(model);
+    }
+    private void decorateTicket(TicketModel model) {
+        manager.decorateTicket(model);
     }
 
-    private void createNewTicket(Ticket ticket) {
-        ticket = baseTicketRepository.save(ticket);
-        ticket.add(ticket);
-    }
 
-    private void decorateTicket() {
-        BaseTicket concreteTicket  = baseTicketRepository.findOne(1L);
-        BaseTicket decoratedTicket1 = new TicketOption("option1", 75, "basis", "19-1-19", concreteTicket);
-        baseTicketRepository.save(decoratedTicket1);
-        BaseTicket decoratedTicket2 = new TicketOption("option2", 50, "Hotel", "19-1-19", decoratedTicket1);
-        baseTicketRepository.save(decoratedTicket2);
-        BaseTicket decoratedTicket3 = new TicketOption("option3", 25, "Lunch", "19-1-19", decoratedTicket2);
-        baseTicketRepository.save(decoratedTicket3);
-    }
-
+    /////////////////PAS AAN DEZE PAGINA///////////////////////////////
     @RequestMapping(value = "/ticketOrder", method = RequestMethod.GET)
-    public ModelAndView ticketOrder(Ticket ticket) {
+    public ModelAndView ticketOrder() {
         return new ModelAndView("ticketOrder", "Ticket", null);
+    }
+
+
+    /////////////////PAS AAN DEZE PAGINA///////////////////////////////
+    @RequestMapping(value = "/ticketOrder", method = RequestMethod.POST)
+    public ModelAndView ticketOrder(Ticket ticket) {
+
+        return new ModelAndView("ticketOrderForm", "Ticket", ticket);
     }
 
     @RequestMapping(value = "/ticketOrderForm", method = RequestMethod.GET)
     public ModelAndView ticketOrderForm(Ticket ticket) {
 
-        return new ModelAndView("ticketOrderForm", "ticket", ticket);
+        List<TicketOption> option = new ArrayList<TicketOption>();
+        option.add(new TicketOption("Lunch", 5, "description", "22-58-86", ticket));
+        option.add(new TicketOption("Cadeau", 75, "description", "22-58-86", ticket));
+
+        ticketModel.setOption(option);
+        ticketModel.setTicket(ticket);
+        return new ModelAndView("ticketOrderForm", "ticketModel", ticketModel);
     }
 
     @RequestMapping(value = "/ticketOrderForm", method = RequestMethod.POST)
-    public ModelAndView ticketOrderForm(@ModelAttribute("ticketOrderForm") Ticket ticket, BindingResult bindingResult, Model model) {
-        createNewTicket(ticket);
-        decorateTicket();
+    public ModelAndView ticketOrderForm(@ModelAttribute("ticketModel") TicketModel ticketModel, BindingResult bindingResult, Model model) {
 
-//        if (bindingResult.hasErrors()) {
-//            return new ModelAndView("ticketOrderForm", "ticket", ticket);
-//        }
-        return new ModelAndView("ticketOrder", "ticket", ticket);
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("ticketOrderForm", "ticketModel", ticketModel);
+       }
+
+        System.out.println(ticketModel.toString());
+
+        //createTicket(ticketModel);
+        //decorateTicket(ticketModel);
+        return new ModelAndView("ticketOrder", "ticketModel", ticketModel);
     }
 }
