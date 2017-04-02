@@ -1,7 +1,7 @@
 package B2a.controller;
 
-import B2a.domain.attraction.Attraction;
-import B2a.domain.attraction.Rollercoaster;
+import B2a.domain.Attraction.Attraction;
+import B2a.domain.Attraction.Rollercoaster;
 import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

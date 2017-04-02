@@ -1,4 +1,4 @@
-package B2a.domain.attractionState;
+package B2a.domain.AttractionState;
 
 import javax.persistence.Embeddable;
 

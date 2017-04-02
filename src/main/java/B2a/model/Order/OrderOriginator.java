@@ -1,9 +1,11 @@
-package B2a.domain.Order;
+package B2a.model.Order;
+
+import B2a.model.OrderModel;
 
 public class OrderOriginator {
-    private Order order;
+    private OrderModel order;
 
-    public void set(Order order){
+    public void set(OrderModel order){
         this.order = order;
     }
 

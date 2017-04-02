@@ -1,6 +1,6 @@
 package B2a.service.abstractService;
 
-import B2a.domain.ticket.Ticket;
+import B2a.domain.Ticket.Ticket;
 import B2a.model.TicketModel;
 
 public interface TicketManagerIF {

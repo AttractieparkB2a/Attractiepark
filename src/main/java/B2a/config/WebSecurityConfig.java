@@ -29,8 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
+        http.authorizeRequests()
                     .antMatchers(
                             "/webjars/**",
                             "/resources/**",
@@ -41,8 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/newsmessage",
                             "/registration",
                             "/shop",
-                            "/orderTicket/ticketOrder",
-                            "/orderTicket/ticketOrderForm",
+                            "/orderTicket/ticketOrder/**",
+                            "/orderTicket/ticketOrderForm/**",
                             "/attraction/attractionsList",
                             "/attraction/attractionForm",
                             "/attraction/rollercoasterForm",

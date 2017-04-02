@@ -1,4 +1,4 @@
-package B2a.domain.Order;
+package B2a.model.Order;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,9 @@
-package B2a.domain.Order;
+package B2a.model.Order;
+
+import B2a.model.OrderModel;
 
 public class OrderMemento {
-    private Order order;
-    public OrderMemento(Order order){this.order = order;}
-    public Order getSavedState(){return order;}
+    private OrderModel order;
+    public OrderMemento(OrderModel order){this.order = order;}
+    public OrderModel getSavedState(){return order;}
 }

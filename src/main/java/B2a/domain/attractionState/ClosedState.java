@@ -1,13 +1,15 @@
-package B2a.domain.attractionState;
+package B2a.domain.AttractionState;
 
-import B2a.domain.attraction.Attraction;
+import B2a.domain.Attraction.Attraction;
 
 public class ClosedState extends State {
     Attraction attraction;
 
     public ClosedState(Attraction attraction){
+
         this.attraction = attraction;
     }
+
 
     @Override
     public void open() {

@@ -1,4 +1,4 @@
-package B2a.domain.ticket;
+package B2a.domain.Ticket;
 
 public class Shop {
 }
