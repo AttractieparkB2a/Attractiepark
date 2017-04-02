@@ -3,6 +3,7 @@ package B2a.controller;
 import B2a.domain.image.Image;
 import B2a.domain.image.UserImage;
 import B2a.service.ImageService;
+import B2a.service.UserService;
 import B2a.validator.ImageValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,17 +20,20 @@ import java.util.LinkedHashMap;
 public class ImageController {
 
     private ImageService imageService;
+    private UserService userService;
     private ImageValidator imageValidator;
 
     @Autowired
-    public ImageController(ImageService imageService, ImageValidator imageValidator) {
+    public ImageController(ImageService imageService, UserService userService, ImageValidator imageValidator) {
         this.imageService = imageService;
+        this.userService = userService;
         this.imageValidator = imageValidator;
     }
 
     @RequestMapping(value = "/image", method = RequestMethod.GET)
     public String image(Model model) {
         model.addAttribute("imageForm", new UserImage());
+        model.addAttribute("users", userService.findAll());
 
         return "image";
     }
