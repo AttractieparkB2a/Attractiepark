@@ -42,7 +42,7 @@ public class NewsMessageController {
             return "newsmessage";
         }
 
-       newsMessageService.findEmails(messageForm);
+        newsMessageService.findEmails(messageForm);
 
         return "redirect:/";
     }

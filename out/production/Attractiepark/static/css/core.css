@@ -542,7 +542,13 @@ h5 {
 
 
 .btn-attractionType{
-    padding: 30px;
+    padding: 40px;
+    margin: 30px;
+}
+
+.attraction-chooserForm{
+    padding-top: 150px;
+    text-align: center;
 }
 
 .attractionListHeader{
@@ -556,7 +562,7 @@ h5 {
 }
 
 .attractionListItem{
-    margin: 10px;
+    margin-top: 10px;
     border: 2px solid black;
 }
 
@@ -566,6 +572,23 @@ h5 {
 
 .attraction-infolink{
     float: right;
+}
+
+.infoPage{
+    padding-top: 150px;
+}
+
+.infoHeader{
+    font-size: 25px;
+    color: darkred;
+     text-align:center;
+     font-weight: bold;
+}
+
+.attractionTable{
+    width:100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .attractionImage{
@@ -578,10 +601,27 @@ h5 {
 
 .img-panel{
     float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
 .btn-attractionInfo{
     text-align:right;
+}
+
+.btnState{
+    width: 100px;
+    padding: 2px;
+    margin-bottom: 5px;
+}
+
+.colorCell{
+    width: 100px;
+}
+
+.nameCell{
+    width: 150px;
 }
 
 .photo-holder {
