@@ -44,14 +44,6 @@ public class AttractionController {
     }
 
 
-//    @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
-//    public ModelAndView adminAttractionList(Model model, @RequestParam(value="action", required = true) String action){
-//        Iterable<Attraction> attractions = attractionManagerIF.findAllAttractions();
-//        System.out.println("test");
-//
-//        return new ModelAndView("/attraction/adminAttractionsList", "attractions", attractions);
-//    }
-
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
     public String adminAttractionsList(Rollercoaster attraction, @RequestParam(value="action", required = true) String action){
         //Parameter should be Attraction, but can't instantiate abstract class..
@@ -59,13 +51,6 @@ public class AttractionController {
         attractionManagerIF.changeState(attraction, action);
         return "redirect:/attraction/adminAttractionsList";
     }
-
-//
-//    @RequestMapping(value = "/attraction/attractionAdmin", method = RequestMethod.GET)
-//    public ModelAndView attractionAdmin(Attraction attraction) {
-//
-//        return new ModelAndView("attractionAdmin", "Attraction", null);
-//    }
 
 
 //    @RequestMapping(value = "attraction/attractionForm", method = RequestMethod.GET)
@@ -100,7 +85,7 @@ public class AttractionController {
 
 
     @RequestMapping(value = "/attraction/attractionChooser", method = RequestMethod.GET)
-    public String attractionChooser(){
+    public String attractionChooser(Model model){
         return "attraction/attractionChooser";
     }
 
@@ -108,7 +93,7 @@ public class AttractionController {
     public String attractionChooser(Model model, @RequestParam(value="action", required = true) String action) {
         attractionManagerIF.createNewAttraction(action);
 
-        return "redirect:/attraction/attractionsList";
+        return "redirect:/attraction/adminAttractionsList";
     }
 
 //
