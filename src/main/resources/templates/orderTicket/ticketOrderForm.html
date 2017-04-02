@@ -14,13 +14,15 @@
 
     <section id="home" class="home-section">
         <div class="page-container">
-            <div class="col-lg-12 extra-padding">
+            <div class="col-lg-12 extra-padding" style="width: 50%">
                 <h5>Order ticket</h5>
-                <form th:action="@{/ticketOrderForm}" method="post">
+                <form th:object="${order}" th:action="@{orderTicket/ticketOrderForm}" method="post">
                     <b>Kies type ticket</b>
-                    <div class="form-group blu-margin" style="width: 50%">
-                        <select class="form-control" th:field="${model.option}"  id="dropOperator">
-                            <option th:each="o : ${model.option}" th:value="${o.name}" th:text="${o.name} + ' -- €' + ${o.price}"></option>
+                    <div class="form-group blu-margin">
+                        <select class="form-control" th:field="${ticketModel.option}"  id="dropOperator">
+                            <option th:each="o : ${order}" >
+                                <option th:each="to : o.option" th:value="${to.name}" th:text="${to}"></option>
+                            </option>
                         </select>
                     </div>
                     <b>Kies Datum:</b>

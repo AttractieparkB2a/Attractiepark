@@ -1,18 +1,18 @@
 package B2a.service.abstractService;
 
-import B2a.domain.attraction.Attraction;
+import B2a.domain.Attraction.Attraction;
 
 public interface AttractionManagerIF {
 
-    public Attraction createNewAttraction(String type);
+     Attraction createNewAttraction(String type);
 
-    public void saveAttraction(Attraction attraction);
+    void saveAttraction(Attraction attraction);
 
-    public Iterable<Attraction> findAllAttractions();
+    Iterable<Attraction> findAllAttractions();
 
-    public Attraction findAttraction(long id);
+     Attraction findAttraction(long id);
 
-    public Iterable<String> findAllAttractionTypes();
+    Iterable<String> findAllAttractionTypes();
 
-    public void changeState(Attraction attraction, String action);
+   void changeState(Attraction attraction, String action);
 }

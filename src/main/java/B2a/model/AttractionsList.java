@@ -1,6 +1,6 @@
 package B2a.model;
 
-import B2a.domain.attraction.Attraction;
+import B2a.domain.Attraction.Attraction;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

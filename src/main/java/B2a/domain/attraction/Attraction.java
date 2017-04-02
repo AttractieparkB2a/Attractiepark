@@ -1,6 +1,7 @@
-package B2a.domain.attraction;
+package B2a.domain.Attraction;
 
-import B2a.domain.attractionState.*;
+import B2a.domain.AttractionState.ClosedState;
+import B2a.domain.AttractionState.State;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;

@@ -1,4 +1,4 @@
-package B2a.domain.image;
+package B2a.domain.Image;
 
 public interface Image {
     void display();

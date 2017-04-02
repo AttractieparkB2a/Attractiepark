@@ -1,6 +1,6 @@
 package B2a.validator;
 
-import B2a.domain.image.UserImage;
+import B2a.domain.Image.UserImage;
 import B2a.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package B2a.controller;
 
-import B2a.domain.image.UserImage;
+import B2a.domain.Image.UserImage;
 import B2a.repository.ImageRepository;
 import B2a.validator.ImageValidator;
 import org.springframework.stereotype.Controller;

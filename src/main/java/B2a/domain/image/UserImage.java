@@ -1,4 +1,4 @@
-package B2a.domain.image;
+package B2a.domain.Image;
 
 import B2a.domain.User;
 import lombok.Getter;

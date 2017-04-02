@@ -1,4 +1,4 @@
-package B2a.domain.image;
+package B2a.domain.Image;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

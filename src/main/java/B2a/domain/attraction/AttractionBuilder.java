@@ -1,6 +1,4 @@
-package B2a.domain.attraction;
-
-import B2a.domain.attraction.Attraction;
+package B2a.domain.Attraction;
 
 public abstract class AttractionBuilder {
 
