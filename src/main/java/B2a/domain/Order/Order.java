@@ -1,4 +1,4 @@
-package B2a.domain.ticket;
+package B2a.domain.Order;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,4 +13,6 @@ public class Order {
     public int ticketId;
     public  String date;
     public  int totalPrice;
+
+
 }
