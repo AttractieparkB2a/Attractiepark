@@ -1,6 +1,6 @@
 package B2a.service.concreteService;
 
-import B2a.domain.attraction.*;
+import B2a.domain.Attraction.*;
 import B2a.repository.AttractionRepository;
 import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.beans.factory.annotation.Autowired;

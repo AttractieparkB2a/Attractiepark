@@ -2,7 +2,7 @@ package B2a.service;
 
 import B2a.domain.Subscriber;
 import B2a.domain.User;
-import B2a.domain.newsMessage.NewsMessage;
+import B2a.domain.NewsMessage.NewsMessage;
 import B2a.repository.NewsMessageRepository;
 import B2a.repository.SubscriberRepository;
 import B2a.repository.UserRepository;

@@ -1,6 +1,6 @@
 package B2a.service.abstractService;
 
-import B2a.domain.attraction.Attraction;
+import B2a.domain.Attraction.Attraction;
 
 public interface AttractionManagerIF {
 

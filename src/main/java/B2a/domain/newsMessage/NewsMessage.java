@@ -1,4 +1,4 @@
-package B2a.domain.newsMessage;
+package B2a.domain.NewsMessage;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

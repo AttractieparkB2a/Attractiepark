@@ -1,7 +1,15 @@
 package B2a.model;
 
-/**
- * Created by MCharif on 9-3-2017.
- */
+import B2a.domain.Ticket.Ticket;
+import B2a.domain.Ticket.TicketOption;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
 public class TicketModel {
+    Ticket ticket;
+    List<TicketOption> option;
 }

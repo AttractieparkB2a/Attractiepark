@@ -1,7 +1,7 @@
 package B2a.domain;
 
-import B2a.domain.image.UserImage;
-import B2a.domain.newsMessage.IUser;
+import B2a.domain.Image.UserImage;
+import B2a.domain.NewsMessage.IUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

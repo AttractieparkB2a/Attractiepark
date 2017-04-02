@@ -1,6 +1,6 @@
 package B2a.controller;
 
-import B2a.domain.newsMessage.NewsMessage;
+import B2a.domain.NewsMessage.NewsMessage;
 import B2a.service.NewsMessageService;
 import B2a.validator.NewsMessageValidator;
 import org.springframework.beans.factory.annotation.Autowired;
