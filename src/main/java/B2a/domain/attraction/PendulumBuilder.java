@@ -12,6 +12,7 @@ public class PendulumBuilder extends AttractionBuilder {
         pendulumRide.setDuration( 2 );
         pendulumRide.setMinimumHeight( 60 );
         pendulumRide.setTransportType("pendulum swing");
+        pendulumRide.setAmountStaff(2);
         //pendulumRide.setMaxRotationAngle(80);
         pendulumRide.customSetImage("pendulum");
 
