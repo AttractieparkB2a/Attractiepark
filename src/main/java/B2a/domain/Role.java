@@ -1,39 +1,28 @@
 package B2a.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "role")
 public class Role {
-    private Long id;
-    private String name;
-    private Set<User> users;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private Long id;
+    private String name;
 
     @ManyToMany(mappedBy = "roles")
-    public Set<User> getUsers() {
-        return users;
-    }
+    private Set<User> users;
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public Role(String name) {
+        this.name = name;
     }
 }
