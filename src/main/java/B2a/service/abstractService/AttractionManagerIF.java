@@ -4,9 +4,15 @@ import B2a.domain.attraction.Attraction;
 
 public interface AttractionManagerIF {
 
-    public Attraction createNewAttraction(String type);
+     Attraction createNewAttraction(String type);
 
-    public void saveAttraction(Attraction attraction);
+    void saveAttraction(Attraction attraction);
 
-    public Iterable<Attraction> findAllAttractions();
+    Iterable<Attraction> findAllAttractions();
+
+     Attraction findAttraction(long id);
+
+    Iterable<String> findAllAttractionTypes();
+
+   void changeState(Attraction attraction, String action);
 }

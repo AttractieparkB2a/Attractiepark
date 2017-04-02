@@ -5,6 +5,7 @@ import B2a.domain.newsMessage.IUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,6 +30,8 @@ public class User extends IUser{
 
     private String firstName;
     private String lastName;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     private String address;

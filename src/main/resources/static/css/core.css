@@ -495,7 +495,8 @@ h5 {
 
 
 .btn-attractionType{
-    padding: 30px;
+    padding: 40px;
+    margin: 30px;
 }
 
 .attractionListHeader{
@@ -517,11 +518,20 @@ h5 {
     margin-left: 10px;
 }
 
+.attraction-infolink{
+    float: right;
+}
+
 .attractionImage{
+    display: block;
     min-width: 100px;
     min-height: 100px;
     padding: 20px;
     border: 2px solid black;
+}
+
+.img-panel{
+    float: left;
 }
 
 .btn-attractionInfo{

@@ -9,24 +9,29 @@
 </head>
 
 <body>
-
-<div layout:fragment="content">
-
-    <section id="home" class="home-section">
-        <div th:if="${param.error}">
-            Ongeldige email of wachtwoord.
-        </div>
-        <div th:if="${param.logout}">
-            Je bent uitgelogd.
-        </div>
-        <form th:action="@{/login}" method="post">
-            <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
-            <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
-            <div><input type="submit" value="Log in"/></div>
-        </form>
-    </section>
-
-</div>
-
+    <div layout:fragment="content">
+        <section id="home" class="home-section">
+            <div class="page-container">
+                <div class="col-lg-6 extra-padding">
+<<<<<<< HEAD
+                    <form th:action="@{/login}" method="post">
+                        <input type="text" name="username" class="form-control" th:placeholder="#{account.email}" autofocus="autofocus" th:required="true"/>
+                        <input type="password" name="password" class="form-control" th:placeholder="#{account.password}" th:required="true"/>
+                        <div>
+                            <input type="submit" class="btn btn-primary" th:value="#{account.login}"/>
+=======
+                    <h5>Login</h5>
+                    <form th:action="@{/login}" method="post">
+                        <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
+                        <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
+                        <div>
+                            <input type="submit" value="Log in" class="btn"/>
+>>>>>>> e58e9828df1280ab305983201baa036cacca5b3c
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
 </body>
 </html>

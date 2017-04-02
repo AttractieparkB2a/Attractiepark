@@ -1,7 +1,8 @@
 package B2a.domain.attraction;
 
 public class RollercoasterBuilder extends AttractionBuilder {
-    Rollercoaster rollercoaster;
+    //Rollercoaster rollercoaster;
+    Attraction rollercoaster;
 
 
     @Override
@@ -10,9 +11,10 @@ public class RollercoasterBuilder extends AttractionBuilder {
         rollercoaster = new Rollercoaster();
         rollercoaster.setName("rollercoaster name");
         rollercoaster.setDuration( 3 );
-        rollercoaster.setMaxSpeed( 50 );
+        //rollercoaster.setMaxSpeed( 50 );
         rollercoaster.setMinimumHeight( 100 );
         rollercoaster.setTransportType("rollercoaster-carts");
+        rollercoaster.customSetImage("rollercoaster");
 
         return rollercoaster;
 

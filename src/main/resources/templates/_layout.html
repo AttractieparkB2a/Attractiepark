@@ -25,17 +25,18 @@
 
             <!-- Upper navigation -->
             <ul class="meta-navigation">
-                <li class="login"><a th:text="#{header.meta.login}" th:href="@{/login}"></a></li>
-                <li class="register"><a th:text="#{header.meta.register}" th:href="@{/registration}"></a></li>
+                <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><b th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></b></a></li>
+                <li th:if="${#httpServletRequest.remoteUser == null}" class="login"><a th:text="#{header.meta.login}" th:href="@{/login}"></a></li>
+                <li th:if="${#httpServletRequest.remoteUser == null}" class="register"><a th:text="#{header.meta.register}" th:href="@{/registration}"></a></li>
                 <li class="contact"><a th:text="#{header.meta.contact}" th:href="@{/contact}"></a></li>
             </ul>
 
             <!-- Lower navigation -->
             <ul class="site-navigation">
-                <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
-                <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
+                <li class="news"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+                <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></li>
                 <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
-                <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+                <li class="park"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
             </ul>
         </nav>
     </header>
@@ -131,5 +132,6 @@
 <th:block layout:fragment="scripts">
 
 </th:block>
+
 </body>
 </html>

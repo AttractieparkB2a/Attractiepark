@@ -1,5 +1,6 @@
 package B2a.service;
 
+import B2a.domain.Role;
 import B2a.domain.User;
 import B2a.repository.UserRepository;
 import B2a.repository.RoleRepository;
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+
+        Role role = new Role("ROLE_MEMBER");
+        roleRepository.save(role);
     }
 
     @Override

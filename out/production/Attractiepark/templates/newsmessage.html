@@ -13,14 +13,36 @@
 <div layout:fragment="content">
 
     <section id="home" class="home-section">
-        <form th:action="@{/newsmessage}" method="post">
-            <input type="text" name="subject" class="form-control" placeholder="Onderwerp" autofocus="true"/>
-            <input type="text" name="message" class="form-control" placeholder="Tekst"/>
-            <div><input type="submit" value="Send mail"/></div>
-        </form>
+        <div class="page-container">
+            <div class="col-lg-6 extra-padding">
+                <h5>Create mail</h5>
+<<<<<<< HEAD
+                <form th:action="@{/newsmessage}" method="post">
+                    <input id="subject" type="text" name="subject" class="form-control input-margin" placeholder="Onderwerp" autofocus="true"/>
+                    <input type="text" name="message" class="chatinput form-control input-margin" id="chatinput" placeholder="Tekst"/>
+=======
+                <form th:action="@{/newsmessage}" th:object="${messageForm}" method="post">
+                    <input id="subject" th:classappend="${#fields.hasErrors('subject')} ? 'has-error'" type="text" name="subject" class="form-control input-margin" placeholder="Onderwerp" autofocus="true"/>
+                    <div class="error-message" th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
+                    <input type="text" th:classappend="${#fields.hasErrors('message')} ? 'has-error'" name="message" class="chatinput form-control input-margin" id="chatinput" placeholder="Tekst"/>
+                    <div class="error-message" th:each="err : ${#fields.errors('message')}" th:text="${err}"></div>
+>>>>>>> e58e9828df1280ab305983201baa036cacca5b3c
+                    <div><input type="submit" value="Send mail" class="btn-subscribe"/></div>
+                </form>
+            </div>
+            <div class="col-lg-6 extra-padding">
+                <h5>Output</h5>
+
+                <div class='printchatbox input-margin' id='printchatbox'></div>
+            </div>
+        </div>
     </section>
+
 
 </div>
 
+<th:block layout:fragment="scripts">
+    <script type="text/javascript" src="/static/js/mail.result.js"></script>
+</th:block>
 </body>
 </html>

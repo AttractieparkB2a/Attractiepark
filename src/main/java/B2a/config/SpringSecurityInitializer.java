@@ -3,10 +3,10 @@ package B2a.config;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
-public class SecurityWebApplicationInitializer
+public class SpringSecurityInitializer
         extends AbstractSecurityWebApplicationInitializer {
 
-    public SecurityWebApplicationInitializer() {
+    public SpringSecurityInitializer() {
         super(SecurityConfig.class);
     }
 }

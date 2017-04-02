@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="_layout">
 
 <head>
-    <title>Attractiepark | Home</title>
+    <title th:text="#{home.title}"></title>
 </head>
 
 <body>
@@ -15,8 +16,11 @@
     <section id="home" class="home-section">
         <div class="home-bg">
             <div class="welcome-text">
-                <h1>De meest ongelofelijke ervaring</h1>
+                <h1 th:text="#{home.welcome}"></h1>
             </div>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            Logged in user: <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
         </div>
     </section>
 

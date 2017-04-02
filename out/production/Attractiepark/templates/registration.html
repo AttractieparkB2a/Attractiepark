@@ -9,26 +9,27 @@
 </head>
 
 <body>
-
-<div layout:fragment="content">
-
-    <section id="home" class="home-section">
-        <form th:action="@{/registration}" method="post">
-            <input type="text" name="username" class="form-control" placeholder="Email" autofocus="true"/>
-            <input type="password" name="password" class="form-control" placeholder="Wachtwoord"/>
-            <input type="password" name="passwordConfirm" class="form-control" placeholder="Herhaal wachtwoord"/><br/><br/>
-            <input type="text" name="firstName" class="form-control" placeholder="Voornaam"/>
-            <input type="text" name="lastName" class="form-control" placeholder="Achternaam"/>
-            <input type="date" name="birthday" class="form-control" placeholder="Geboortedatum"/><br/><br/>
-            <input type="text" name="address" class="form-control" placeholder="Adres"/>
-            <input type="text" name="city" class="form-control" placeholder="Plaats"/>
-            <input type="text" name="zipcode" class="form-control" placeholder="Postcode"/><br/><br/>
-            <input type="checkbox" name="newsletter" class="form-control" placeholder="Aanmelden voor nieuwsbrief?"/><br/>
-            <div><input type="submit" value="Registreer"/></div>
-        </form>
-    </section>
-
-</div>
-
+    <div layout:fragment="content">
+        <section id="home" class="home-section">
+            <div class="page-container">
+                <div class="col-lg-6 extra-padding">
+                    <form th:action="@{/registration}" method="post">
+                        <input type="text" name="username" class="form-control" th:placeholder="#{account.email}" autofocus="autofocus" th:required="true"/>
+                        <input type="password" name="password" class="form-control" th:placeholder="#{account.password}" th:required="true"/>
+                        <input type="password" name="passwordConfirm" class="form-control" th:placeholder="#{account.passwordrepeat}" th:required="true"/><br/><br/>
+                        <input type="text" name="firstName" class="form-control" th:placeholder="#{account.firstname}" th:required="true"/>
+                        <input type="text" name="lastName" class="form-control" th:placeholder="#{account.lastname}" th:required="true"/>
+                        <input type="date" name="birthday" class="form-control" th:placeholder="#{account.birthdate}" th:required="true"/><br/><br/>
+                        <input type="text" name="address" class="form-control" th:placeholder="#{account.address}" th:required="true"/>
+                        <input type="text" name="city" class="form-control" th:placeholder="#{account.city}" th:required="true"/>
+                        <input type="text" name="zipcode" class="form-control" th:placeholder="#{account.zipcode}" th:required="true"/><br/><br/>
+                        <label for="newsletter" th:text="#{account.newsletter}"></label>
+                        <input type="checkbox" id="newsletter" name="newsletter" class="form-control"/><br/>
+                        <input type="submit" class="btn btn-primary" th:value="#{account.register}"/>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
