@@ -49,6 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/attraction/attractionAdmin",
                             "/attraction/attractionChooser",
                             "/attraction/info/**",
+                            //"/attraction/info/1",
                             "/attraction/adminAttractionsList",
                             "/userPhoto",
                             "/_layout"

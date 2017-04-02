@@ -38,15 +38,15 @@
                 </thead>
                 <tbody>
                 <tr >
-                    <form action="#" th:action="@{/attraction/adminAttractionsList}" data-th-object="${model}" method="post">
+                    <form action="#" th:action="@{/attraction/attractionsList}" method="get">
                         <td th:text="${attraction.name}" class="attractionListItemText"></td>
                         <td id="colorcell"> kleurcode </td>
-                        <td> <input type="submit" value="open" name="action"/> </td>
-                        <td> <input type="submit" value="start" name="action"/> </td>
-                        <td> <input type="submit" value="stop" name="action"/> </td>
-                        <td> <input type="submit" value="close" name="action" onclick="myFunction()"/> </td>
-                        <td> <input type="submit" value="damage" name="action"/></td>
-                        <td> <input type="submit" onclick="myFunction()" value="repair"/> </td>
+                        <td> <input type="button" value="open"/> </td>
+                        <td> <input type="button" value="start"/> </td>
+                        <td> <input type="button" value="stop" name="action"/> </td>
+                        <td> <input type="button" value="close" onclick="myFunction()"/> </td>
+                        <td> <button class="colorButton" onclick="myFunction()"> destroy </button></td>
+                        <td> <input type="button" onclick="myFunction()" value="repair"/> </td>
                     </form>
                 </tr>
                 </tbody>
