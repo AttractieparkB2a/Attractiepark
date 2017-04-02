@@ -30,6 +30,26 @@ public class NewsMessageServiceImpl implements NewsMessageService {
     }
 
     @Override
+    public void save(NewsMessage newsMessage) {
+        newsMessageRepository.save(newsMessage);
+    }
+
+    @Override
+    public void delete(Long id) {
+        newsMessageRepository.delete(id);
+    }
+
+    @Override
+    public NewsMessage findOne(Long id) {
+        return newsMessageRepository.findOne(id);
+    }
+
+    @Override
+    public Iterable<NewsMessage> findAll() {
+        return newsMessageRepository.findAll();
+    }
+
+    @Override
     public void findEmails(NewsMessage messageForm) {
 
         List<User> users = userRepository.findByNewsletter(true);
