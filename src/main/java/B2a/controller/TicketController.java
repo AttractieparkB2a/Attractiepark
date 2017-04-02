@@ -1,7 +1,8 @@
 package B2a.controller;
 
-import B2a.domain.Ticket.Ticket;
-import B2a.domain.Ticket.TicketOption;
+import B2a.domain.ticket.Ticket;
+import B2a.domain.ticket.TicketOption;
+import B2a.domain.ticket.*;
 import B2a.domain.User;
 import B2a.model.OrderModel;
 import B2a.model.TicketModel;

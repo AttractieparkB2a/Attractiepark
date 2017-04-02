@@ -1,4 +1,4 @@
-package B2a.domain.Attraction;
+package B2a.domain.attraction;
 
 public class PendulumBuilder extends AttractionBuilder {
     //PendulumRide pendulumRide;

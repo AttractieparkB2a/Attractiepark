@@ -1,4 +1,4 @@
-package B2a.domain.Ticket;
+package B2a.domain.ticket;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

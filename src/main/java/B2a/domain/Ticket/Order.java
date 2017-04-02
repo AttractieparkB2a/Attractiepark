@@ -1,4 +1,4 @@
-package B2a.domain.Ticket;
+package B2a.domain.ticket;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
