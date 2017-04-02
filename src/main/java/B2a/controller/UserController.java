@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Date;
-
 @Controller
 public class UserController {
     private final UserService userService;
@@ -40,8 +38,6 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        Date date = userForm.getBirthday();
-
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
