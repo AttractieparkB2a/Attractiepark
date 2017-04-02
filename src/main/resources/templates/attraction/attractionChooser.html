@@ -10,11 +10,11 @@
 <body>
 
 <div layout:fragment="content">
-    <div class="col-md-12">
-        <div class="col-md-12">
-            Choose A type
-        </div>
-        <div class="col-md-12">
+
+        <div class="col-md-12 attraction-chooserForm">
+            <div class="col-md-12">
+                Choose A type
+            </div>
             <form action="#" data-th-action="@{/attraction/attractionChooser}" data-th-object="${model}" method="post">
                 <div class="col-md-4">
                     <input type="submit" value="rollercoaster" name="action" class="btn-attractionType"/>
@@ -27,10 +27,6 @@
                 </div>
             </form>
         </div>
-
-    </div>
-
-
 </div>
 
 </body>

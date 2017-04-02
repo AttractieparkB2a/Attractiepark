@@ -24,6 +24,7 @@ public class ImageValidator implements Validator {
         UserImage userImage = (UserImage) o;
 
         ValidationUtils.rejectIfEmpty(errors, "name", "not.empty");
+        ValidationUtils.rejectIfEmpty(errors, "user", "not.empty");
 
         if(userImage.getFile() != null && userImage.getFile().isEmpty())
             errors.rejectValue("file", "file.empty");

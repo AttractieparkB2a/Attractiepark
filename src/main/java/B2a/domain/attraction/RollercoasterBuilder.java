@@ -9,7 +9,7 @@ public class RollercoasterBuilder extends AttractionBuilder {
     public Attraction createNewAttraction() {
 
         rollercoaster = new Rollercoaster();
-        rollercoaster.setName("rollercoaster name");
+        rollercoaster.setName("rollercoasterrrrrr");
         rollercoaster.setDuration( 3 );
         //rollercoaster.setMaxSpeed( 50 );
         rollercoaster.setMinimumHeight( 100 );

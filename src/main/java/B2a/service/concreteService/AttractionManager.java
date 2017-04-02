@@ -29,8 +29,10 @@ public class AttractionManager implements AttractionManagerIF{
                 System.out.println("pendulum");
                 builder = new PendulumBuilder();
                 break;
-            case "water attraction":
+            case "waterattraction":
+                System.out.println("water");
                 builder = new WaterBuilder();
+                break;
             default:
                 System.out.println("Default reached");
         }

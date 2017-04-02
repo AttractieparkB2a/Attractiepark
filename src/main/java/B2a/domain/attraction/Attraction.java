@@ -84,5 +84,9 @@ public abstract class Attraction {
         return Base64.encodeBase64String(this.getImage());
     }
 
+    @Override
+    public String toString(){
+        return "Naam: " + name + " Duur: " + duration + " minimum lengte: " + minimumHeight;
+    }
 
 }

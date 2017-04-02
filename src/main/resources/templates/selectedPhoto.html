@@ -15,9 +15,10 @@
     <section id="home" class="home-section">
         <div class="page-container">
             <div class="col-lg-12 extra-padding">
+                <a th:text="#{selectedphoto.back}" th:href="@{/userPhoto}"></a>
                 <div th:each="image : ${images}">
                     <div class="photo-holder">
-                        <a href="userPhoto.html" th:href="@{'/selectedPhoto/' + ${image.id}}" th:text="${image.id}"></a>
+                        <div class="user-image"><img class="u-image" th:src="@{'data:image/jpeg;base64,'+${image.generateBase64Image()}}" /></div>
                     </div>
                 </div>
             </div>
