@@ -17,8 +17,7 @@
             <div class="col-lg-12 extra-padding">
                 <div th:each="image : ${images}">
                     <div class="photo-holder">
-                        <div class="user-image"><img class="u-image" th:src="@{'data:image/jpeg;base64,'+${image.generateBase64Image()}}" /></div>
-                        <p th:text="${image.name}"></p>
+                        <a href="userPhoto.html" th:href="@{'/selectedPhoto/' + ${image.id}}" th:text="${image.id}"></a>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 package B2a.service;
 
-import B2a.domain.NewsMessage.NewsMessage;
+import B2a.domain.newsMessage.NewsMessage;
 
 import java.util.List;
 

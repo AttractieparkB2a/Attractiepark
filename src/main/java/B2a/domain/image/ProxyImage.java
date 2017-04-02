@@ -1,19 +1,23 @@
-package B2a.domain.Image;
+package B2a.domain.image;
 
 public class ProxyImage implements Image {
 
-    private RealImage realImage;
-    private String fileName;
+    private UserImage userImage;
+    private Long id;
 
-    public ProxyImage(String fileName){
-        this.fileName = fileName;
+    public ProxyImage(Long id){
+        this.id = id;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
     @Override
-    public void display() {
-        if(realImage == null){
-            realImage = new RealImage(fileName);
+    public Long load() {
+        if(userImage == null){
+            userImage = new UserImage(id);
         }
-        realImage.display();
+        return userImage.load();
     }
 }

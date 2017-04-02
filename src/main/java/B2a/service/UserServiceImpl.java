@@ -1,5 +1,6 @@
 package B2a.service;
 
+import B2a.domain.Role;
 import B2a.domain.User;
 import B2a.repository.UserRepository;
 import B2a.repository.RoleRepository;
@@ -8,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,6 +22,9 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+
+        Role role = new Role("ROLE_MEMBER");
+        roleRepository.save(role);
     }
 
     @Override
@@ -32,5 +37,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

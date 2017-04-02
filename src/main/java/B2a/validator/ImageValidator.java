@@ -1,6 +1,6 @@
 package B2a.validator;
 
-import B2a.domain.Image.UserImage;
+import B2a.domain.image.UserImage;
 import B2a.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +24,7 @@ public class ImageValidator implements Validator {
         UserImage userImage = (UserImage) o;
 
         ValidationUtils.rejectIfEmpty(errors, "name", "not.empty");
+        ValidationUtils.rejectIfEmpty(errors, "user", "not.empty");
 
         if(userImage.getFile() != null && userImage.getFile().isEmpty())
             errors.rejectValue("file", "file.empty");

@@ -1,9 +1,11 @@
-package B2a.domain.Image;
+package B2a.domain.image;
 
 import B2a.domain.User;
+import B2a.service.ImageService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -22,9 +24,6 @@ public class UserImage implements Image {
     @Transient
     private MultipartFile file;
 
-    @Transient
-    private RealImage realImage;
-
     @Lob()
     private byte[] image;
 
@@ -32,15 +31,18 @@ public class UserImage implements Image {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public UserImage() {}
+
+    public UserImage(Long id) {
+        this.id = id;
+    }
+
     public String generateBase64Image() {
         return Base64.encodeBase64String(this.getImage());
     }
 
     @Override
-    public void display() {
-        if(realImage == null){
-            realImage = new RealImage(name);
-        }
-        realImage.display();
+    public Long load() {
+        return id;
     }
 }

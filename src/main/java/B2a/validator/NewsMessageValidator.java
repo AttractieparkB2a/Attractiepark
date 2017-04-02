@@ -1,6 +1,6 @@
 package B2a.validator;
 
-import B2a.domain.NewsMessage.NewsMessage;
+import B2a.domain.newsMessage.NewsMessage;
 import B2a.repository.NewsMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

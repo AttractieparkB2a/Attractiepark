@@ -5,14 +5,16 @@ import B2a.service.SecurityService;
 import B2a.service.UserService;
 import B2a.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Date;
 
 @Controller
 public class UserController {
@@ -38,11 +40,13 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-//        userValidator.validate(userForm, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "registration";
-//        }
+        Date date = userForm.getBirthday();
+
+        userValidator.validate(userForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
 
         userService.save(userForm);
 
@@ -60,5 +64,14 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
+    }
+
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    public String account(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(authentication.getName());
+        model.addAttribute("user", user);
+
+        return "account";
     }
 }

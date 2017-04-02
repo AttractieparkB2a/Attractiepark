@@ -104,6 +104,7 @@ a.header_logo {
     font-size: 0.8em;
     line-height: 30px;
     height: 30px;
+<<<<<<< HEAD
 }
 
 .meta-navigation a {
@@ -130,6 +131,34 @@ a.header_logo {
     cursor: default;
 }
 
+=======
+}
+
+.meta-navigation a {
+    text-decoration: none;
+    color: #6E6A6B;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    display: block;
+    transition: .3s background-color;
+    white-space: nowrap;
+}
+
+.meta-navigation li:first-child a {
+    padding-right: 0;
+}
+
+.meta-navigation a:hover {
+    color: #b9132a;
+}
+
+.meta-navigation a.active {
+    color: #b9132a;
+    cursor: default;
+}
+
+>>>>>>> e58e9828df1280ab305983201baa036cacca5b3c
 .site-navigation {
     top: 30px;
     position: absolute;
@@ -224,12 +253,21 @@ a.header_logo {
 .responsive-navigation a.active {
     color: #b9132a;
     cursor: default;
+<<<<<<< HEAD
 }
 
 .visible {
     display: block !important;
 }
 
+=======
+}
+
+.visible {
+    display: block !important;
+}
+
+>>>>>>> e58e9828df1280ab305983201baa036cacca5b3c
 @media screen and (max-width: 768px) {
     .site-header {
         margin: 0;
@@ -241,12 +279,21 @@ a.header_logo {
 
     .display {
         display: none !important;
+<<<<<<< HEAD
     }
 
     .responsive-display {
         display: block !important;
     }
 
+=======
+    }
+
+    .responsive-display {
+        display: block !important;
+    }
+
+>>>>>>> e58e9828df1280ab305983201baa036cacca5b3c
     a.header_logo {
         top: 10px;
         left: 20px;

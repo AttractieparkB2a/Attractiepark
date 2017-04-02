@@ -1,5 +1,5 @@
-package B2a.domain.Image;
+package B2a.domain.image;
 
 public interface Image {
-    void display();
+    Long load();
 }
