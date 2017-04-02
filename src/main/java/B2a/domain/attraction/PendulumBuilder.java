@@ -1,7 +1,8 @@
 package B2a.domain.attraction;
 
 public class PendulumBuilder extends AttractionBuilder {
-    PendulumRide pendulumRide;
+    //PendulumRide pendulumRide;
+    Attraction pendulumRide;
 
 
     @Override
@@ -11,7 +12,8 @@ public class PendulumBuilder extends AttractionBuilder {
         pendulumRide.setDuration( 2 );
         pendulumRide.setMinimumHeight( 60 );
         pendulumRide.setTransportType("pendulum swing");
-        pendulumRide.setMaxRotationAngle(80);
+        //pendulumRide.setMaxRotationAngle(80);
+        pendulumRide.customSetImage("pendulum");
 
         return pendulumRide;
     }

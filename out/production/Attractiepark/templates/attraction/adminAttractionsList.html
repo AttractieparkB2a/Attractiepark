@@ -11,11 +11,32 @@
 <body>
 
 <div layout:fragment="content" class="attractionList">
+<<<<<<< HEAD
     <header class="attractionListHeader"> Attracties in het B2a pretpark </header>
 
     <div th:each="attraction : ${attractions}" class="attractionListItem">
         <div>
             <table>
+=======
+
+
+    <script th:inline="javascript">
+        function myFunction() {
+            var x = document.getElementById("colorcell");
+            var colorButton = document.getElementByTagName("input");
+            x.style.backgroundColor = "green";
+            alert("pressed");
+        }
+    </script>
+    <header class="attractionListHeader"> Attracties in het B2a pretpark </header>
+
+    <div th:each="attraction : ${attractions}" class="attractionListItem">
+        <div th:if="${attractions.empty}">
+            No Attractions
+        </div>
+        <div th:if="${attractions != null}">
+            <table id="stateTable">
+>>>>>>> e58e9828df1280ab305983201baa036cacca5b3c
                 <thead>
                 <tr>
                     <td> Attractie </td>
@@ -23,6 +44,7 @@
                     <td colspan="6"> -------- </td>
                 </tr>
                 </thead>
+<<<<<<< HEAD
                 <tr >
                     <td th:text="${attraction.name}" class="attractionListItemText"></td>
                     <td> kleurcode </td>
@@ -38,6 +60,25 @@
     </div>
 
 
+=======
+                <tbody>
+                <tr >
+                    <form action="#" th:action="@{/attraction/attractionsList}" method="get">
+                        <td th:text="${attraction.name}" class="attractionListItemText"></td>
+                        <td id="colorcell"> kleurcode </td>
+                        <td> <input type="button" value="open"/> </td>
+                        <td> <input type="button" value="start"/> </td>
+                        <td> <input type="button" value="stop" name="action"/> </td>
+                        <td> <input type="button" value="close" onclick="myFunction()"/> </td>
+                        <td> <button class="colorButton" onclick="myFunction()"> destroy </button></td>
+                        <td> <input type="button" onclick="myFunction()" value="repair"/> </td>
+                    </form>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+>>>>>>> e58e9828df1280ab305983201baa036cacca5b3c
     <p>
         Test to go to the admin page.
         <button>
@@ -47,5 +88,10 @@
 
 </div>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e58e9828df1280ab305983201baa036cacca5b3c
 </body>
 </html>

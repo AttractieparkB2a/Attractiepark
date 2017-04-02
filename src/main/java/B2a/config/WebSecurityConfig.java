@@ -41,16 +41,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/newsmessage",
                             "/registration",
                             "/shop",
-                            "/ticketOrder",
-                            "/ticketOrderForm",
-                            "/ticketOrder",
+                            "/orderTicket/ticketOrder",
+                            "/orderTicket/ticketOrderForm",
                             "/attraction/attractionsList",
                             "/attraction/attractionForm",
                             "/attraction/rollercoasterForm",
                             "/attraction/attractionAdmin",
                             "/attraction/attractionChooser",
                             "/attraction/info/**",
-                            "/attraction/adminAttractionsList"
+                            //"/attraction/info/1",
+                            "/attraction/adminAttractionsList",
+                            "/userPhoto",
+                            "/_layout"
                         ).permitAll()
                     .anyRequest().authenticated()
                     .and()

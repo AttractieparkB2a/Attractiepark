@@ -53,6 +53,8 @@ public class UserValidator implements Validator {
             errors.rejectValue("lastName", "Size.userForm.name");
         }
 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthday", "NotEmpty");
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "NotEmpty");
         if (user.getAddress().length() < 2) {
             errors.rejectValue("address", "Size.userForm.name");

@@ -1,13 +1,15 @@
 package B2a.domain;
 
-import B2a.domain.newsMessage.INewsMessage;
+import B2a.domain.image.UserImage;
 import B2a.domain.newsMessage.IUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -28,6 +30,8 @@ public class User extends IUser{
 
     private String firstName;
     private String lastName;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     private String address;
@@ -40,7 +44,10 @@ public class User extends IUser{
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User(String username, String password, String passwordConfirm, String firstName, String lastName, Date birthday, String address, String city, String zipcode, boolean newsletter, INewsMessage newsMessage) {
+    @OneToMany(mappedBy = "user")
+    List<UserImage> userImages;
+
+    public User(String username, String password, String passwordConfirm, String firstName, String lastName, Date birthday, String address, String city, String zipcode, boolean newsletter) {
         this.username = username;
         this.password = password;
         this.passwordConfirm = passwordConfirm;
@@ -51,10 +58,6 @@ public class User extends IUser{
         this.city = city;
         this.zipcode = zipcode;
         this.newsletter = newsletter;
-
-        if(newsletter) {
-            newsMessage.attach(this);
-        }
     }
 
     @Override

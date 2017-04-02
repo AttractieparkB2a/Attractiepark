@@ -13,11 +13,16 @@
 <div layout:fragment="content">
 
     <section id="home" class="home-section">
-        <form th:action="@{/image}" method="post">
-            <div><input type="submit" name="action" value="1"/></div>
-            <div><input type="submit" name="action" value="2"/></div>
-            <div><input type="submit" name="action" value="3"/></div>
-        </form>
+        <div class="page-container">
+            <div class="col-lg-12 extra-padding">
+                <h5>Create mail</h5>
+                <form th:action="@{/image}" method="post" enctype="multipart/form-data">
+                    <input type="text" name="name" class="form-control input-margin" placeholder="Naam"/>
+                    <input type="file" name="file" class="input-margin" />
+                    <div><input type="submit" class="btn-subscribe" value="Voeg toe" /></div>
+                </form>
+            </div>
+        </div>
     </section>
 
 </div>

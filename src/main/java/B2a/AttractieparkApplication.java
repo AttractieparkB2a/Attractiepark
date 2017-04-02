@@ -15,12 +15,13 @@ public class AttractieparkApplication extends SpringBootServletInitializer {
 	}
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AttractieparkApplication.class, args);
 
 		AttractionPark attractionPark = AttractionPark.getInstance();
 		attractionPark.setName("Attractiepark B2a");
 		attractionPark.setAddress("Breda");
 
-		System.out.println(attractionPark.getName() + "" + attractionPark.getAddress());
+		System.out.println(attractionPark.getName() + " " + attractionPark.getAddress());
 	}
 }

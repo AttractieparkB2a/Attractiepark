@@ -13,9 +13,11 @@
 <div layout:fragment="content" class="attractionList">
     <header class="attractionListHeader"> Attracties in het B2a pretpark </header>
 
-        <div th:each="attraction : ${attractions}" class="attractionListItem">
-            <div class="col-md-4">
-                Picture here
+        <div th:each="attraction : ${attractions}" class="attractionListItem container">
+            <div class="col-md-4 img-panel">
+
+                <img width="120" height="180" th:src="@{'data:image/jpeg;base64,'+${attraction.generateBase64Image()}}"/>
+
             </div>
             <div class="col-md-8">
                 <table>
@@ -33,7 +35,7 @@
                     </tr>
                 </table>
             </div>
-            <div>
+            <div class="attraction-infolink">
                 <a href="attraction/info.html" th:href="@{'/attraction/' + ${attraction.id}}"> Meer informatie </a>
             </div>
 
