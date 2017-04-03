@@ -1,6 +1,6 @@
 //package B2a.controller;
 //
-//import B2a.domain.newsMessage.NewsMessage;
+//import B2a.domain.newsMessage.newsMessage;
 //import B2a.repository.NewsMessageRepository;
 //import B2a.service.NewsMessageService;
 //import B2a.validator.NewsMessageValidator;
@@ -52,7 +52,7 @@
 //
 //    @Test
 //    public void newsmessageValid() throws  Exception {
-//        when(newsMessageRepository.save(new NewsMessage()));
+//        when(newsMessageRepository.save(new newsMessage()));
 //
 //        mockMvc.perform(
 //                post("/newsmessage")

@@ -1,9 +1,9 @@
 //package B2a.service;
 //
 //import B2a.domain.User;
-//import B2a.domain.image.Image;
+//import B2a.domain.image.image;
 //import B2a.domain.image.UserImage;
-//import B2a.domain.newsMessage.NewsMessage;
+//import B2a.domain.newsMessage.newsMessage;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

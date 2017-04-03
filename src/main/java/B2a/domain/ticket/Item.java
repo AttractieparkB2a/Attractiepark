@@ -1,4 +1,4 @@
-package B2a.domain.Ticket;
+package B2a.domain.ticket;
 
 public class Item {
 }

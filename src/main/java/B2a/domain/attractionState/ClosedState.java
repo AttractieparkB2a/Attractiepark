@@ -1,6 +1,6 @@
-package B2a.domain.AttractionState;
+package B2a.domain.attractionState;
 
-import B2a.domain.Attraction.Attraction;
+import B2a.domain.attraction.Attraction;
 
 public class ClosedState extends State {
     Attraction attraction;

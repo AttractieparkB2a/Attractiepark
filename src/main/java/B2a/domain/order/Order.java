@@ -1,4 +1,4 @@
-package B2a.domain.Order;
+package B2a.domain.order;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

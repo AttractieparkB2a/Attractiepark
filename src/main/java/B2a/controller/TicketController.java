@@ -1,7 +1,7 @@
 package B2a.controller;
 
-import B2a.domain.Ticket.Ticket;
-import B2a.domain.Ticket.TicketOption;
+import B2a.domain.ticket.Ticket;
+import B2a.domain.ticket.TicketOption;
 import B2a.domain.User;
 import B2a.model.OrderModel;
 import B2a.model.TicketModel;
@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class TicketController {
     private UserService userManager;
     private TicketModel ticketModel;
     private User account;
+    private OrderModel order = new OrderModel();
 
     public TicketController(BaseTicketRepository baseTicketRepository, UserRepository userRepo, RoleRepository roleRepo, BCryptPasswordEncoder encoder) {
         this.ticketModel = new TicketModel();
@@ -45,21 +47,28 @@ public class TicketController {
     private void createTicket(TicketModel model) {
         manager.createTicket(model);
     }
+
     private void decorateTicket(TicketModel model) {
         manager.decorateTicket(model);
     }
-    private void saveOrderMemento(OrderModel order){orderManager.saveState(order);}
-    private void restoreDefaultOrder(int index){orderManager.getMemento(0);}
+
+    private void saveOrderMemento(OrderModel order) {
+        orderManager.saveState(order);
+    }
+
+    private void restoreDefaultOrder(int index) {
+        orderManager.getMemento(0);
+    }
 
 
-    /////////////////PAS AAN DEZE PAGINA///////////////////////////////
+    //=======================================================TICKETORDEr=========================================//
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.GET)
     public ModelAndView ticketOrder() {
         org.springframework.security.core.Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User account  = userManager.findByUsername(authentication.getName());
-        if(account != null){
+        User account = userManager.findByUsername(authentication.getName());
+        if (account != null) {
             return new ModelAndView("orderTicket/ticketOrder", "account", account);
-        }else{
+        } else {
             Date d = new Date();
             account = new User("Test", "Test", "Test",
                     "TestFirstname", "TestLastname", d, "TestAdres", "TestCity", "Test", true);
@@ -67,19 +76,18 @@ public class TicketController {
         }
     }
 
-    /////////////////PAS AAN DEZE PAGINA///////////////////////////////
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.POST)
     public ModelAndView ticketOrder(User account) {
-       this.account = account;
-      return ticketOrderForm();
+        this.account = account;
+        return ticketOrderForm();
     }
 
+
+    //=======================================================TICKETFORM=========================================//
     @RequestMapping(value = "orderTicket/ticketOrderForm", method = RequestMethod.GET)
     public ModelAndView ticketOrderForm() {
-        OrderModel order = new OrderModel();
 
         order.setAccount(account);
-        //================================TEST==============================
         //make new ticket and add to ticketModel
         Ticket ticketObject = new Ticket("Gold", "11-05-2017");
         TicketModel ticket = new TicketModel();
@@ -109,6 +117,27 @@ public class TicketController {
             createTicket(ticket);
             decorateTicket(ticket);
         }
-        return "orderTicket/ticketOrder";
+        return "orderTicket/ticketOrderResult";
+    }
+
+    //=======================================================TICKETRESULT=========================================//
+    @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.GET)
+    public ModelAndView ticketOrderResult() {
+
+        return new ModelAndView("orderTicket/ticketOrderResult", "order", order);
+    }
+
+
+    @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.POST)
+    public String ticketOrderResult(@RequestParam String action, @ModelAttribute("order") OrderModel order) {
+        if (action.equals("buy")) {
+            for (TicketModel ticket : order.getTickets()) {
+                createTicket(ticket);
+                decorateTicket(ticket);
+            }
+            return "orderTicket/ticketOrder";
+        } else{
+            return "orderTicket/ticketOrderResult";
+        }
     }
 }

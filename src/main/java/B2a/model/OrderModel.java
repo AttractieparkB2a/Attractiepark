@@ -1,6 +1,6 @@
 package B2a.model;
 
-import B2a.domain.Order.Order;
+import B2a.domain.order.Order;
 import B2a.domain.User;
 import lombok.Getter;
 import lombok.Setter;

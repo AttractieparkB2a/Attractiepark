@@ -1,6 +1,6 @@
 //package B2a.service;
 //
-//import B2a.domain.newsMessage.NewsMessage;
+//import B2a.domain.newsMessage.newsMessage;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@
 //
 //    @Test
 //    public void save() {
-//        NewsMessage newsMessage = createNewsMessage("Test Subject1", "Test Message1");
+//        newsMessage newsMessage = createNewsMessage("Test Subject1", "Test Message1");
 //
-//        Iterable<NewsMessage> newsMessages = newsMessageService.findAll();
+//        Iterable<newsMessage> newsMessages = newsMessageService.findAll();
 //        assertNotNull(newsMessages);
 //        boolean saved = false;
-//        for(NewsMessage n : newsMessages) {
+//        for(newsMessage n : newsMessages) {
 //            if(newsMessage.getId().equals((n.getId())))
 //                saved = true;
 //        }
@@ -32,11 +32,11 @@
 //
 //    @Test
 //    public void delete() {
-//        NewsMessage newsMessage = createNewsMessage("Test Subject2", "Test Message2");
-//        Iterable<NewsMessage> newsMessages = newsMessageService.findAll();
+//        newsMessage newsMessage = createNewsMessage("Test Subject2", "Test Message2");
+//        Iterable<newsMessage> newsMessages = newsMessageService.findAll();
 //        assertNotNull(newsMessages);
 //        boolean saved = false;
-//        for(NewsMessage n : newsMessages) {
+//        for(newsMessage n : newsMessages) {
 //            if(newsMessage.getId().equals((n.getId())))
 //                saved = true;
 //        }
@@ -44,9 +44,9 @@
 //
 //        newsMessageService.delete(newsMessage.getId());
 //
-//        Iterable<NewsMessage> newsMessages2 = newsMessageService.findAll();
+//        Iterable<newsMessage> newsMessages2 = newsMessageService.findAll();
 //        boolean deleted = true;
-//        for(NewsMessage n : newsMessages2) {
+//        for(newsMessage n : newsMessages2) {
 //            if(newsMessage.getId().equals((n.getId())))
 //                deleted = false;
 //        }
@@ -55,36 +55,36 @@
 //
 //    @Test
 //    public void update() {
-//        NewsMessage newsMessage = createNewsMessage("Test Subject3", "Test Message3");
+//        newsMessage newsMessage = createNewsMessage("Test Subject3", "Test Message3");
 //        newsMessage.setSubject("Test Subject4");
 //        newsMessage.setMessage("Test Message4");
 //
-//        NewsMessage newsMessage2 = newsMessageService.findOne(newsMessage.getId());
+//        newsMessage newsMessage2 = newsMessageService.findOne(newsMessage.getId());
 //        assertNotEquals("subject", "Test Subject4", newsMessage2.getSubject());
 //        assertNotEquals("message", "Test Message4", newsMessage2.getMessage());
 //    }
 //
 //    @Test
 //    public void findNewsLetters() {
-//        NewsMessage newsMessage = new NewsMessage("Test Subject5", "Test Subject5");
+//        newsMessage newsMessage = new newsMessage("Test Subject5", "Test Subject5");
 //        newsMessageService.findEmails(newsMessage);
 //
-//        Iterable<NewsMessage> newsMessages = newsMessageService.findAll();
+//        Iterable<newsMessage> newsMessages = newsMessageService.findAll();
 //        boolean notSaved = true;
-//        for(NewsMessage n : newsMessages) {
+//        for(newsMessage n : newsMessages) {
 //            if(newsMessage.getSubject().equals((n.getSubject())))
 //                notSaved = false;
 //        }
 //        assertTrue(notSaved);
 //    }
 //
-//    private NewsMessage createNewsMessage(String subject, String message) {
-//        NewsMessage newsMessage = new NewsMessage();
+//    private newsMessage createNewsMessage(String subject, String message) {
+//        newsMessage newsMessage = new newsMessage();
 //        newsMessage.setSubject(subject);
 //        newsMessage.setMessage(message);
 //
 //        newsMessageService.save(newsMessage);
-//        NewsMessage retrieval = newsMessageService.findOne(newsMessage.getId());
+//        newsMessage retrieval = newsMessageService.findOne(newsMessage.getId());
 //        assertNotNull(retrieval);
 //        assertNotNull(retrieval.getId());
 //        assertEquals("subject", subject, retrieval.getSubject());

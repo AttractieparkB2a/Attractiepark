@@ -1,6 +1,6 @@
 package B2a.controller;
 
-import B2a.domain.Attraction.Attraction;
+import B2a.domain.attraction.Attraction;
 import B2a.repository.AttractionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
