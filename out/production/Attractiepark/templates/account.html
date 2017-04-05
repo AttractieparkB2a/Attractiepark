@@ -18,7 +18,7 @@
                     <input type="password" name="passwordConfirm" class="form-control" th:placeholder="#{account.passwordrepeat}"/><br/><br/>
                     <input type="text" name="firstName" class="form-control" th:placeholder="#{account.firstname}" th:value="${user.firstName}" th:required="true"/>
                     <input type="text" name="lastName" class="form-control" th:placeholder="#{account.lastname}" th:value="${user.lastName}" th:required="true"/>
-                    <input type="date" name="birthday" class="form-control" th:placeholder="#{account.birthdate}" th:required="true"/><br/><br/>
+                    <input type="date" name="birthday" class="form-control" th:placeholder="#{account.birthdate}" th:value="${user.birthday}" th:required="true"/><br/><br/>
                     <input type="text" name="address" class="form-control" th:placeholder="#{account.address}" th:value="${user.address}" th:required="true"/>
                     <input type="text" name="city" class="form-control" th:placeholder="#{account.city}" th:value="${user.city}" th:required="true"/>
                     <input type="text" name="zipcode" class="form-control" th:placeholder="#{account.zipcode}" th:value="${user.zipcode}" th:required="true"/><br/><br/>

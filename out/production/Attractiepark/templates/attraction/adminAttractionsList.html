@@ -12,7 +12,6 @@
 
 <div layout:fragment="content" class="attractionList">
 
-
     <script th:inline="javascript">
         function myFunction() {
             var x = document.getElementById("colorcell");
@@ -41,7 +40,9 @@
                 </thead>
                 <tbody>
                 <tr >
-                    <form action="#" th:action="@{/attraction/adminAttractionsList}" data-th-object="${model}" method="post">
+                    <form id="stateForm" name="stateForm" commandName="stateForm" action="#" th:action="@{/attraction/adminAttractionsList}" data-th-object="${model}" method="post">
+                        <td th:text="@{attraction.id}"></td>
+                        <input type = "hidden" th:value="${attraction.id}"/>
                         <td class="nameCell" th:text="${attraction.name}"></td>
                         <td class="colorCell"> kleurcode </td>
                         <td> <input type="submit" class="btnState" value="open" name="action"/> </td>
@@ -49,7 +50,7 @@
                         <td> <input type="submit" class="btnState" value="stop" name="action"/> </td>
                         <td> <input type="submit" class="btnState" value="close" name="action" onclick="myFunction()"/> </td>
                         <td> <input type="submit" class="btnState" value="damage" name="action"/></td>
-                        <td> <input type="submit" class="btnState" onclick="myFunction()" value="repair"/> </td>
+                        <td> <input type="submit" class="btnState" value="repair" name="actions"/> </td>
                     </form>
                 </tr>
                 </tbody>
