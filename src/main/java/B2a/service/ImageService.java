@@ -9,6 +9,9 @@ import java.util.LinkedHashMap;
 
 public interface ImageService {
     void addImage(MultipartFile file, UserImage imageForm);
+    void delete(Long id);
+    UserImage findOne(Long id);
+    Iterable<UserImage> findAll();
     LinkedHashMap<Long, Image> findPhotos();
     Image findPhoto(Long id);
 }

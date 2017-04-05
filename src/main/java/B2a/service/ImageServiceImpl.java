@@ -30,15 +30,32 @@ public class ImageServiceImpl implements ImageService {
     public void addImage(MultipartFile file, UserImage imageForm) {
         byte[] fileContent = null;
 
-        try {
-            fileContent = file.getBytes();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(file != null) {
+            try {
+                fileContent = file.getBytes();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         imageForm.setImage(fileContent);
 
         imageRepository.save(imageForm);
+    }
+
+    @Override
+    public void delete(Long id) {
+        imageRepository.delete(id);
+    }
+
+    @Override
+    public UserImage findOne(Long id) {
+        return imageRepository.findOne(id);
+    }
+
+    @Override
+    public Iterable<UserImage> findAll() {
+        return imageRepository.findAll();
     }
 
     @Override

@@ -6,8 +6,10 @@ public class ClosedState extends State {
     Attraction attraction;
 
     public ClosedState(Attraction attraction){
+
         this.attraction = attraction;
     }
+
 
     @Override
     public void open() {

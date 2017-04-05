@@ -15,4 +15,5 @@ public interface AttractionManagerIF {
     Iterable<String> findAllAttractionTypes();
 
    void changeState(Attraction attraction, String action);
-}
+
+   }

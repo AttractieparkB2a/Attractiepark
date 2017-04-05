@@ -41,7 +41,7 @@ public class AttractionController {
 
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
     public String adminAttractionsList(Rollercoaster model, @RequestParam(value="action", required = true) String action){
-        //Parameter should be Attraction, but can't instantiate abstract class..
+        //Parameter should be attraction, but can't instantiate abstract class..
         System.out.println("actie = " + action);
         System.out.println("attactie = " + model.toString() );
         attractionManagerIF.changeState(model, action);
@@ -90,7 +90,7 @@ public class AttractionController {
 //
 //    public void testStartState(){
 //
-//        Attraction b = new LogFlume();
+//        attraction b = new LogFlume();
 //        b.setState( new RunningState(b));
 //
 //    }
