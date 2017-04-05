@@ -15,6 +15,4 @@ public class AttractionPark {
     public static AttractionPark getInstance() {
         return instance;
     }
-
-
 }
