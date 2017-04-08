@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,14 +23,23 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 
-        Role role = new Role("ROLE_MEMBER");
-        roleRepository.save(role);
+        if(roleRepository.findByName("ROLE_MEMBER") == null) {
+            Role member = new Role("ROLE_MEMBER");
+            Role admin = new Role("ROLE_ADMIN");
+            roleRepository.save(member);
+            roleRepository.save(admin);
+
+            User adminUser = new User("admin@b2a.com", "admin", "admin", "Admin", "Admin", new Date(1980,1,1), "Lovensdijkstraat", "Breda", "1111 AA", false);
+            adminUser.setPassword(bCryptPasswordEncoder.encode(adminUser.getPassword()));
+            adminUser.setRole(admin);
+            userRepository.save(adminUser);
+        }
     }
 
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
+        user.setRole(roleRepository.findByName("ROLE_MEMBER"));
         userRepository.save(user);
     }
 

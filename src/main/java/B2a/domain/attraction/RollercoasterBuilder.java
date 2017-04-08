@@ -11,6 +11,7 @@ public class RollercoasterBuilder extends AttractionBuilder {
         rollercoaster = new Rollercoaster();
         rollercoaster.setName("rollercoasterrrrrr");
         rollercoaster.setDuration( 3 );
+        rollercoaster.setAmountStaff(2);
         //rollercoaster.setMaxSpeed( 50 );
         rollercoaster.setMinimumHeight( 100 );
         rollercoaster.setTransportType("rollercoaster-carts");
