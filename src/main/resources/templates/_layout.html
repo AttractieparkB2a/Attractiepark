@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8"/>
@@ -31,12 +31,17 @@
                 <li class="contact"><a th:text="#{header.meta.contact}" th:href="@{/contact}"></a></li>
             </ul>
 
-            <!-- Lower navigation -->
-            <ul class="site-navigation">
-                <li class="news"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+            <!-- Lower navigation for Member role -->
+            <ul sec:authorize="!hasRole('ROLE_ADMIN')" class="site-navigation">
                 <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></li>
                 <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
-                <li class="park"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
+                <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+            </ul>
+
+            <!-- Lower navigation for Admin role -->
+            <ul sec:authorize="hasRole('ROLE_ADMIN')" class="site-navigation">
+                <li class="news"><a th:text="#{header.site.image}" th:href="@{/image}"></a></li>
+                <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
             </ul>
         </nav>
     </header>
