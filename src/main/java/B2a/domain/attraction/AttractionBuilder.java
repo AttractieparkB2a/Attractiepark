@@ -4,4 +4,6 @@ public abstract class AttractionBuilder {
 
     public abstract Attraction createNewAttraction();
 
+
+    //public void setName();
 }

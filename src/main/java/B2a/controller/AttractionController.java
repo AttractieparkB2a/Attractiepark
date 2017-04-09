@@ -6,10 +6,7 @@ import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -22,7 +19,7 @@ public class AttractionController {
 
     @RequestMapping(value = "attraction/attractionsList", method = RequestMethod.GET)
     public ModelAndView attractionsList(Model model) {
-        Iterable<Attraction> attractions = attractionManagerIF.findAllAttractions();
+        Iterable<? extends Attraction> attractions = attractionManagerIF.findAllAttractions();
         return new ModelAndView("/attraction/attractionsList", "attractions", attractions);
     }
 
@@ -33,18 +30,21 @@ public class AttractionController {
     }
 
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.GET)
-    public ModelAndView adminAttractionList(){
-        Iterable<Attraction> attractions = attractionManagerIF.findAllAttractions();
+    public ModelAndView adminAttractionList(Model model){
+        Iterable<? extends Attraction> attractions = attractionManagerIF.findAllAttractions();
         return new ModelAndView("/attraction/adminAttractionsList", "attractions", attractions);
     }
 
 
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
-    public String adminAttractionsList(Rollercoaster model, @RequestParam(value="action", required = true) String action){
+    public String adminAttractionsList(@ModelAttribute("attractions") Rollercoaster attraction, Model model, @RequestParam(value="action", required = true) String action){
         //Parameter should be Attraction, but can't instantiate abstract class..
+        //model.addAttribute("id", id);
+        System.out.println("attraction = " + attraction.getName());
+        System.out.println("model = " + model);
         System.out.println("actie = " + action);
         System.out.println("attactie = " + model.toString() );
-        attractionManagerIF.changeState(model, action);
+        attractionManagerIF.changeState(attraction, action);
         return "redirect:/attraction/adminAttractionsList";
     }
 

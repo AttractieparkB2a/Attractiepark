@@ -27,6 +27,7 @@ public class Ticket extends BaseTicket {
     }
 
     public void add(Ticket p) {
+
         ticketItems.add(p);
     }
 

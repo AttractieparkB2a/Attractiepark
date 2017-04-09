@@ -40,17 +40,16 @@
                 </thead>
                 <tbody>
                 <tr >
-                    <form id="stateForm" name="stateForm" commandName="stateForm" action="#" th:action="@{/attraction/adminAttractionsList}" data-th-object="${model}" method="post">
-                        <td th:text="@{attraction.id}"></td>
-                        <input type = "hidden" th:value="${attraction.id}"/>
-                        <td class="nameCell" th:text="${attraction.name}"></td>
+                    <form name="stateForm" action="#" th:action="@{/attraction/adminAttractionsList}" th:object="${attractions}" method="post">
+                        <td> <input type ="hidden" th:value="${attraction.id}"/> </td>
+                        <td class="nameCell" th:text="${attraction.name}"> test </td>
                         <td class="colorCell"> kleurcode </td>
-                        <td> <input type="submit" class="btnState" value="open" name="action"/> </td>
+                        <td> <input type="submit" class="btnState" value="open" th:value="open" name="action"/> </td>
                         <td> <input type="submit" class="btnState" value="start" name="action"/> </td>
                         <td> <input type="submit" class="btnState" value="stop" name="action"/> </td>
                         <td> <input type="submit" class="btnState" value="close" name="action" onclick="myFunction()"/> </td>
                         <td> <input type="submit" class="btnState" value="damage" name="action"/></td>
-                        <td> <input type="submit" class="btnState" value="repair" name="actions"/> </td>
+                        <td> <input type="submit" class="btnState" value="repair" name="action"/> </td>
                     </form>
                 </tr>
                 </tbody>

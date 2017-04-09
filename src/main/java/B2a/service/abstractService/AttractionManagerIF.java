@@ -8,7 +8,7 @@ public interface AttractionManagerIF {
 
     void saveAttraction(Attraction attraction);
 
-    Iterable<Attraction> findAllAttractions();
+    Iterable<? extends Attraction> findAllAttractions();
 
      Attraction findAttraction(long id);
 
