@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
             roleRepository.save(member);
             roleRepository.save(admin);
 
-            User adminUser = new User("admin@b2a.com", "admin", "admin", "Admin", "Admin", new Date(1980,1,1), "Lovensdijkstraat", "Breda", "1111 AA", false);
+            User adminUser = new User("admin@b2a.com", "admin", "admin", "Admin", "Admin", new Date(3-1-2000), "Lovensdijkstraat", "Breda", "1111 AA", false);
             adminUser.setPassword(bCryptPasswordEncoder.encode(adminUser.getPassword()));
             adminUser.setRole(admin);
             userRepository.save(adminUser);

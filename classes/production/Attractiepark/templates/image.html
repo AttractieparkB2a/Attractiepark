@@ -5,7 +5,7 @@
       layout:decorator="_layout">
 
 <head>
-    <title>Image | View</title>
+    <title th:text="#{image.title}"></title>
 </head>
 
 <body>
@@ -15,11 +15,17 @@
     <section id="home" class="home-section">
         <div class="page-container">
             <div class="col-lg-12 extra-padding">
-                <h5>Create mail</h5>
-                <form th:action="@{/image}" method="post" enctype="multipart/form-data">
-                    <input type="text" name="name" class="form-control input-margin" placeholder="Naam"/>
+                <h5 th:text="#{image.form}"></h5>
+                <form th:action="@{/image}" th:object="${imageForm}" method="post" enctype="multipart/form-data">
+                    <input type="text" th:classappend="${#fields.hasErrors('name')} ? 'has-error'" name="name" class="form-control input-margin" th:placeholder="#{image.name}"/>
+                    <div class="error-message" th:each="err : ${#fields.errors('name')}" th:text="${err}"></div>
+                    <select th:classappend="${#fields.hasErrors('user')} ? 'has-error'" class="form-control input-margin" name="user" th:placeholder="#{image.select}">
+                        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+                    </select>
+                    <div class="error-message" th:each="err : ${#fields.errors('user')}" th:text="${err}"></div>
                     <input type="file" name="file" class="input-margin" />
-                    <div><input type="submit" class="btn-subscribe" value="Voeg toe" /></div>
+                    <div class="error-message" th:each="err : ${#fields.errors('file')}" th:text="${err}"></div>
+                    <div><input type="submit" class="btn-subscribe" th:value="#{image.btn.create}" /></div>
                 </form>
             </div>
         </div>
