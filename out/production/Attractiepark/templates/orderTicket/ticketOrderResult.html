@@ -11,14 +11,23 @@
     <section id="home" class="home-section">
         <div class="page-container">
             <div class="col-lg-12 extra-padding" style="width: 50%">
-                <h5>Order</h5>
-                <form th:action="@{ticketOrder}" method="post">
+                <h5>Complete order</h5>
+                <form th:action="@{ticketOrderResult}" method="post">
                     <b>Controleer uw gegevens:</b>
                     <p>Name</p> <input type="text" name="firstName" class="form-control" placeholder="Voornaam" th:value="${account.firstName}"/>
                     <p>LastName</p> <input type="text" name="lastName" class="form-control" placeholder="Achternaam" th:value="${account.lastName}"/>
                     <p>Addres</p> <input type="text" name="address" class="form-control" placeholder="Adres" th:value="${account.address}"/>
                     <p>Place</p> <input type="text" name="city" class="form-control" placeholder="Plaats" th:value="${account.city}"/>
-                    <div><input type="submit" value="Volgende"/></div>
+
+                    <span th:each="o : ${order}">
+                            <select class="form-control" id="dropOperator">
+                               <option th:each="to : o.option" th:value="${to}" th:text="${to}"></option>
+                            </select>
+                        </span>
+                    <div>
+                        <input type="submit" name="buy" value="koop"/>
+                        <input type="cancel" name="restore" value="Restore"/>
+                    </div>
                 </form>
             </div>
         </div>

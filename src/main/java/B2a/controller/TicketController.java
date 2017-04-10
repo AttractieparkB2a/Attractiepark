@@ -50,9 +50,7 @@ public class TicketController {
     private void createTicket(OrderModel model) {
         manager.createTicket(model);
     }
-    private void decorateTicket(OrderModel model) {
-        manager.decorateTicket(model);
-    }
+    private void decorateTicket(OrderModel model) {manager.decorateTicket(model);}
     private void saveOrderMemento(OrderModel order) {orderManager.saveState(order);}
     private void restoreDefaultOrder(int index) {orderManager.getMemento(0);}
     private OrderModel setTickets(){

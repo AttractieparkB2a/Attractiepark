@@ -6,10 +6,7 @@ import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -27,35 +24,47 @@ public class AttractionController {
     }
 
 
+    // INFO PAGES FOR EACH ATTRACTION
+    // GET INFO PAGE WITH ID
     @RequestMapping(value = "attraction/info/{id}", method = RequestMethod.GET)
     public ModelAndView info(@PathVariable("id") Attraction attraction){
         return new ModelAndView("/attraction/info", "attraction", attraction);
     }
 
+    // POST STATE ON BUTTON CLICK
+    @RequestMapping(value = "attraction/info/{id}", method = RequestMethod.POST)
+    public ModelAndView info(@ModelAttribute("attraction") Attraction attraction, BindingResult bindingResult, Model model, @RequestParam(value="action", required = true) String action){
+        System.out.println("attractie " + attraction);
+        System.out.println("binding = " + bindingResult.toString());
+        System.out.println("model = " + model);
+        System.out.println("actie = " + action);
+        attractionManagerIF.changeState(attraction, action);
+        return new ModelAndView("/attraction/info", "attraction", attraction);
+    }
+
+
+    // ADMIN LIST. HERE YOU CAN CHANGE THE STATE OF THE ATTRACTION.
+    // GET THE PAGE WITH STATE BUTTONS
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.GET)
-    public ModelAndView adminAttractionList(){
+    public ModelAndView adminAttractionList(Model model){
         Iterable<Attraction> attractions = attractionManagerIF.findAllAttractions();
         return new ModelAndView("/attraction/adminAttractionsList", "attractions", attractions);
     }
 
-
+    // POST THE ACTION ON BUTTON CLICK
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
-    public String adminAttractionsList(Rollercoaster model, @RequestParam(value="action", required = true) String action){
-        //Parameter should be attraction, but can't instantiate abstract class..
+    public String adminAttractionsList(@ModelAttribute("attraction") Attraction attraction, Model model, @RequestParam(value="action", required = true) String action){
+        //Parameter should be Attraction, but can't instantiate abstract class..
+        //model.addAttribute("id", id);
+
+        System.out.println("attractie " + attraction);
+        System.out.println("attractionnaam = " + attraction.getName());
+        System.out.println("model = " + model);
         System.out.println("actie = " + action);
-        System.out.println("attactie = " + model.toString() );
-        attractionManagerIF.changeState(model, action);
+        attractionManagerIF.changeState(attraction, action);
         return "redirect:/attraction/adminAttractionsList";
     }
 
-
-//    @RequestMapping(value = "attraction/attractionForm", method = RequestMethod.GET)
-//    public String attractionForm(Model model) {
-//        //model.addAttribute("rollercoasterForm", new Rollercoaster());
-//
-//        return "attraction/attractionForm";
-//    }
-//
 
     @RequestMapping(value = "/attraction/rollercoasterForm", method = RequestMethod.GET)
     public ModelAndView rollercoasterForm(Rollercoaster rollercoaster) {
@@ -75,11 +84,14 @@ public class AttractionController {
 
 
 
+    // ATTRACTION CHOOSER. THE SELECTION OF THE ATTRACTION YOU WISH TO ADD
+    // GET THE PAGE WITH OPTIONS
     @RequestMapping(value = "/attraction/attractionChooser", method = RequestMethod.GET)
     public String attractionChooser(Model model){
         return "attraction/attractionChooser";
     }
 
+    // POST SELECTION ON BUTTON CLICK
     @RequestMapping(value = "/attraction/attractionChooser", method = RequestMethod.POST)
     public String attractionChooser(Model model, @RequestParam(value="action", required = true) String action) {
         attractionManagerIF.createNewAttraction(action);
@@ -87,11 +99,4 @@ public class AttractionController {
         return "redirect:/attraction/adminAttractionsList";
     }
 
-//
-//    public void testStartState(){
-//
-//        attraction b = new LogFlume();
-//        b.setState( new RunningState(b));
-//
-//    }
 }

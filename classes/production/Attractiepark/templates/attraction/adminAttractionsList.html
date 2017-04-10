@@ -11,41 +11,56 @@
 <body>
 
 <div layout:fragment="content" class="attractionList">
+
+    <script th:inline="javascript">
+        function myFunction() {
+            var x = document.getElementById("colorcell");
+            var colorButton = document.getElementByTagName("input");
+            x.style.backgroundColor = "green";
+            alert("pressed");
+        }
+    </script>
     <header class="attractionListHeader"> Attracties in het B2a pretpark </header>
 
+    <div>
+        <a th:href="@{/attraction/attractionChooser}"> Nieuwe Attractie </a>
+    </div>
+
     <div th:each="attraction : ${attractions}" class="attractionListItem">
-        <div>
-            <table>
+        <div th:if="${attractions.empty}">
+            No Attractions
+        </div>
+        <div th:if="${attractions != null}">
+            <table id="stateTable table table-striped table-hover">
                 <thead>
                 <tr>
-                    <td> Attractie </td>
-                    <td> Huidige Status </td>
-                    <td colspan="6"> -------- </td>
+                    <th> Attractie </th>
+                    <th> Huidige Status </th>
                 </tr>
                 </thead>
+                <tbody>
                 <tr >
-                    <td th:text="${attraction.name}" class="attractionListItemText"></td>
-                    <td> kleurcode </td>
-                    <td> <input type="button" value="open"/> </td>
-                    <td> <input type="button" value="start"/> </td>
-                    <td> <input type="button" value="stop"/> </td>
-                    <td> <input type="button" value="close"/> </td>
-                    <td> <input type="button" value="destroy"/> </td>
-                    <td> <input type="button" value="repair"/> </td>
+                    <form id="stateForm" name="stateForm" commandName="stateForm" action="#" th:action="@{/attraction/adminAttractionsList}" data-th-object="${model}" method="post">
+                        <td th:text="@{attraction.id}"></td>
+                        <input type = "hidden" th:value="${attraction.id}"/>
+                        <td class="nameCell" th:text="${attraction.name}"></td>
+                        <td class="colorCell"> kleurcode </td>
+                        <td> <input type="submit" class="btnState" value="open" name="action"/> </td>
+                        <td> <input type="submit" class="btnState" value="start" name="action"/> </td>
+                        <td> <input type="submit" class="btnState" value="stop" name="action"/> </td>
+                        <td> <input type="submit" class="btnState" value="close" name="action" onclick="myFunction()"/> </td>
+                        <td> <input type="submit" class="btnState" value="damage" name="action"/></td>
+                        <td> <input type="submit" class="btnState" value="repair" name="actions"/> </td>
+                    </form>
                 </tr>
+                </tbody>
             </table>
         </div>
     </div>
 
-
-    <p>
-        Test to go to the admin page.
-        <button>
-            <a href="attractionAdmin.html" th:href="@{attraction/attractionAdmin}">Admin page</a>
-        </button>
-    </p>
-
 </div>
+
+
 
 </body>
 </html>
