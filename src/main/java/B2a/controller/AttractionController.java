@@ -53,7 +53,7 @@ public class AttractionController {
 
     // POST THE ACTION ON BUTTON CLICK
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
-    public String adminAttractionsList(@ModelAttribute("attractions") Attraction attraction, Model model, @RequestParam(value="action", required = true) String action){
+    public String adminAttractionsList(@ModelAttribute("attraction") Attraction attraction, Model model, @RequestParam(value="action", required = true) String action){
         //Parameter should be Attraction, but can't instantiate abstract class..
         //model.addAttribute("id", id);
 

@@ -42,9 +42,9 @@
                 <tr >
                     <form th:action="@{/attraction/adminAttractionsList}" th:object="${attraction}" method="post">
                         <td>
-                            <input type ="hidden" th:value="${attraction.id}"/>
-                            <input type="hidden" th:value="${attraction.name}"/>
-                            <input type="hidden" th:value="${attraction.duration}"/>
+                            <input type ="hidden" name="id" th:value="${attraction.id}"/>
+                            <input type="hidden" name="name" th:value="${attraction.name}"/>
+                            <input type="hidden" name="duration" th:value="${attraction.duration}"/>
                         </td>
                         <td class="nameCell" th:text="${attraction.name}"> test </td>
                         <td class="colorCell"> kleurcode </td>
