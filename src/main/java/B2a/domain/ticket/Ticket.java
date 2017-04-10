@@ -19,12 +19,13 @@ public class Ticket extends BaseTicket {
     @OneToMany(cascade = javax.persistence.CascadeType.ALL)
     private List<Ticket> ticketItems = new ArrayList<>();
     private String name;
-    private String date;
+    private int amount;
     public int price;
 
-    public Ticket(String name, String date) {
+    public Ticket(String name, int amount, int price) {
+        this.amount=amount;
+        this.price = price;
         this.name = name;
-        this.date = date;
     }
 
     public void add(Ticket p) {
@@ -37,17 +38,14 @@ public class Ticket extends BaseTicket {
         }
 
         @Override
-        public String date() {
-            return date;
-        }
-
-        @Override
         public int price() {
             this.price = 0;
-            if(this.name == "gold"){
-                price = 50;
-            }else{
+            if(this.name == "Gold"){
                 price = 25;
+            }else if(this.name == "Silver"){
+                price = 20;
+            }else{
+                price = 15;
             }
             return price;
         }

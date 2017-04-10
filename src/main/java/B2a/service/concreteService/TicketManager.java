@@ -3,7 +3,7 @@ package B2a.service.concreteService;
 import B2a.domain.ticket.BaseTicket;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
-import B2a.model.TicketModel;
+import B2a.model.OrderModel;
 import B2a.repository.BaseTicketRepository;
 import B2a.service.abstractService.TicketManagerIF;
 
@@ -18,25 +18,25 @@ public class TicketManager implements TicketManagerIF{
     }
 
     @Override
-    public Ticket createTicket(TicketModel model) {
-        Ticket ticket = model.getTicket();
-        ticket = baseTicketRepository.save(ticket);
-        ticket.add(ticket);
+    public Ticket createTicket(OrderModel model) {
+        Ticket ticket = new Ticket();
+        for (Ticket t: model.getTicket()){
+            ticket = baseTicketRepository.save(t);
+            ticket.add(t);
+        }
         return  ticket;
     }
 
     @Override
-    public Ticket decorateTicket(TicketModel model) {
+    public void decorateTicket(OrderModel model) {
         List<TicketOption> option = model.getOption();
-        for (TicketOption o : option){
-            BaseTicket decoratedTicket1 = new TicketOption(o.name(), o.price(), o.getDescription(), o.getDate(), model.getTicket());
-            baseTicketRepository.save(decoratedTicket1);
-        }
-        return model.getTicket();
-    }
+        List<Ticket> ticket = model.getTicket();
 
-    @Override
-    public void deleteTicket(Long ticketId) {
-    baseTicketRepository.delete(ticketId);
+        for (TicketOption o : option) {
+            for (Ticket t : ticket) {
+                BaseTicket decoratedTicket = new TicketOption(o.name(), o.price(), o.getDescription(), t);
+                baseTicketRepository.save(decoratedTicket);
+                 }
+        }
     }
 }

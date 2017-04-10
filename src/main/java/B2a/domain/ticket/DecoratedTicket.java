@@ -17,7 +17,6 @@ public abstract class DecoratedTicket extends BaseTicket {
     protected BaseTicket ticket;
 
     protected DecoratedTicket(BaseTicket ticket) {
-
         this.ticket = ticket;
     }
 
