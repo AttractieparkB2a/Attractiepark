@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8"/>
     <title>Default</title>
 
     <link rel="shortcut icon" href="/static/favicon.ico" />
-    <link href="/static/css/core.css" rel="stylesheet" />
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/css/core.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -25,17 +25,28 @@
 
             <!-- Upper navigation -->
             <ul class="meta-navigation">
-                <li class="login"><a th:text="#{header.meta.login}" th:href="@{/login}"></a></li>
-                <li class="register"><a th:text="#{header.meta.register}" th:href="@{/registration}"></a></li>
+                <li th:if="${#httpServletRequest.remoteUser != null}">
+                    <form th:action="@{/logout}" method="post">
+                        <input class="login" type="submit" th:value="#{header.meta.logout}"/>
+                    </form>
+                </li>
+                <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><b th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></b></a></li>
+                <li th:if="${#httpServletRequest.remoteUser == null}" class="login"><a th:text="#{header.meta.login}" th:href="@{/login}"></a></li>
+                <li th:if="${#httpServletRequest.remoteUser == null}" class="register"><a th:text="#{header.meta.register}" th:href="@{/registration}"></a></li>
                 <li class="contact"><a th:text="#{header.meta.contact}" th:href="@{/contact}"></a></li>
             </ul>
 
-            <!-- Lower navigation -->
-            <ul class="site-navigation">
-                <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
-                <li class="about"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
+            <!-- Lower navigation for Member role -->
+            <ul sec:authorize="!hasRole('ROLE_ADMIN')" class="site-navigation">
+                <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></li>
                 <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
                 <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+            </ul>
+
+            <!-- Lower navigation for Admin role -->
+            <ul sec:authorize="hasRole('ROLE_ADMIN')" class="site-navigation">
+                <li class="news"><a th:text="#{header.site.image}" th:href="@{/image}"></a></li>
+                <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
             </ul>
         </nav>
     </header>
@@ -57,10 +68,10 @@
 
         <!-- Expanded menu -->
         <ul class="responsive-navigation">
-            <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
-            <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
-            <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
-            <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
+            <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+            <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+            <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
+            <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
         </ul>
 
     </header>
@@ -79,10 +90,10 @@
             <div class="footer-text-wrapper">
                 <h4 th:text="#{footer.navigation}"></h4>
                 <ul>
-                    <li class="park"><a th:text="#{header.site.item4}" th:href="@{/}"></a></li>
-                    <li class="attractions"><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></li>
-                    <li class="about"><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></li>
-                    <li class="news"><a th:text="#{header.site.item1}" th:href="@{/}"></a></li>
+                    <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+                    <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+                    <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
+                    <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
                 </ul>
             </div>
         </div>
@@ -92,8 +103,9 @@
             <div class="footer-text-wrapper">
                 <h4 th:text="#{footer.newsletter.title}"><strong></strong></h4>
                 <p th:text="#{footer.newsletter.paragraph}"></p>
-                <form th:action="@{/}" method="post">
-                    <input type="text" name="emailaddress" class="input-subscribe" th:placeholder="#{footer.input}" />
+                <form th:action="@{/_layout}" th:object="${subscriberForm}" method="post">
+                    <input id="email" type="text" th:classappend="${#fields.hasErrors('email')} ? 'has-error'" name="email" class="input-subscribe" th:placeholder="#{footer.input}" />
+                    <div class="error-message" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
                     <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
                 </form>
             </div>
@@ -102,30 +114,34 @@
         <!-- Mobile footer -->
         <div class="responsive-footer responsive-display">
             <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.item4}" th:href="@{/}"></a></h4>
+                <h4><a th:text="#{header.site.park}" th:href="@{/}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.item3}" th:href="@{/attraction/attractionsList}"></a></h4>
+                <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.item2}" th:href="@{/ticketOrder}"></a></h4>
+                <h4><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></h4>
             </div>
             <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.item1}" th:href="@{/}"></a></h4>
+                <h4><a th:text="#{header.site.news}" th:href="@{/}"></a></h4>
             </div>
             <h4 th:text="#{footer.newsletter.title}"><strong></strong></h4>
             <p th:text="#{footer.newsletter.paragraph}"></p>
-            <form th:action="@{/}" method="post">
-                <input type="text" name="emailaddress" class="input-subscribe" th:placeholder="#{footer.input}" />
+            <form th:action="@{/_layout}" th:object="${subscriberForm}" method="post">
+                <input type="text" th:classappend="${#fields.hasErrors('email')} ? 'has-error'" name="emailaddress" class="input-subscribe" th:placeholder="#{footer.input}" />
+                <div class="error-message" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
                 <input type="submit" th:value="#{footer.button}" class="btn-subscribe" />
             </form>
         </div>
     </div>
 </footer>
 
+<script type="text/javascript" src="/static/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/static/js/jquery.validate.js"></script>
 <script type="text/javascript" src="/static/js/nav.js"></script>
 <th:block layout:fragment="scripts">
 
 </th:block>
+
 </body>
 </html>
