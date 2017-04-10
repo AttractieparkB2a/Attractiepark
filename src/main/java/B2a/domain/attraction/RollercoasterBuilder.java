@@ -1,25 +1,51 @@
 package B2a.domain.attraction;
 
 public class RollercoasterBuilder extends AttractionBuilder {
-    //Rollercoaster rollercoaster;
     Attraction rollercoaster;
 
 
     @Override
     public Attraction createNewAttraction() {
-
-        rollercoaster = new Rollercoaster();
-        rollercoaster.setName("rollercoasterrrrrr");
-        rollercoaster.setDuration(3);
-        rollercoaster.setAmountStaff(2);
-        //rollercoaster.setMaxSpeed( 50 );
-        rollercoaster.setMinimumHeight(100);
-        rollercoaster.setTransportType("rollercoaster-carts");
-        rollercoaster.customSetImage("rollercoaster");
-
+        rollercoaster = new Attraction();
+        setName();
+        setDuration();
+        setMinimumHeight();
+        setTransportType();
+        setAmountStaff();
+        setImage();
         return rollercoaster;
 
     }
 
-    //public void setName(){};
+    @Override
+    public void setName() {
+        rollercoaster.setName("rollercoasterrrrrr");
+    }
+
+    @Override
+    public void setDuration() {
+        rollercoaster.setDuration(3);
+    }
+
+    @Override
+    public void setMinimumHeight() {
+        rollercoaster.setMinimumHeight(100);
+    }
+
+    @Override
+    public void setTransportType() {
+        rollercoaster.setTransportType("rollercoaster-carts");
+    }
+
+    @Override
+    public void setAmountStaff() {
+        rollercoaster.setAmountStaff(2);
+    }
+
+    @Override
+    public void setImage() {
+        rollercoaster.customSetImage("rollercoaster");
+    }
+
+
 }

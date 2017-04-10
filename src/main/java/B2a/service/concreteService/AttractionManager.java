@@ -47,7 +47,7 @@ public class AttractionManager implements AttractionManagerIF{
     }
 
     @Override
-    public Iterable<? extends Attraction> findAllAttractions() {
+    public Iterable<Attraction> findAllAttractions() {
         return attractionRepository.findAll();
     }
 

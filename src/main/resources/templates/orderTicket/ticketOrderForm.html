@@ -16,18 +16,22 @@
         <div class="page-container">
             <div class="col-lg-12 extra-padding" style="width: 50%">
                 <h5>Order ticket</h5>
-                <form th:object="${order}" th:action="@{orderTicket/ticketOrderForm}" method="post">
+                <form th:object="${order}" th:action="@{ticketOrderForm}" method="post">
                     <b>Kies type ticket</b>
+
                     <div class="form-group blu-margin">
-                        <select class="form-control" th:field="${ticketModel.option}"  id="dropOperator">
-                            <option th:each="o : ${order}" >
-                                <option th:each="to : o.option" th:value="${to.name}" th:text="${to}"></option>
-                            </option>
-                        </select>
+                        <span th:each="o : ${order}">
+                            <select class="form-control" id="dropOperator">
+                               <option th:each="to : o.option" th:value="${to}" th:text="${to}"></option>
+                            </select>
+                        </span>
                     </div>
-                    <b>Kies Datum:</b>
-                    <input type="date" name="date" class="form-control"/>
-                    <div><input type="submit" value="Bestel"/></div>
+
+                        <b>Kies Datum:</b>
+                        <input type="date" name="date" class="form-control"/>
+                    <div>
+                        <input type="submit" value="Bestel"/>
+                    </div>
                 </form>
             </div>
         </div>

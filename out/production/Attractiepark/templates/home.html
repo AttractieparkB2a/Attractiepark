@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="_layout">
 
@@ -18,9 +17,6 @@
             <div class="welcome-text">
                 <h1 th:text="#{home.welcome}"></h1>
             </div>
-        </div>
-        <div sec:authorize="isAuthenticated()">
-            Logged in user: <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
         </div>
     </section>
 

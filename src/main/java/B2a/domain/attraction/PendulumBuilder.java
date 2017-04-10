@@ -1,21 +1,48 @@
 package B2a.domain.attraction;
 
 public class PendulumBuilder extends AttractionBuilder {
-    //PendulumRide pendulumRide;
     Attraction pendulumRide;
 
 
     @Override
     public Attraction createNewAttraction() {
-        pendulumRide = new PendulumRide();
-        pendulumRide.setName("penduluuuummm");
-        pendulumRide.setDuration( 2 );
-        pendulumRide.setMinimumHeight( 60 );
-        pendulumRide.setTransportType("pendulum swing");
-        pendulumRide.setAmountStaff(2);
-        //pendulumRide.setMaxRotationAngle(80);
-        pendulumRide.customSetImage("pendulum");
-
+        pendulumRide = new Attraction();
+        setName();
+        setDuration();
+        setMinimumHeight();
+        setTransportType();
+        setAmountStaff();
+        setImage();
         return pendulumRide;
+    }
+
+    @Override
+    public void setName() {
+        pendulumRide.setName("penduluuuummm");
+    }
+
+    @Override
+    public void setDuration() {
+        pendulumRide.setDuration( 2 );
+    }
+
+    @Override
+    public void setMinimumHeight() {
+        pendulumRide.setMinimumHeight( 60 );
+    }
+
+    @Override
+    public void setTransportType() {
+        pendulumRide.setTransportType("pendulum swing");
+    }
+
+    @Override
+    public void setAmountStaff() {
+        pendulumRide.setAmountStaff(2);
+    }
+
+    @Override
+    public void setImage() {
+        pendulumRide.customSetImage("pendulum");
     }
 }

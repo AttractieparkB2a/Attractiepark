@@ -8,11 +8,12 @@ public interface AttractionManagerIF {
 
     void saveAttraction(Attraction attraction);
 
-    Iterable<? extends Attraction> findAllAttractions();
+    Iterable<Attraction> findAllAttractions();
 
      Attraction findAttraction(long id);
 
     Iterable<String> findAllAttractionTypes();
 
    void changeState(Attraction attraction, String action);
-}
+
+   }

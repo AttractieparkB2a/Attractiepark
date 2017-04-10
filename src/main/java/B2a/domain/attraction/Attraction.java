@@ -13,7 +13,7 @@ import java.io.FileInputStream;
 @Setter
 @Entity
 @Table
-public abstract class Attraction {
+public class Attraction {
     //ATTRIBUTES
     @Id
     @GeneratedValue
