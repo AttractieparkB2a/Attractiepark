@@ -26,8 +26,8 @@
             <!-- Upper navigation -->
             <ul class="meta-navigation">
                 <li th:if="${#httpServletRequest.remoteUser != null}">
-                    <form th:action="@{/logout}" method="post">
-                        <input class="login" type="submit" th:value="#{header.meta.logout}"/>
+                    <form id="form-logout" th:action="@{/logout}" method="post">
+                        <input id="logout" class="logout" type="submit" th:value="#{header.meta.logout}"/>
                     </form>
                 </li>
                 <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><b th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></b></a></li>

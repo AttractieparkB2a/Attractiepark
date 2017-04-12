@@ -130,6 +130,20 @@ a.header_logo {
     cursor: default;
 }
 
+#form-logout:focus {
+    outline: none;
+}
+
+input#logout {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+input#logout:hover {
+    color: #b9132a;
+}
+
 .site-navigation {
     top: 30px;
     position: absolute;
