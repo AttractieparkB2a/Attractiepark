@@ -119,8 +119,13 @@ public class TicketController {
 
     @RequestMapping(value = "orderTicket/ticketOrderForm", method = RequestMethod.POST)
     public ModelAndView ticketOrderForm(@ModelAttribute("order") OrderModel order, BindingResult result, Model model) {
-       this.order.setTicket(order.getTicket());
-       saveOrderMemento(order);
+
+        if(order.getOrder().getDate() == null){
+            System.out.println("ORDER  IS NULL");
+        }else{
+            this.order.setTicket(order.getTicket());
+            saveOrderMemento(order);
+        }
         return ticketOrderResult();
     }
 
@@ -131,11 +136,13 @@ public class TicketController {
     //=======================================================TICKETRESULT=========================================//
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.GET)
     public ModelAndView ticketOrderResult() {
-        for (Ticket t: order.getTicket()){
-            for (TicketOption o: order.getOption()){
+        if(order != null) {
+            for (Ticket t : order.getTicket()) {
+                for (TicketOption o : order.getOption()) {
                     order.getOrder().setTotalPrice(t.price + o.price());
                 }
             }
+        }
         return new ModelAndView("orderTicket/ticketOrderResult", "order", order);
     }
 
