@@ -1,26 +1,28 @@
 package B2a.domain.ticket;
 
 
+import B2a.domain.order.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
+@Entity
 public class Ticket extends BaseTicket {
 
-    @OneToMany(cascade = javax.persistence.CascadeType.ALL)
-    private List<Ticket> ticketItems = new ArrayList<>();
     private String name;
     private int amount;
     public int price;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     public Ticket(String name, int amount, int price) {
         this.amount=amount;
@@ -28,36 +30,22 @@ public class Ticket extends BaseTicket {
         this.name = name;
     }
 
-    public void add(Ticket p) {
-
-        ticketItems.add(p);
-    }
-
-        @Override
-        public String name() {
+    @Override
+    public String name() {
             return name;
         }
 
-        @Override
-        public int price() {
-            this.price = 0;
-            if(this.name == "Gold"){
-                price = 25;
-            }else if(this.name == "Silver"){
-                price = 20;
-            }else{
-                price = 15;
-            }
-            return price;
-        }
-
     @Override
-    public String toString() {
-        String s = "";
-        for(Ticket item : ticketItems) {
-            s += "product: " + item.getName() + "; ";
-        }
-        return s;
-    }
+    public int price() {
+        this.price = 0;
 
+        if(this.name == "Gold"){
+            price = 25;
+        }else if(this.name == "Silver"){
+            price = 20;
+        }else{
+            price = 15;
+        }
+        return price;
+    }
 }

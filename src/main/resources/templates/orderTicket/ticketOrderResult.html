@@ -20,12 +20,12 @@
                     <p>Place</p> <input type="text" name="city" class="form-control" placeholder="Plaats" th:value="${order.account.city}"/>
 
                     <strong></strong>
-                        <span th:each="o : ${order}">
+                        <span th:each="o : ${order.order}">
                             <textarea th:text="${o.totalPrice}"></textarea>
                             <!--<textarea th:each="to : o.option" th:value="${to}" th:text="${to}"></textarea>-->
                         </span>
                     <div>
-                        <input type="submit" name="action" value="koop"/>
+                        <input type="submit" name="action" value="buy"/>
                         <input type="submit" name="action" value="cancel"/>
                     </div>
                 </form>
@@ -33,8 +33,5 @@
         </div>
     </section>
 </div>
-<th:block layout:fragment="scripts">
-    <script type="text/javascript" src="/static/js/mail.result.js"></script>
-</th:block>
 </body>
 </html>

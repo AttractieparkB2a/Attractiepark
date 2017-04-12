@@ -10,21 +10,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@Table(name = "order")
+@Entity
+@Table(name = "TicketOrder")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private Long clientId;
     private Long ticketId;
     private Date date;
-    private  int totalPrice;
+    private int totalPrice;
 
-    @OneToMany(cascade = javax.persistence.CascadeType.ALL)
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "order")
     private List<Ticket> tickets = new ArrayList<>();
 
     public Order(Long id, Long clientId, Long ticketId, Date date, int totalPrice){

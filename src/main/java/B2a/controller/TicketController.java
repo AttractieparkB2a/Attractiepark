@@ -1,23 +1,14 @@
 package B2a.controller;
 
 import B2a.domain.User;
-import B2a.domain.order.Order;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
+import B2a.model.Order.TicketModel;
 import B2a.model.OrderModel;
-import B2a.repository.BaseTicketRepository;
-import B2a.repository.OrderRepository;
-import B2a.repository.RoleRepository;
-import B2a.repository.UserRepository;
 import B2a.service.UserService;
-import B2a.service.UserServiceImpl;
 import B2a.service.abstractService.OrderManagerIF;
 import B2a.service.abstractService.TicketManagerIF;
-import B2a.service.concreteService.OrderManager;
-import B2a.service.concreteService.TicketManager;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import B2a.service.abstractService.TicketProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,128 +24,113 @@ import java.util.List;
 
 @Controller
 public class TicketController {
-    private Model model;
-    private TicketManagerIF manager;
+
     private OrderManagerIF orderManager;
-    private UserService userManager;
-    private Order orderObject;
+    private TicketManagerIF ticketManager;
+    private UserService userService;
+    private TicketProductService ticketProductService;
+
+    private TicketModel ticketModel;
+
     private OrderModel order = new OrderModel();
 
-    public TicketController(OrderRepository Orepo, BaseTicketRepository baseTicketRepository, UserRepository userRepo,
-                            RoleRepository roleRepo, BCryptPasswordEncoder encoder) {
-        this.manager = new TicketManager(baseTicketRepository);
-        this.orderManager = new OrderManager(Orepo);
-        this.userManager = new UserServiceImpl(userRepo, roleRepo, encoder);
+    public TicketController(OrderManagerIF orderManager, TicketManagerIF ticketManager, UserService userService, TicketProductService ticketProductService) {
+        this.orderManager = orderManager;
+        this.ticketManager = ticketManager;
+        this.userService = userService;
+        this.ticketProductService = ticketProductService;
+
+        this.ticketModel = new TicketModel();
     }
-
-    private void createTicket(OrderModel model) {
-        manager.createTicket(model);
-    }
-    private void decorateTicket(OrderModel model) {manager.decorateTicket(model);}
-    private void saveOrderMemento(OrderModel order) {orderManager.saveState(order);}
-    private void restoreDefaultOrder(int index) {orderManager.getMemento(0);}
-    private OrderModel setTickets(){
-        //make new ticket and add to OrderModel
-        Ticket ticketObject = new Ticket("Gold", 0,25);
-        Ticket ticketObject2 = new Ticket("Silver", 0,20);
-        Ticket ticketObject3 = new Ticket("Bronze", 0, 15);
-        ArrayList<Ticket> ticketList = new ArrayList<>();
-        ticketList.add(ticketObject);
-        ticketList.add(ticketObject2);
-        ticketList.add(ticketObject3);
-        order.setTicket(ticketList);
-
-
-
-        //Arraylist of options of a a ticketand add them
-        List<TicketOption> option = new ArrayList<>();
-        //GOLD OPTION
-        option.add(new TicketOption("Lunch", 5, "description",  ticketObject));
-        option.add(new TicketOption("Cadeau", 7, "description",  ticketObject));
-        //ZILVER OPTION
-        option.add(new TicketOption("Lunch", 5, "description",  ticketObject2));
-        order.setOption(option);
-
-        return order;
-    }
-
-
-
-
 
     //=======================================================TICKETORDER=========================================//
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.GET)
-    public ModelAndView ticketOrder() {
+    public String ticketOrder(Model model) {
+        User account = userService.findUser();
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User account = userManager.findByUsername(authentication.getName());
-
-        if (account != null) {
-            return new ModelAndView("orderTicket/ticketOrder", "account", account);
-        } else {
-
-            Date d = new Date();
-            account = new User("Test", "Test", "Test",
-                    "TestFirstname", "TestLastname", d, "TestAdres", "TestCity", "Test", true);
-            return new ModelAndView("orderTicket/ticketOrder", "account", account);
+        if(account != null) {
+            model.addAttribute("account", account);
+            return "orderTicket/ticketOrder";
         }
-
+        return "redirect:/";
     }
 
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.POST)
-    public ModelAndView ticketOrder(User account) {
+    public String ticketOrder(User account) {
         order.setAccount(account);
-        return ticketOrderForm();
+        orderManager.saveState(order);
+
+        return "redirect:/orderTicket/ticketOrderForm";
     }
 
     //=======================================================TICKETFORM=========================================//
     @RequestMapping(value = "orderTicket/ticketOrderForm", method = RequestMethod.GET)
-    public ModelAndView ticketOrderForm() {
-        order = setTickets();
-        //saveStateToMemento
-        saveOrderMemento(order);
-        return new ModelAndView("orderTicket/ticketOrderForm", "order", order);
+    public String ticketOrderForm(Model model) {
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        ticketModel.setTickets(tickets);
+        ticketModel.setTicketProducts(ticketProductService.findAll());
+
+        model.addAttribute("ticketModel", ticketModel);
+
+        return "orderTicket/ticketOrderForm";
     }
 
 
     @RequestMapping(value = "orderTicket/ticketOrderForm", method = RequestMethod.POST)
-    public ModelAndView ticketOrderForm(@ModelAttribute("order") OrderModel order, BindingResult result, Model model) {
-       this.order.setTicket(order.getTicket());
-       saveOrderMemento(order);
-        return ticketOrderResult();
+    public String ticketOrderForm(@ModelAttribute("ticketForm") TicketModel tickets, BindingResult result, Model model) {
+        List<Ticket> ticketsList = new ArrayList<>();
+        for(Ticket tm : tickets.getTickets()) {
+            if(tm.getAmount() != 0) {
+                ticketsList.add(tm);
+            }
+        }
+
+       order.setTicket(ticketsList);
+       List<TicketOption> option = new ArrayList<>();
+
+       for(Ticket t : tickets.getTickets()) {
+           if (t.getName().equals("Gold")) {
+               option.add(new TicketOption("Lunch", 5, "description", t.getAmount(), t));
+               option.add(new TicketOption("Cadeau", 7, "description", t.getAmount(), t));
+           } else if (t.getName().equals("Silver")) {
+               option.add(new TicketOption("Lunch", 5, "description", t.getAmount(), t));
+           }
+       }
+       order.setOption(option);
+
+       orderManager.saveState(order);
+
+       return "redirect:/orderTicket/ticketOrderResult";
     }
-
-
-
-
 
     //=======================================================TICKETRESULT=========================================//
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.GET)
     public ModelAndView ticketOrderResult() {
+        int totalPrice = 0;
+
         for (Ticket t: order.getTicket()){
-            for (TicketOption o: order.getOption()){
-                    order.getOrder().setTotalPrice(t.price + o.price());
-                }
-            }
+            totalPrice += t.getPrice() * t.getAmount();
+        }
+        for(TicketOption o : order.getOption()) {
+            totalPrice += o.getPrice() * o.getAmount();
+        }
+        order.getOrder().setTotalPrice(totalPrice);
+
+        order.getOrder().setClientId(order.getAccount().getId());
+        order.getOrder().setDate(new Date());
+
         return new ModelAndView("orderTicket/ticketOrderResult", "order", order);
     }
 
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.POST)
-    public String ticketOrderResult(@RequestParam String action, @ModelAttribute("order") OrderModel order,  BindingResult result, Model model) {
-        if (action.equals("koop")) {
-            try{
+    public String ticketOrderResult(Model model, @RequestParam String action) {
+        if (action.equals("buy")) {
             orderManager.createOrder(order.getOrder());
-               createTicket(order);
-               decorateTicket(order);
-            }catch (Exception e){
-                System.out.println(e);
-            }
-
-            restoreDefaultOrder(0);
-            return "orderTicket/ticketOrder";
-        } else{
-            restoreDefaultOrder(0);
-            return "orderTicket/ticketOrder";
+            ticketManager.createTicket(order);
+            ticketManager.decorateTicket(order);
         }
+        orderManager.getMemento(0);
+
+        return "orderTicket/ticketOrder";
     }
 }

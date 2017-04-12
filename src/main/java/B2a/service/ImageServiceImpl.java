@@ -60,7 +60,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public LinkedHashMap<Long, Image> findPhotos() {
-        List<Long> ids = imageRepository.findAllIdByUser_id(findUser().getId());
+        List<Long> ids = imageRepository.findAllIdByUser_id(userService.findUser().getId());
 
         for(Long id : ids) {
             images.put(id, new ProxyImage(id));
@@ -74,10 +74,5 @@ public class ImageServiceImpl implements ImageService {
         Image image = images.get(id);
         Long userId = image.load();
         return imageRepository.findOneById(userId);
-    }
-
-    public User findUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return userService.findByUsername(authentication.getName());
     }
 }
