@@ -38,6 +38,7 @@ public class AttractionManager implements AttractionManagerIF{
         }
         Attraction attraction = builder.createNewAttraction();
         attractionRepository.save(attraction);
+
         return attraction;
     }
 
@@ -51,10 +52,12 @@ public class AttractionManager implements AttractionManagerIF{
         return attractionRepository.findAll();
     }
 
+    // FIND ONE ATTRACTION BY IT'S ID
     public Attraction findAttraction(long id){
         return attractionRepository.findOne(id);
     }
 
+    //GETS ALL ATTRACTIONTYPES SO BUTTONS IN THE CHOOSER CAN BE CREATED INSIDE A LOOP
     public Iterable<String> findAllAttractionTypes(){
         Iterable<Attraction> attractions = attractionRepository.findAll();
         ArrayList<String> returnIter = new ArrayList();
@@ -74,6 +77,8 @@ public class AttractionManager implements AttractionManagerIF{
 
 
     public void changeState(Attraction attraction, String action){
+        System.out.println("attraction in manager: " + attraction);
+        System.out.println("action in manager: " + action);
         switch(action){
             case "open":
                 attraction.open();
@@ -91,6 +96,8 @@ public class AttractionManager implements AttractionManagerIF{
                 attraction.repair();
                 break;
         }
+
+        //attractionRepository.save(attraction);
 
     }
 
