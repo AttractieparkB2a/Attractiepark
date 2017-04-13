@@ -1,10 +1,8 @@
 package B2a.service.abstractService;
 
-import B2a.domain.ticket.Ticket;
-import B2a.model.TicketModel;
+import B2a.model.OrderModel;
 
 public interface TicketManagerIF {
-    Ticket createTicket(TicketModel model);
-    Ticket decorateTicket(TicketModel model);
-    void deleteTicket(Long ticketId);
+    void createTicket(OrderModel model);
+    void decorateTicket(OrderModel model);
 }

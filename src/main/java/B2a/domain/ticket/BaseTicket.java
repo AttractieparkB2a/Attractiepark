@@ -17,6 +17,5 @@ public abstract class BaseTicket {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     public abstract String name();
-    public abstract String date();
     public abstract int price();
 }
