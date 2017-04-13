@@ -14,27 +14,24 @@
                 <h5>Complete order</h5>
                 <form th:action="@{ticketOrderResult}" method="post">
                     <b>Controleer uw gegevens:</b>
-                    <p>Name</p> <input type="text" name="firstName" class="form-control" placeholder="Voornaam" th:value="${account.firstName}"/>
-                    <p>LastName</p> <input type="text" name="lastName" class="form-control" placeholder="Achternaam" th:value="${account.lastName}"/>
-                    <p>Addres</p> <input type="text" name="address" class="form-control" placeholder="Adres" th:value="${account.address}"/>
-                    <p>Place</p> <input type="text" name="city" class="form-control" placeholder="Plaats" th:value="${account.city}"/>
+                    <p>Name</p> <input type="text" name="firstName" class="form-control" placeholder="Voornaam" th:value="${order.account.firstName}"/>
+                    <p>LastName</p> <input type="text" name="lastName" class="form-control" placeholder="Achternaam" th:value="${order.account.lastName}"/>
+                    <p>Addres</p> <input type="text" name="address" class="form-control" placeholder="Adres" th:value="${order.account.address}"/>
+                    <p>Place</p> <input type="text" name="city" class="form-control" placeholder="Plaats" th:value="${order.account.city}"/>
 
-                    <span th:each="o : ${order}">
-                            <select class="form-control" id="dropOperator">
-                               <option th:each="to : o.option" th:value="${to}" th:text="${to}"></option>
-                            </select>
+                    <strong></strong>
+                        <span th:each="o : ${order.order}">
+                            <textarea th:text="${o.totalPrice}"></textarea>
+                            <!--<textarea th:each="to : o.option" th:value="${to}" th:text="${to}"></textarea>-->
                         </span>
                     <div>
-                        <input type="submit" name="buy" value="koop"/>
-                        <input type="cancel" name="restore" value="Restore"/>
+                        <input type="submit" name="action" value="buy"/>
+                        <input type="submit" name="action" value="cancel"/>
                     </div>
                 </form>
             </div>
         </div>
     </section>
 </div>
-<th:block layout:fragment="scripts">
-    <script type="text/javascript" src="/static/js/mail.result.js"></script>
-</th:block>
 </body>
 </html>

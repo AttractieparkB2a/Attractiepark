@@ -26,8 +26,8 @@
             <!-- Upper navigation -->
             <ul class="meta-navigation">
                 <li th:if="${#httpServletRequest.remoteUser != null}">
-                    <form th:action="@{/logout}" method="post">
-                        <input class="login" type="submit" th:value="#{header.meta.logout}"/>
+                    <form id="form-logout" th:action="@{/logout}" method="post">
+                        <input id="logout" class="logout" type="submit" th:value="#{header.meta.logout}"/>
                     </form>
                 </li>
                 <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><b th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></b></a></li>
@@ -66,12 +66,17 @@
             <span></span>
         </div>
 
-        <!-- Expanded menu -->
-        <ul class="responsive-navigation">
-            <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+        <!-- Expanded menu for Member role -->
+        <ul sec:authorize="!hasRole('ROLE_ADMIN')" class="responsive-navigation">
+            <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></li>
             <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
-            <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
-            <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
+            <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+        </ul>
+
+        <!-- Expanded menu for Admin role -->
+        <ul sec:authorize="hasRole('ROLE_ADMIN')" class="responsive-navigation">
+            <li class="news"><a th:text="#{header.site.image}" th:href="@{/image}"></a></li>
+            <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
         </ul>
 
     </header>
@@ -89,12 +94,20 @@
         <div class="footer-navigation display">
             <div class="footer-text-wrapper">
                 <h4 th:text="#{footer.navigation}"></h4>
-                <ul>
-                    <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
+
+                <!-- Footer menu for Member role -->
+                <ul sec:authorize="!hasRole('ROLE_ADMIN')">
+                    <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></li>
                     <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
-                    <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></li>
-                    <li class="news"><a th:text="#{header.site.news}" th:href="@{/}"></a></li>
+                    <li class="park"><a th:text="#{header.site.park}" th:href="@{/}"></a></li>
                 </ul>
+
+                <!-- Footer menu for Admin role -->
+                <ul sec:authorize="hasRole('ROLE_ADMIN')">
+                    <li class="news"><a th:text="#{header.site.image}" th:href="@{/image}"></a></li>
+                    <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+                </ul>
+
             </div>
         </div>
 
@@ -113,18 +126,30 @@
 
         <!-- Mobile footer -->
         <div class="responsive-footer responsive-display">
-            <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.park}" th:href="@{/}"></a></h4>
+
+            <!-- Mobile footer menu for Member role -->
+            <div sec:authorize="!hasRole('ROLE_ADMIN')">
+                <div class="footer-text-layout">
+                    <h4><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></h4>
+                </div>
+                <div class="footer-text-layout">
+                    <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
+                </div>
+                <div class="footer-text-layout">
+                    <h4><a th:text="#{header.site.park}" th:href="@{/}"></a></h4>
+                </div>
             </div>
-            <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
+
+            <!-- Mobile footer menu for Admin role -->
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="footer-text-layout">
+                    <h4><a th:text="#{header.site.image}" th:href="@{/image}"></a></h4>
+                </div>
+                <div class="footer-text-layout">
+                    <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
+                </div>
             </div>
-            <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.tickets}" th:href="@{/ticketOrder}"></a></h4>
-            </div>
-            <div class="footer-text-layout">
-                <h4><a th:text="#{header.site.news}" th:href="@{/}"></a></h4>
-            </div>
+
             <h4 th:text="#{footer.newsletter.title}"><strong></strong></h4>
             <p th:text="#{footer.newsletter.paragraph}"></p>
             <form th:action="@{/_layout}" th:object="${subscriberForm}" method="post">

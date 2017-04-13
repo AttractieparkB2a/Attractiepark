@@ -11,7 +11,7 @@ import javax.persistence.*;
 //@Getter
 //@Setter
 public class ClosedState extends State {
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     Attraction attraction;
 
     public ClosedState(Attraction attraction){
@@ -22,15 +22,15 @@ public class ClosedState extends State {
     @Override
     public void open() {
         System.out.println("Opening the attraction. Visitors can enter now.");
-        attraction.setState(attraction.getWaitingState());
-        //attraction.setState(new ClosedState(attraction));
+        //attraction.setState(attraction.getWaitingState());
+        attraction.setState(new ClosedState(attraction));
     }
 
     @Override
     public void damaged(){
         System.out.println("attraction was damaged");
-        attraction.setState(attraction.getDefectState());
-        //attraction.setState(new ClosedState(attraction));
+        //attraction.setState(attraction.getDefectState());
+        attraction.setState(new ClosedState(attraction));
     }
 
 }

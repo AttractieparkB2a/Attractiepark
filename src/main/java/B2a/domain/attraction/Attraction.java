@@ -35,27 +35,27 @@ public class Attraction {
     @OneToOne(mappedBy = "attraction" , cascade = javax.persistence.CascadeType.ALL)
     protected State currentState;
     //@Embedded
-    @OneToOne
-    private State closedState;
+    //@OneToOne
+    //private State closedState;
     //@Embedded
-    @OneToOne
-    private State waitingState;
+    //@OneToOne
+    //private State waitingState;
     //@Embedded
-    @OneToOne
-    private State defectState;
+    //@OneToOne
+    //private State defectState;
     //@Embedded
-    @OneToOne
-    private State runningState;
+    //@OneToOne
+    //private State runningState;
 
 
     public Attraction(){
-        closedState = new ClosedState(this);
-        //closedState.setName("closed");
-        waitingState = new WaitingState(this);
-        //waitingState.setName("waiting");
-        defectState = new DefectState(this);
-        runningState = new RunningState(this);
-        currentState = closedState;
+//        closedState = new ClosedState(this);
+//        //closedState.setName("closed");
+//        waitingState = new WaitingState(this);
+//        //waitingState.setName("waiting");
+//        defectState = new DefectState(this);
+//        runningState = new RunningState(this);
+//        currentState = closedState;
 
         currentState = new ClosedState(this);
     }

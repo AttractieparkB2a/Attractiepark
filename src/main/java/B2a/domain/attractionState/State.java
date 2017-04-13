@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "state")
-public class State {
+public abstract class State {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;

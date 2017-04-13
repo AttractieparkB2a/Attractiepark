@@ -15,6 +15,7 @@ public class RollercoasterBuilder extends AttractionBuilder {
         setTransportType();
         setAmountStaff();
         setImage();
+        //setState();
         return rollercoaster;
 
     }
