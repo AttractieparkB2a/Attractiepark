@@ -8,8 +8,13 @@ addons:
       secure: "P/FqIVysZoO0osr4rYSSYxcRzmEYBDfB2n2CW7gJYLG4OrcKFK9jOm2unUJ+MiuLjs9Bq0tpQuZvWHceI+j8Y+H1BgKJBwAap8boZrANI7HmdkcP2EwOQwfxvFQGHkrDGnkH/jbXeCer3w8pxejdMLUkFqRPFyzpJxE8+xdaB5murERhbiKiGxv+uax7Cr3gSuZRWDdAlUedsufeh7fPSlSkW7U7SDE72bTegRM0nyhsnBtBVF710i12h4SOVXmBY/gnTbhsAKZKcqjUOmraCwf2EKqoxYx2cnUlni8FQVf+Qhb5ooehwCgvQrLxdF856t1mTG/icMmlZ8mDNByyJSX2Cg8y/kE5eF8bN48bqXsYMg4BPJtm3gdG/69tRxVqVLffeMv5HC4zRQM3bnyRlANJpWUMsj7A6Z2muwPxruN0V+PsYmdyzfgBvfbNmBtA52Rav6XZnNFxDtHPoc70GrUncR/AtKAsDo5ZxudiYABt2Y2/E5EkxTI6bRcMxUYGNeq9BsAxOLpvxVwHSO/ute9GZGNAOD6KLos3YXe3+PUwa3N3IZL8rhP4OgO8NpaBaB/nCmSnnoXY2OQJPCgSfmQJRnT3zA7mBmaFJxyoBVgYstxgmSu3DSUEwDkyyKoKhMD2KCzq0fJ1t+uASxOaCLr6wOPWSvgsaJpES2+uU3g="
 jdk:
   - oraclejdk8
+
+services:
+  - mysql
+
 script:
   - ./gradlew sonarqube -Dsonar.host.url=https://sonarqube.com -Dsonar.organization=attractieparkkey -Dsonar.login=1e96152eda3f75bcedfc693825800ceb233f988e
+
 cache:
   directories:
     - '$HOME/.m2/repository'
