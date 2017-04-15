@@ -20,3 +20,6 @@ cache:
     - '$HOME/.sonar/cache'
     - '$HOME/.gradle'
     - '.gradle'
+
+notifications:
+  email: true
