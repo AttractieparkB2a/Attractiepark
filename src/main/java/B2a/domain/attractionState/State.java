@@ -1,9 +1,32 @@
 package B2a.domain.attractionState;
 
-import javax.persistence.Embeddable;
+import B2a.domain.attraction.Attraction;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Embeddable
+import javax.persistence.*;
+
+//@MappedSuperclass
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Embeddable
+@Entity
+@Getter
+@Setter
+@Table(name = "state")
 public abstract class State {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
+
+    @OneToOne
+    @JoinColumn()
+    Attraction attraction;
+
+
+    public State(Attraction attraction){
+        this.attraction = attraction;
+    }
 
     public void open(){
         System.out.println("Invalid method");

@@ -1,22 +1,26 @@
 package B2a.domain.attraction;
 
-import B2a.domain.attractionState.ClosedState;
-import B2a.domain.attractionState.State;
+import B2a.domain.attractionState.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.File;
 import java.io.FileInputStream;
 
+@Table(name = "attraction")
 @Getter
 @Setter
 @Entity
-@Table
 public class Attraction {
     //ATTRIBUTES
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
     protected String name;
 
@@ -27,11 +31,32 @@ public class Attraction {
     @Column(columnDefinition="longblob")
     protected byte[] image;
 
-    @Embedded
+    //@Embedded
+    @OneToOne(mappedBy = "attraction" , cascade = javax.persistence.CascadeType.ALL)
     protected State currentState;
+    //@Embedded
+    //@OneToOne
+    //private State closedState;
+    //@Embedded
+    //@OneToOne
+    //private State waitingState;
+    //@Embedded
+    //@OneToOne
+    //private State defectState;
+    //@Embedded
+    //@OneToOne
+    //private State runningState;
 
 
     public Attraction(){
+//        closedState = new ClosedState(this);
+//        //closedState.setName("closed");
+//        waitingState = new WaitingState(this);
+//        //waitingState.setName("waiting");
+//        defectState = new DefectState(this);
+//        runningState = new RunningState(this);
+//        currentState = closedState;
+
         currentState = new ClosedState(this);
     }
 
@@ -42,7 +67,10 @@ public class Attraction {
     };
 
     public void open(){
+        System.out.println("open in attraction");
+        System.out.println("status is: " + currentState);
         currentState.open();
+        System.out.println("status is after: " + currentState);
     }
 
     public void stop(){

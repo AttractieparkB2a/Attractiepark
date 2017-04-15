@@ -31,18 +31,6 @@ public class AttractionController {
         return new ModelAndView("/attraction/info", "attraction", attraction);
     }
 
-    // POST STATE ON BUTTON CLICK
-    @RequestMapping(value = "attraction/info/{id}", method = RequestMethod.POST)
-    public ModelAndView info(@ModelAttribute("attraction") Attraction attraction, BindingResult bindingResult, Model model, @RequestParam(value="action", required = true) String action){
-        System.out.println("attractie " + attraction);
-        System.out.println("binding = " + bindingResult.toString());
-        System.out.println("model = " + model);
-        System.out.println("actie = " + action);
-        attractionManagerIF.changeState(attraction, action);
-        return new ModelAndView("/attraction/info", "attraction", attraction);
-    }
-
-
     // ADMIN LIST. HERE YOU CAN CHANGE THE STATE OF THE ATTRACTION.
     // GET THE PAGE WITH STATE BUTTONS
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.GET)
@@ -54,13 +42,10 @@ public class AttractionController {
     // POST THE ACTION ON BUTTON CLICK
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
     public String adminAttractionsList(@ModelAttribute("attraction") Attraction attraction, Model model, @RequestParam(value="action", required = true) String action){
-        //Parameter should be Attraction, but can't instantiate abstract class..
-        //model.addAttribute("id", id);
-
-        System.out.println("attractie " + attraction);
-        System.out.println("attractionnaam = " + attraction.getName());
-        System.out.println("model = " + model);
-        System.out.println("actie = " + action);
+        System.out.println("getting attraction with id: " + attraction.getId());
+        Attraction a = attractionManagerIF.findAttraction( attraction.getId() );
+        System.out.println("Changing state on attraction " + attraction.getName() + " with id: " + attraction.getId());
+        System.out.println("a= " + a.getName() + " with id: " + a.getId());
         attractionManagerIF.changeState(attraction, action);
         return "redirect:/attraction/adminAttractionsList";
     }
@@ -78,7 +63,6 @@ public class AttractionController {
             return "attraction/attractionsList";
         }
         attractionManagerIF.saveAttraction(rollercoaster);
-
         return "attraction/attractionsList";
     }
 
@@ -95,7 +79,6 @@ public class AttractionController {
     @RequestMapping(value = "/attraction/attractionChooser", method = RequestMethod.POST)
     public String attractionChooser(Model model, @RequestParam(value="action", required = true) String action) {
         attractionManagerIF.createNewAttraction(action);
-
         return "redirect:/attraction/adminAttractionsList";
     }
 

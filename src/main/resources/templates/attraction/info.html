@@ -50,18 +50,6 @@
                     </tbody>
                 </table>
 
-                <div>
-                    <form action="#" th:action="@{/attraction/adminAttractionsList}" th:object="${model}" method="post">
-                        <td class="nameCell" th:text="${attraction.name}"> test </td>
-                        <td class="colorCell"> kleurcode </td>
-                        <td> <input type="submit" class="btnState" value="open" th:value="open" name="action"/> </td>
-                        <td> <input type="submit" class="btnState" value="start" name="action"/> </td>
-                        <td> <input type="submit" class="btnState" value="stop" name="action"/> </td>
-                        <td> <input type="submit" class="btnState" value="close" name="action" onclick="myFunction()"/> </td>
-                        <td> <input type="submit" class="btnState" value="damage" name="action"/></td>
-                        <td> <input type="submit" class="btnState" value="repair" name="action"/> </td>
-                    </form>
-                </div>
                 <br/><center> <a th:href="@{/attraction/attractionsList}"> Back </a> </center>
 
         </div>
