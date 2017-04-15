@@ -9,15 +9,14 @@ addons:
 jdk:
   - oraclejdk8
 
-services:
-  - mysql
+install: true
 
 script:
   - ./gradlew sonarqube -Dsonar.host.url=https://sonarqube.com -Dsonar.organization=attractieparkkey -Dsonar.login=1e96152eda3f75bcedfc693825800ceb233f988e
 
-#cache:
-#  directories:
-#    - '$HOME/.m2/repository'
-#    - '$HOME/.sonar/cache'
-#    - '$HOME/.gradle'
-#    - '.gradle'
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+    - '$HOME/.gradle'
+    - '.gradle'
