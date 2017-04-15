@@ -7,10 +7,10 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-@Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
+@Entity
 public abstract class DecoratedTicket extends BaseTicket {
 
     @OneToOne

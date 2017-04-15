@@ -1,7 +1,6 @@
 package B2a.domain.ticket;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -9,17 +8,17 @@ import javax.persistence.Entity;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-public class
-TicketOption extends DecoratedTicket {
+public class TicketOption extends DecoratedTicket {
 
     private String name;
     private String description;
+    private int amount;
     private int price;
 
-    public TicketOption(String name, int price, String description, BaseTicket ticket) {
+    public TicketOption(String name, int price, String description, int amount, BaseTicket ticket) {
         super(ticket);
         this.description = description;
+        this.amount = amount;
         this.name = name;
         this.price = price;
     }

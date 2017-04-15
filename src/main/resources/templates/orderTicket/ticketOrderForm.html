@@ -14,29 +14,28 @@
 
     <section id="home" class="home-section">
         <div class="page-container">
-            <div class="col-lg-12 extra-padding" style="width: 100%">
+            <div class="col-lg-12 extra-padding">
                 <h5>Order - Stap 2 - Tickets</h5>
-                <form th:action="@{ticketOrderForm}" th:object="${order}"  method="post">
-                        <div th:each="o : ${order.ticket}" style="border-style: solid;">
-                            <label>Name:</label><label  name="name" th:value="name" th:text="${o.name}" class="form-control" th:required="true"></label>
-                            <label>Amount:</label><input name="amount" th:value="amount" th:text="${o.amount}" class="form-control" th:required="true"/>
-                            <label>Price:</label><label name="price" th:value="price" th:text="${o.price}" class="form-control" th:required="true"></label>
+
+                    <form th:action="@{ticketOrderForm}" th:object="${ticketModel}" method="post">
+                        <div th:each="tproducts, stat : ${ticketModel.ticketProducts}">
+                            <div class="tproducts">
+                                <label>Ticket</label>
+                                <input class="form-control input-margin" type="text" th:name="|tickets[__${stat.index}__].name|"  th:value="${tproducts.name}" readonly="readonly" />
+                                <label>Description</label>
+                                <input class="form-control input-margin" type="text" th:placeholder="${tproducts.description}" readonly="readonly" />
+                                <input class="form-control input-margin" type="text" th:name="|tickets[__${stat.index}__].price|" th:value="${tproducts.price}" readonly="readonly" style="display: none;"/>
+                                <label>Amount</label>
+                                <input class="form-control input-margin" type="text" th:field="*{tickets[__${stat.index}__].amount}" th:placeholder="Amount" />
+                            </div>
                         </div>
-                        <b>Kies Datum:</b>
-                        <input type="date" name="date" th:value="${order.order.date}" class="form-control" th:required="true"/>
-                    <div>
-                        <input type="submit" value="Bestel"/>
-                    </div>
-                </form>
+                        <input type="submit" value="Bestel" class="btn-subscribe" />
+                    </form>
             </div>
         </div>
     </section>
 
-
 </div>
 
-<th:block layout:fragment="scripts">
-    <script type="text/javascript" src="/static/js/mail.result.js"></script>
-</th:block>
 </body>
 </html>

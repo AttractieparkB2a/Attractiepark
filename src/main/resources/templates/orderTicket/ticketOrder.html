@@ -14,6 +14,7 @@
                 <h5>Order - Stap 1 - gegevens controleren</h5>
                 <form th:action="@{ticketOrder}" th:object="${account}" method="post">
                     <b>Controleer uw gegevens:</b>
+                    <input type="text" name="username" class="form-control" th:value="${account.username}" th:placeholder="#{account.id}" th:required="true" style="display: none;"/>
                     <input type="text" name="username" class="form-control" th:value="${account.username}" th:placeholder="#{account.email}" th:required="true"/>
                     <input type="text" name="firstName" class="form-control" th:value="${account.firstName}" th:placeholder="#{account.firstname}" th:required="true"/>
                     <input type="text" name="lastName" class="form-control"  th:value="${account.lastName}" th:placeholder="#{account.lastname}" th:required="true"/>
@@ -28,8 +29,5 @@
         </div>
     </section>
 </div>
-<th:block layout:fragment="scripts">
-    <script type="text/javascript" src="/static/js/mail.result.js"></script>
-</th:block>
 </body>
 </html>
