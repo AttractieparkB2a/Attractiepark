@@ -50,4 +50,10 @@ dependencies {
 //    all*.exclude module : 'spring-boot-starter-logging'
 //}
 
+test {
+	testLogging {
+		events "failed"
+		exceptionFormat "short"
+	}
+}
 
