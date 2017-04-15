@@ -64,8 +64,8 @@ public class NewsMessageControllerTest {
 
         mockMvc.perform(
                 post("/newsmessage")
-                .param("subject", "Test Subject")
-                .param("message", "Test Message"))
+                        .param("subject", "Test Subject")
+                        .param("message", "Test Message"))
                 .andExpect(model().hasNoErrors())
                 .andExpect(redirectedUrl("/"));
     }
