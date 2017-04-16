@@ -38,14 +38,6 @@ public class Ticket extends BaseTicket {
     @Override
     public int price() {
         this.price = 10;
-
-//        if(this.name == "Gold"){
-//            price = 10;
-//        }else if(this.name == "Silver"){
-//            price = 10;
-//        }else{
-//            price = 10;
-//        }
         return price;
     }
 }
