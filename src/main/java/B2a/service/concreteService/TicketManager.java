@@ -23,6 +23,7 @@ public class TicketManager implements TicketManagerIF{
         return  this.baseTicketRepository.findAll();
     }
 
+
     @Override
     public void createTicket(OrderModel model) {
         for (Ticket t: model.getTicket()){
