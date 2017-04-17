@@ -3,7 +3,7 @@ package B2a.controller;
 import B2a.domain.User;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
-import B2a.model.Order.TicketModel;
+import B2a.model.ticket.TicketModel;
 import B2a.model.OrderModel;
 import B2a.service.UserService;
 import B2a.service.abstractService.OrderManagerIF;
@@ -29,9 +29,7 @@ public class TicketController {
     private TicketManagerIF ticketManager;
     private UserService userService;
     private TicketProductService ticketProductService;
-
     private TicketModel ticketModel;
-
     private OrderModel order = new OrderModel();
 
     public TicketController(OrderManagerIF orderManager, TicketManagerIF ticketManager, UserService userService, TicketProductService ticketProductService) {
@@ -39,9 +37,11 @@ public class TicketController {
         this.ticketManager = ticketManager;
         this.userService = userService;
         this.ticketProductService = ticketProductService;
-
         this.ticketModel = new TicketModel();
     }
+
+
+
 
     //=======================================================TICKETORDER=========================================//
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.GET)
@@ -49,6 +49,8 @@ public class TicketController {
         User account = userService.findUser();
 
         if(account != null) {
+            order.setAccount(account);
+            order.getOrder().setClientId(account.getId());
             model.addAttribute("account", account);
             return "orderTicket/ticketOrder";
         }
@@ -56,12 +58,13 @@ public class TicketController {
     }
 
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.POST)
-    public String ticketOrder(User account) {
-        order.setAccount(account);
-        orderManager.saveState(order);
-
+    public String ticketOrder() {
+        orderManager.addMemento(order);
         return "redirect:/orderTicket/ticketOrderForm";
     }
+
+
+
 
     //=======================================================TICKETFORM=========================================//
     @RequestMapping(value = "orderTicket/ticketOrderForm", method = RequestMethod.GET)
@@ -72,12 +75,14 @@ public class TicketController {
 
         model.addAttribute("ticketModel", ticketModel);
 
+        orderManager.addMemento(order);
         return "orderTicket/ticketOrderForm";
     }
 
 
     @RequestMapping(value = "orderTicket/ticketOrderForm", method = RequestMethod.POST)
     public String ticketOrderForm(@ModelAttribute("ticketForm") TicketModel tickets, BindingResult result, Model model) {
+
         List<Ticket> ticketsList = new ArrayList<>();
         for(Ticket tm : tickets.getTickets()) {
             if(tm.getAmount() != 0) {
@@ -91,21 +96,23 @@ public class TicketController {
        for(Ticket t : tickets.getTickets()) {
            if (t.getName().equals("Gold")) {
                option.add(new TicketOption("Lunch", 5, "description", t.getAmount(), t));
-               option.add(new TicketOption("Cadeau", 7, "description", t.getAmount(), t));
+               option.add(new TicketOption("Cadeau", 5, "description", t.getAmount(), t));
            } else if (t.getName().equals("Silver")) {
                option.add(new TicketOption("Lunch", 5, "description", t.getAmount(), t));
            }
        }
        order.setOption(option);
 
-       orderManager.saveState(order);
-
+        orderManager.addMemento(order);
        return "redirect:/orderTicket/ticketOrderResult";
     }
+
+
 
     //=======================================================TICKETRESULT=========================================//
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.GET)
     public ModelAndView ticketOrderResult() {
+
         int totalPrice = 0;
 
         for (Ticket t: order.getTicket()){
@@ -114,9 +121,8 @@ public class TicketController {
         for(TicketOption o : order.getOption()) {
             totalPrice += o.getPrice() * o.getAmount();
         }
-        order.getOrder().setTotalPrice(totalPrice);
 
-        order.getOrder().setClientId(order.getAccount().getId());
+        order.getOrder().setTotalPrice(totalPrice);
         order.getOrder().setDate(new Date());
 
         return new ModelAndView("orderTicket/ticketOrderResult", "order", order);
@@ -125,12 +131,21 @@ public class TicketController {
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.POST)
     public String ticketOrderResult(Model model, @RequestParam String action) {
         if (action.equals("buy")) {
-            orderManager.createOrder(order.getOrder());
+
             ticketManager.createTicket(order);
             ticketManager.decorateTicket(order);
-        }
-        orderManager.getMemento(0);
 
-        return "orderTicket/ticketOrder";
+            for (Ticket t: order.getTicket()) {
+                order.getOrder().setTicketId(t.getId());
+            }
+
+            orderManager.createOrder(order.getOrder());
+        }else if(action.equals("cancel")){
+            order = orderManager.getMemento(0);
+            return "redirect:/orderTicket/ticketOrderForm";
+        }
+        order = orderManager.getMemento(0);
+        return "redirect:/";
+
     }
 }

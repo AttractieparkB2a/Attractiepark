@@ -7,5 +7,6 @@ public interface BaseTicketRepository extends CrudRepository<BaseTicket, Long> {
 
     @Override
     Iterable<BaseTicket> findAll();
+
 }
 

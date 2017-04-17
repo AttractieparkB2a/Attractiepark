@@ -1,4 +1,4 @@
-package B2a.model.Order;
+package B2a.model.ticket;
 
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketProduct;

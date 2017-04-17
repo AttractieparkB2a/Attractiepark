@@ -1,10 +1,9 @@
 package B2a.service.concreteService;
 
 import B2a.domain.order.Order;
-import B2a.model.Order.OrderCaretaker;
-import B2a.model.Order.OrderMemento;
-import B2a.model.Order.OrderOriginator;
 import B2a.model.OrderModel;
+import B2a.model.order.OrderCaretaker;
+import B2a.model.order.OrderOriginator;
 import B2a.repository.OrderRepository;
 import B2a.service.abstractService.OrderManagerIF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +24,20 @@ public class OrderManager implements OrderManagerIF {
     }
 
     @Override
-    public Order createOrder(Order order){
-        return orderRepository.save(order);
+    public void createOrder(Order order){
+             orderRepository.save(order);
+    }
+
+
+
+    @Override
+    public void addMemento(OrderModel model){
+        originator.setState(model);
+        caretaker.addMemento(originator.saveToMemento());
     }
 
     @Override
-    public void saveState(OrderModel order){
-        originator.set(order);
-    }
-
-    @Override
-    public void addMemento(){
-        originator.saveToMemento();
-    }
-
-    @Override
-    public OrderMemento getMemento(int index){
-        return caretaker.getMemento(index);
+    public OrderModel getMemento(int index){
+        return originator.restoreFromMemento(caretaker.getMemento(index));
     }
 }

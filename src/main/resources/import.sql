@@ -1,9 +1,9 @@
 -- import.sql file
 
 -- TicketProduct
-insert into ticket_product (id, name, description, price) values (1, "Gold", "Ticket which includes getting a photo with Mickey Mouse", 25);
-insert into ticket_product (id, name, description, price) values (2, "Silver", "Ticket which includes getting a photo with Peter Pan", 20);
-insert into ticket_product (id, name, description, price) values (3, "Bronze", "Base ticket", 15);
+insert into ticket_product (id, name, description, price) values (1, "Gold", "Ticket with lunch and gift", 10);
+insert into ticket_product (id, name, description, price) values (2, "Silver", "Ticket with lunch", 10);
+insert into ticket_product (id, name, description, price) values (3, "Bronze", "Entry ticket", 10);
 
 -- Role
 insert into role (id, name) values (1, "ROLE_MEMBER");

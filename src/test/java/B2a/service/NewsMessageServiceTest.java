@@ -1,6 +1,6 @@
 //package B2a.service;
 //
-//import B2a.domain.newsMessage.newsMessage;
+//import B2a.domain.newsMessage.NewsMessage;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@
 //
 //    @Test
 //    public void save() {
-//        newsMessage newsMessage = createNewsMessage("Test Subject1", "Test Message1");
+//        NewsMessage newsMessage = createNewsMessage("Test Subject1", "Test Message1");
 //
 //        Iterable<newsMessage> newsMessages = newsMessageService.findAll();
 //        assertNotNull(newsMessages);

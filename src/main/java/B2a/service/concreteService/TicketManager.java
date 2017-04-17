@@ -1,5 +1,6 @@
 package B2a.service.concreteService;
 
+import B2a.domain.ticket.BaseTicket;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
 import B2a.model.OrderModel;
@@ -18,6 +19,11 @@ public class TicketManager implements TicketManagerIF{
         this.baseTicketRepository = baseTicketRepository;
     }
 
+    public Iterable<BaseTicket> getAllTicket(){
+        return  this.baseTicketRepository.findAll();
+    }
+
+
     @Override
     public void createTicket(OrderModel model) {
         for (Ticket t: model.getTicket()){
@@ -28,7 +34,9 @@ public class TicketManager implements TicketManagerIF{
     @Override
     public void decorateTicket(OrderModel model) {
         for (TicketOption o : model.getOption()) {
-            baseTicketRepository.save(o);
+            if (o.getAmount() > 0){
+               baseTicketRepository.save(o);
+            }
         }
     }
 }

@@ -16,13 +16,16 @@
         <div class="page-container">
             <div class="col-lg-12 extra-padding">
                 <h5>Order - Stap 2 - Tickets</h5>
+
                     <form th:action="@{ticketOrderForm}" th:object="${ticketModel}" method="post">
                         <div th:each="tproducts, stat : ${ticketModel.ticketProducts}">
                             <div class="tproducts">
+                                <label>Ticket</label>
                                 <input class="form-control input-margin" type="text" th:name="|tickets[__${stat.index}__].name|"  th:value="${tproducts.name}" readonly="readonly" />
+                                <label>Description</label>
                                 <input class="form-control input-margin" type="text" th:placeholder="${tproducts.description}" readonly="readonly" />
-                                <input class="form-control input-margin" type="text" th:name="|tickets[__${stat.index}__].price|" th:value="${tproducts.price}" readonly="readonly" />
-
+                                <input class="form-control input-margin" type="text" th:name="|tickets[__${stat.index}__].price|" th:value="${tproducts.price}" readonly="readonly" style="display: none;"/>
+                                <label>Amount</label>
                                 <input class="form-control input-margin" type="text" th:field="*{tickets[__${stat.index}__].amount}" th:placeholder="Amount" />
                             </div>
                         </div>
