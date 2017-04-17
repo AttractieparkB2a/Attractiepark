@@ -14,18 +14,26 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "state")
-public abstract class State {
+public class State {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
 
-    @OneToOne
-    @JoinColumn()
+    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
     Attraction attraction;
 
+    public State() {
+
+    }
 
     public State(Attraction attraction){
         this.attraction = attraction;
+    }
+
+
+    public Attraction getStateAttraction(){
+        return this.attraction;
     }
 
     public void open(){

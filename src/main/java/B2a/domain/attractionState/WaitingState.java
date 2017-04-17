@@ -2,6 +2,7 @@ package B2a.domain.attractionState;
 
 import B2a.domain.attraction.Attraction;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
@@ -13,19 +14,25 @@ import javax.persistence.Id;
 //@Getter
 //@Setter
 @Entity
+@NoArgsConstructor
 public class WaitingState extends State {
     Attraction attraction;
 
     public WaitingState(Attraction attraction){
-        //this.attraction = attraction;
-        super(attraction);
+        //this.attraction = super.attraction;
+        this.attraction = attraction;
     }
+
+//    public WaitingState(){
+//        this.attraction = super.attraction;
+//    }
 
     @Override
     public void close() {
         System.out.println("Closing the attraction. No more visitors allowed in the line");
         //attraction.setState(attraction.getClosedState());
-        attraction.setState(new ClosedState(attraction));
+        //attraction.setState(new ClosedState());
+        attraction.setState(new ClosedState(this.getStateAttraction() ));
     }
 
     @Override
@@ -40,7 +47,7 @@ public class WaitingState extends State {
     public void damaged(){
         System.out.println("attraction was damaged");
         //attraction.setState(attraction.getDefectState());
-        attraction.setState(new DefectState(attraction));
+        //attraction.setState(new DefectState());
     }
 
 }

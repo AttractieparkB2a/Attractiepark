@@ -6,6 +6,7 @@ import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 @Service
@@ -76,12 +77,15 @@ public class AttractionManager implements AttractionManagerIF{
     }
 
 
+    @Transactional
     public void changeState(Attraction attraction, String action){
         System.out.println("attraction in manager: " + attraction);
         System.out.println("action in manager: " + action);
         switch(action){
             case "open":
                 attraction.open();
+                //attractionRepository.save(attraction);
+                System.out.println("status after in manager = " + attraction.getCurrentState());
                 break;
             case "stop":
                 attraction.stop();
@@ -97,9 +101,34 @@ public class AttractionManager implements AttractionManagerIF{
                 break;
         }
 
-        //attractionRepository.save(attraction);
+        updateAttraction(attraction);
 
+
+//        System.out.println("test attractie" + attraction.getCurrentState() );
+//        Attraction tempA = attractionRepository.findOne( attraction.getId() );
+//        tempA.setState( attraction.getCurrentState() );
+//
+//
+//
+//        //attractionRepository.delete( attraction.getId() );
+//        attractionRepository.save(tempA);
     }
 
+
+    @Transactional
+    public void updateAttraction(Attraction toDeleteAttraction){
+
+        System.out.println("test attractie" + toDeleteAttraction.getCurrentState() );
+        Attraction tempA = new Attraction();
+        tempA.setName( toDeleteAttraction.getName() );
+        tempA.setDuration( toDeleteAttraction.getDuration() );
+        tempA.setAmountStaff( toDeleteAttraction.getAmountStaff() );
+
+        tempA.setState( toDeleteAttraction.getCurrentState() );
+
+        //attractionRepository.delete( toDeleteAttraction.getId() );
+        attractionRepository.save(tempA);
+
+    }
 
 }

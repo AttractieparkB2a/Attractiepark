@@ -32,7 +32,8 @@ public class Attraction {
     protected byte[] image;
 
     //@Embedded
-    @OneToOne(mappedBy = "attraction" , cascade = javax.persistence.CascadeType.ALL)
+    // mappedby = attraction
+    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
     protected State currentState;
     //@Embedded
     //@OneToOne

@@ -50,11 +50,11 @@ public class RollercoasterBuilder extends AttractionBuilder {
         rollercoaster.customSetImage("rollercoaster");
     }
 
-    public void setState(){
-        ClosedState test = new ClosedState(rollercoaster);
-        //test.setName("teststate");
-        rollercoaster.setState(test);
-    }
+//    public void setState(){
+//        ClosedState test = new ClosedState(rollercoaster);
+//        //test.setName("teststate");
+//        rollercoaster.setState(test);
+//    }
 
 
 }
