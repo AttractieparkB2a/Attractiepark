@@ -42,10 +42,10 @@ public class AttractionController {
     // POST THE ACTION ON BUTTON CLICK
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
     public String adminAttractionsList(@ModelAttribute("attraction") Attraction attraction, Model model, @RequestParam(value="action", required = true) String action){
-        System.out.println("getting attraction with id: " + attraction.getId());
+        //System.out.println("getting attraction with id: " + attraction.getId());
         Attraction a = attractionManagerIF.findAttraction( attraction.getId() );
-        System.out.println("Changing state on attraction " + attraction.getName() + " with id: " + attraction.getId());
-        System.out.println("a= " + a.getName() + " with id: " + a.getId());
+        System.out.println("attraction = " + attraction.getName() + " with id: " + attraction.getId());
+        //System.out.println("a = " + a.getName() + " with id: " + a.getId());
         attractionManagerIF.changeState(attraction, action);
         return "redirect:/attraction/adminAttractionsList";
     }
