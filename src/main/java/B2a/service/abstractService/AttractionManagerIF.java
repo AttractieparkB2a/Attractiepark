@@ -1,6 +1,7 @@
 package B2a.service.abstractService;
 
 import B2a.domain.attraction.Attraction;
+import B2a.domain.attractionState.State;
 
 public interface AttractionManagerIF {
 
@@ -14,6 +15,8 @@ public interface AttractionManagerIF {
 
     Iterable<String> findAllAttractionTypes();
 
-   void changeState(Attraction attraction, String action);
+    void changeState(Attraction attraction, String action);
+
+    void CustomDeleteForDoubles(long id, State state);
 
    }

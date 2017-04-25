@@ -1,22 +1,33 @@
 package B2a.service.concreteService;
 
+import B2a.config.HibernateUtil;
 import B2a.domain.attraction.*;
+import B2a.domain.attractionState.State;
 import B2a.repository.AttractionRepository;
+import B2a.repository.StateRepository;
 import B2a.service.abstractService.AttractionManagerIF;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.stereotype.Service;
+//import com.journaldev.hibernate.util.HibernateUtil;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class AttractionManager implements AttractionManagerIF{
     private AttractionBuilder builder;
     @Autowired
     private final AttractionRepository attractionRepository;
+    private final StateRepository stateRepository;
 
-    public AttractionManager(AttractionRepository attractionRepository){
+    public AttractionManager(AttractionRepository attractionRepository, StateRepository stateRepository){
         this.attractionRepository = attractionRepository;
+        this.stateRepository = stateRepository;
     }
 
     @Override
@@ -39,6 +50,7 @@ public class AttractionManager implements AttractionManagerIF{
         }
         Attraction attraction = builder.createNewAttraction();
         attractionRepository.save(attraction);
+
 
         return attraction;
     }
@@ -79,13 +91,12 @@ public class AttractionManager implements AttractionManagerIF{
 
     @Transactional
     public void changeState(Attraction attraction, String action){
-        System.out.println("attraction in manager: " + attraction);
-        System.out.println("action in manager: " + action);
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+
         switch(action){
             case "open":
                 attraction.open();
-                //attractionRepository.save(attraction);
-                System.out.println("status after in manager = " + attraction.getCurrentState());
                 break;
             case "stop":
                 attraction.stop();
@@ -101,34 +112,46 @@ public class AttractionManager implements AttractionManagerIF{
                 break;
         }
 
-        updateAttraction(attraction);
+        //System.out.println( attraction.getCurrentState() );
+        //Attraction newAttraction = attraction;
+
+        //attractionRepository.delete( attraction );
+
+        session.saveOrUpdate( attraction );
 
 
-//        System.out.println("test attractie" + attraction.getCurrentState() );
-//        Attraction tempA = attractionRepository.findOne( attraction.getId() );
-//        tempA.setState( attraction.getCurrentState() );
+        //attractionRepository.save( attraction );
+//        List<State> allStates = (List<State>) stateRepository.findAll();
+//        List<Attraction> allAttractions = (List<Attraction>) attractionRepository.findAll();
 //
+//        int counter = 0;
+//        for(State s : allStates){
+//            System.out.println("looping " + counter);
+//            if(s.getAttraction().getId() == attraction.getId()){
+//                counter++;
+//                try{
+//                    //System.out.println( "state id " + state.getId() );
+//                    System.out.println( "attraction id from state " + s.getAttraction().getId() );
+//                }
+//                catch(Exception ex){
 //
+//                }
+//            }
+//        }
+//        if(counter == 2)
+//            stateRepository.delete( state );
 //
-//        //attractionRepository.delete( attraction.getId() );
-//        attractionRepository.save(tempA);
+//        long toRemove = attraction.getCurrentState().getId() -1;
+//        System.out.println( "remove id = " + toRemove);
+//
+//        State removeState = stateRepository.findOne( toRemove );
+//        removeState.setAttraction( null );
+//
+//        stateRepository.delete( removeState );
+
     }
 
-
-    @Transactional
-    public void updateAttraction(Attraction toDeleteAttraction){
-
-        System.out.println("test attractie" + toDeleteAttraction.getCurrentState() );
-        Attraction tempA = new Attraction();
-        tempA.setName( toDeleteAttraction.getName() );
-        tempA.setDuration( toDeleteAttraction.getDuration() );
-        tempA.setAmountStaff( toDeleteAttraction.getAmountStaff() );
-
-        tempA.setState( toDeleteAttraction.getCurrentState() );
-
-        //attractionRepository.delete( toDeleteAttraction.getId() );
-        attractionRepository.save(tempA);
-
+    public void CustomDeleteForDoubles(long id, State state){
     }
 
 }

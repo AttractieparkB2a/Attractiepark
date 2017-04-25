@@ -29,6 +29,7 @@ public class ClosedState extends State {
         System.out.println("Opening the attraction. Visitors can enter now.");
         //attraction.setState(attraction.getWaitingState());
         //attraction.setState(new ClosedState(attraction));
+        //this.attraction.setOldId( attraction.getCurrentState().getId() );
         this.attraction.setState( new WaitingState(this.attraction) );
         //attraction.setState( new WaitingState(attraction));
 

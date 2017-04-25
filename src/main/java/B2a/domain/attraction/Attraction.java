@@ -24,7 +24,7 @@ public class Attraction {
     protected long id;
     protected String name;
 
-    protected int duration ;
+    protected int duration;
     protected int minimumHeight;
     protected String transportType;
     protected int amountStaff;
@@ -33,8 +33,11 @@ public class Attraction {
 
     //@Embedded
     // mappedby = attraction
-    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
+    @OneToOne(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.EAGER)
+    //@ManyToOne(targetEntity=State.class, cascade = javax.persistence.CascadeType.ALL)
     protected State currentState;
+
+    //private long oldId;
     //@Embedded
     //@OneToOne
     //private State closedState;

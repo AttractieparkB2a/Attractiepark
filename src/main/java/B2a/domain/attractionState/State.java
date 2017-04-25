@@ -20,7 +20,8 @@ public class State {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
 
-    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
+    //cascade = javax.persistence.CascadeType.ALL
+    @OneToOne
     Attraction attraction;
 
     public State() {
