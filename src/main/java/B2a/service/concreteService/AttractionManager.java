@@ -101,7 +101,11 @@ public class AttractionManager implements AttractionManagerIF{
                 break;
         }
 
-        updateAttraction(attraction);
+        Attraction attraction2 = attractionRepository.findOne(attraction.getId());
+        attraction2.setState(attraction.getCurrentState());
+        attractionRepository.save(attraction2);
+
+      //  updateAttraction(attraction);
 
 
 //        System.out.println("test attractie" + attraction.getCurrentState() );
@@ -115,20 +119,20 @@ public class AttractionManager implements AttractionManagerIF{
     }
 
 
-    @Transactional
-    public void updateAttraction(Attraction toDeleteAttraction){
-
-        System.out.println("test attractie" + toDeleteAttraction.getCurrentState() );
-        Attraction tempA = new Attraction();
-        tempA.setName( toDeleteAttraction.getName() );
-        tempA.setDuration( toDeleteAttraction.getDuration() );
-        tempA.setAmountStaff( toDeleteAttraction.getAmountStaff() );
-
-        tempA.setState( toDeleteAttraction.getCurrentState() );
-
-        //attractionRepository.delete( toDeleteAttraction.getId() );
-        attractionRepository.save(tempA);
-
-    }
+//    @Transactional
+//    public void updateAttraction(Attraction toDeleteAttraction){
+//
+//        System.out.println("test attractie" + toDeleteAttraction.getCurrentState() );
+//        Attraction tempA = new Attraction();
+//        tempA.setName( toDeleteAttraction.getName() );
+//        tempA.setDuration( toDeleteAttraction.getDuration() );
+//        tempA.setAmountStaff( toDeleteAttraction.getAmountStaff() );
+//
+//        tempA.setState( toDeleteAttraction.getCurrentState() );
+//
+//        //attractionRepository.delete( toDeleteAttraction.getId() );
+//        attractionRepository.save(tempA);
+//
+//    }
 
 }

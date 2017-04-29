@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
+import javax.persistence.CascadeType;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -33,7 +33,7 @@ public class Attraction {
 
     //@Embedded
     // mappedby = attraction
-    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
+    @OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE })
     protected State currentState;
     //@Embedded
     //@OneToOne
