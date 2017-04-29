@@ -11,7 +11,7 @@ jdk:
 
 deploy:
   provider: heroku
-    api_key:
+  api_key:
       secure: "335fae74-285b-4389-afb0-233c806083d2"
 
 script:
