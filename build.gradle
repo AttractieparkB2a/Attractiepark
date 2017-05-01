@@ -40,15 +40,15 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
 	compile('org.springframework.boot:spring-boot-starter-web')
-//    compile 'org.postgresql:postgresql:9.4-1200-jdbc4'
-	runtime('mysql:mysql-connector-java')
+    compile('org.postgresql:postgresql:9.4-1200-jdbc4')
+//	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-//configurations {
-//    all*.exclude module : 'spring-boot-starter-logging'
-//}
+configurations {
+    all*.exclude module : 'spring-boot-starter-logging'
+}
 
 test {
 	testLogging {
