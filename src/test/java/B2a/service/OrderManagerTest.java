@@ -18,8 +18,8 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest
 public class OrderManagerTest {
 
-    @Autowired
-    OrderManager orderManager;
+ //   @Autowired
+ //   OrderManager orderManager;
 
     @Test
     public void mementoTest() {
