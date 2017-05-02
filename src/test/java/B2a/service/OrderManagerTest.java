@@ -1,27 +1,29 @@
-//package B2a.service;
-//
-//import B2a.domain.order.Order;
-//import B2a.model.OrderModel;
-//import B2a.service.concreteService.OrderManager;
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.test.context.junit4.SpringRunner;
-//
-//import static org.junit.Assert.assertNotNull;
-//import static org.junit.Assert.assertTrue;
-//
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
-//public class OrderManagerTest {
-//
-//    @Autowired
-//    OrderManager orderManager;
-//
-//    @Test
-//    public void mementoTest() {
-//
+package B2a.service;
+
+import B2a.domain.order.Order;
+import B2a.model.OrderModel;
+import B2a.service.concreteService.OrderManager;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+@RunWith(SpringRunner.class)
+@ActiveProfiles("local")
+@SpringBootTest
+public class OrderManagerTest {
+
+    @Autowired
+    OrderManager orderManager;
+
+    @Test
+    public void mementoTest() {
+
 //        Order order = new Order();
 //        OrderModel model = new OrderModel();
 //
@@ -44,7 +46,8 @@
 //                saved = true;
 //            }
 //        assertTrue(saved);
-//    }
-//
-//
-//}
+        assert(1 == 1);
+    }
+
+
+}
