@@ -24,6 +24,7 @@ body {
     background-color: #fafaf7;
     position: relative;
     text-align: center;
+    z-index: 30;
 }
 
 .home-bg {
@@ -267,6 +268,14 @@ input#logout:hover {
         height: 40px;
         width: 150px;
     }
+
+    .home-section {
+        top: 60px;
+    }
+
+    .page-container {
+        top: 10px;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -276,6 +285,14 @@ input#logout:hover {
 
     .responsive-display {
         display: none !important;
+    }
+
+    .home-section {
+        top: 100px;
+    }
+
+    .page-container {
+        top: 20px;
     }
 }
 
@@ -456,9 +473,16 @@ footer {
     display: table;
     background-color: #ffffff;
     padding: 15px;
-    margin: 100px auto;
     border-radius: 10px;
     border: 1px solid #ede5d5;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width: 768px) {
+    .page-container {
+        width: 100%;
+    }
 }
 @media (min-width: 768px) {
     .page-container {
