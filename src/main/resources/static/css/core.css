@@ -375,12 +375,16 @@ input#logout:hover {
 /* Footer */
 
 footer {
+    position: relative;
+    display: block;
     overflow: hidden;
     width: 100%;
     background-color: #ffffff;
     margin: 0;
     padding: 0;
+    bottom: 0;
     border-top: 1px solid #ede5d5;
+    z-index: 30;
 }
 
 .footer-content {
