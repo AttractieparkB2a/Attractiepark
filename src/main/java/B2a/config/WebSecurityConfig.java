@@ -36,15 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/static/**",
                             "/",
                             "/home",
-                            "/newsmessage",
                             "/registration",
                             "/shop",
-                            "/image/index/**",
-                            "/image/create",
-                            "/user/index",
-                            "/user/role/**",
-//                            "/orderTicket/ticketOrder/**",
-//                            "/orderTicket/ticketOrderForm/**",
                             "/attraction/attractionsList",
                             "/attraction/attractionForm",
                             "/attraction/rollercoasterForm",
@@ -53,9 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/attraction/info/**",
                             "/attractions",
                             "/attraction/adminAttractionsList",
-                            "/userPhoto",
-                            "/_layout",
-                            "/selectedPhoto/**"
+                            "/_layout"
                         ).permitAll()
                     .anyRequest().authenticated()
                     .and()
