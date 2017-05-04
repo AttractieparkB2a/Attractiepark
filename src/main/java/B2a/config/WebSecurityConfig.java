@@ -42,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/image/index/**",
                             "/image/create",
                             "/user/index",
+                            "/user/role/**",
 //                            "/orderTicket/ticketOrder/**",
 //                            "/orderTicket/ticketOrderForm/**",
                             "/attraction/attractionsList",

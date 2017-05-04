@@ -549,6 +549,14 @@ h5 {
     padding-right: 5px;
 }
 
+.overview-align {
+    float: left;
+}
+
+.overview-padding {
+    padding-right: 10px;
+}
+
 .btn-edit {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;

@@ -46,4 +46,21 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return findByUsername(authentication.getName());
     }
+
+    @Override
+    public void switchRole(Long id) {
+        User user = userRepository.findById(id);
+        String role_name = user.getRole().getName();
+
+        switch (role_name) {
+            case "ROLE_ADMIN":
+                user.setRole(roleRepository.findByName("ROLE_MEMBER"));
+                break;
+
+            case "ROLE_MEMBER":
+                user.setRole(roleRepository.findByName("ROLE_ADMIN"));
+                break;
+        }
+        userRepository.save(user);
+    }
 }
