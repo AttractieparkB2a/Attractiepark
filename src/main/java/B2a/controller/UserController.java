@@ -13,6 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -69,5 +72,12 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "account";
+    }
+
+    @RequestMapping(value = "/user/index", method = RequestMethod.GET)
+    public ModelAndView index() {
+        List<User> users = userService.findAll();
+
+        return new ModelAndView("/user/index", "users", users);
     }
 }

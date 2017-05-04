@@ -482,6 +482,10 @@ footer {
     padding-bottom: 15px;
 }
 
+.underline {
+    border-bottom: 1px solid #efeaea;
+}
+
 .printchatbox-holder {
     padding: 15px;
 }
@@ -506,7 +510,38 @@ h5 {
     margin-bottom: 5px;
 }
 
+/* Overview */
+.overview-text {
+    min-width: 600px;
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: left;
+}
 
+.overview-icon {
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.btn-edit {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border-color: #46b8da;
+    font-size: 1.2em;
+    color: #ffffff;
+    background: #5bc0de;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.btn-edit:hover {
+    border-color: #269abc;
+    background: #31b0d5;
+    text-decoration: none;
+}
 
 .btn-attractionType{
     padding: 40px;

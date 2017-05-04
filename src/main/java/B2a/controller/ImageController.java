@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @Controller
 public class ImageController {
@@ -30,22 +31,37 @@ public class ImageController {
         this.imageValidator = imageValidator;
     }
 
-    @RequestMapping(value = "/image", method = RequestMethod.GET)
+    @RequestMapping(value = "/image/index/{id}", method = RequestMethod.GET)
+    public ModelAndView index(@PathVariable("id") String id) {
+        LinkedHashMap<Long, Image> images = imageService.findByUserId(Long.parseLong(id));
+
+        return new ModelAndView("image/index", "images", images.values());
+    }
+
+//    @RequestMapping(value = "/image/index", method = RequestMethod.POST)
+//    public String index(Model model) {
+//        model.addAttribute("imageForm", new UserImage());
+//        model.addAttribute("users", userService.findAll());
+//
+//        return "index";
+//    }
+
+    @RequestMapping(value = "/image/create", method = RequestMethod.GET)
     public String image(Model model) {
         model.addAttribute("imageForm", new UserImage());
         model.addAttribute("users", userService.findAll());
 
-        return "image";
+        return "image/create";
     }
 
-    @RequestMapping(value="/image", method = RequestMethod.POST)
+    @RequestMapping(value="/image/create", method = RequestMethod.POST)
     public String image(@Valid @ModelAttribute("imageForm") UserImage imageForm, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
 
         imageValidator.validate(imageForm, bindingResult);
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("imageForm", imageForm);
-            return "image";
+            return "image/create";
         }
 
         imageService.addImage(file, imageForm);

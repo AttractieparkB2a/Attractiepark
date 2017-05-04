@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
+<head>
+    <title th:text="#{user.index.title}"></title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+        <div class="page-container">
+            <div class="col-lg-12 extra-padding">
+                <h5 th:text="#{user.index.page}"></h5>
+                <div th:each="user : ${users}">
+                    <div class="col-lg-12 extra-padding underline">
+                        <p class="overview-text" th:text="${user.username}"></p>
+                        <div class="overview-icon">
+                            <a href="index.html" th:href="@{'/image/index/' + ${user.id}}" class="btn-edit">
+                                <span class="glyphicon glyphicon-camera"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

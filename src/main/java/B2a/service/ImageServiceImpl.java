@@ -75,4 +75,15 @@ public class ImageServiceImpl implements ImageService {
         Long userId = image.load();
         return imageRepository.findOneById(userId);
     }
+
+    @Override
+    public LinkedHashMap<Long, Image> findByUserId(Long id) {
+        List<Long> ids = imageRepository.findAllIdByUser_id(id);
+
+        for(Long i : ids) {
+            images.put(i, new ProxyImage(i));
+        }
+
+        return images;
+    }
 }

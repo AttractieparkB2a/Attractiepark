@@ -16,7 +16,7 @@
         <div class="page-container">
             <div class="col-lg-12 extra-padding">
                 <h5 th:text="#{image.form}"></h5>
-                <form th:action="@{/image}" th:object="${imageForm}" method="post" enctype="multipart/form-data">
+                <form th:action="@{/templates/image}" th:object="${imageForm}" method="post" enctype="multipart/form-data">
                     <input type="text" th:classappend="${#fields.hasErrors('name')} ? 'has-error'" name="name" class="form-control input-margin" th:placeholder="#{image.name}"/>
                     <div class="error-message" th:each="err : ${#fields.errors('name')}" th:text="${err}"></div>
                     <select th:classappend="${#fields.hasErrors('user')} ? 'has-error'" class="form-control input-margin" name="user" th:placeholder="#{image.select}">
