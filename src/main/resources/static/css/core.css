@@ -549,12 +549,35 @@ h5 {
     padding-right: 5px;
 }
 
+.overview-create {
+    float: right;
+}
+
+.overview-back {
+    margin-bottom: 10px;
+    float: left;
+}
+
 .overview-align {
     float: left;
 }
 
 .overview-padding {
     padding-right: 10px;
+}
+
+.overview-photo-holder {
+    float: left;
+    width: 20px;
+    padding-right: 50px;
+}
+
+.overview-user-image {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    overflow: hidden;
 }
 
 .btn-edit {
@@ -572,6 +595,24 @@ h5 {
 .btn-edit:hover {
     border-color: #269abc;
     background: #31b0d5;
+    text-decoration: none;
+}
+
+.btn-delete {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border-color: #b91329;
+    font-size: 1.2em;
+    color: #ffffff;
+    background: #b51227;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.btn-delete:hover {
+    border-color: #a81024;
+    background: #ad0f24;
     text-decoration: none;
 }
 

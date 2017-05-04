@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -77,13 +78,28 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public LinkedHashMap<Long, Image> findByUserId(Long id) {
+    public List<Image> findByUserId(Long id) {
         List<Long> ids = imageRepository.findAllIdByUser_id(id);
+        List<Image> loadedImages = new ArrayList<>();
 
-        for(Long i : ids) {
-            images.put(i, new ProxyImage(i));
-        }
+        for(Long i : ids)
+            loadedImages.add(imageRepository.findOneById(i));
 
-        return images;
+//        for(Long i : ids) {
+//            images.put(i, new ProxyImage(i));
+//        }
+//
+//        for(Image i : images.values()) {
+//            Image image = images.get(i);
+//            image.load();
+//            loadedImages.add(image);
+//        }
+
+        return loadedImages;
+    }
+
+    @Override
+    public Long findUserIdById(Long id) {
+        return imageRepository.findUserIdById(id);
     }
 }

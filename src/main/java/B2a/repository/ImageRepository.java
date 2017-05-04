@@ -12,4 +12,7 @@ public interface ImageRepository extends CrudRepository<UserImage, Long> {
     List<Long> findAllIdByUser_id(Long user_id);
 
     UserImage findOneById(Long id);
+
+    @Query("SELECT ui.user.id FROM UserImage ui WHERE ui.id = ?1")
+    Long findUserIdById(Long id);
 }
