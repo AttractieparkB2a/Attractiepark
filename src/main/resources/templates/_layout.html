@@ -45,7 +45,7 @@
 
             <!-- Lower navigation for Admin role -->
             <ul sec:authorize="hasRole('ROLE_ADMIN')" class="site-navigation">
-                <li class="news"><a th:text="#{header.site.image}" th:href="@{/image}"></a></li>
+                <li class="news"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
                 <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
             </ul>
         </nav>
@@ -90,7 +90,7 @@
                     <input id="logout" class="logout" type="submit" th:value="#{header.meta.logout}"/>
                 </form>
             </li>
-            <li class="news"><a th:text="#{header.site.image}" th:href="@{/image}"></a></li>
+            <li class="news"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
             <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
         </ul>
 
@@ -119,7 +119,7 @@
 
                 <!-- Footer menu for Admin role -->
                 <ul sec:authorize="hasRole('ROLE_ADMIN')">
-                    <li class="news"><a th:text="#{header.site.image}" th:href="@{/image}"></a></li>
+                    <li class="news"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
                     <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
                 </ul>
 
@@ -158,7 +158,7 @@
             <!-- Mobile footer menu for Admin role -->
             <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="footer-text-layout">
-                    <h4><a th:text="#{header.site.image}" th:href="@{/image}"></a></h4>
+                    <h4><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></h4>
                 </div>
                 <div class="footer-text-layout">
                     <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
