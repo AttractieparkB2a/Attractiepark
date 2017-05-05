@@ -691,6 +691,48 @@ h5 {
     padding: 20px;
 }
 
+.parent-height {
+    display: flex;
+}
+
+.child-height {
+    flex: 1;
+}
+
+.extra-margin {
+    margin-top: 30px;
+}
+
+.location-holder {
+    height: 100%;
+    width: 100%;
+    margin-left: 25%;
+}
+
+.location-img {
+    height: 100%;
+    width: 100%;
+    background: url(/static/img/location.jpg) no-repeat;
+    background-size: contain;
+}
+
+.page-content {
+    font-size: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.park-holder {
+    width: 100%;
+}
+
+.park-img {
+    height: 100%;
+    width: 100%;
+    background: url(/static/img/park.jpg) no-repeat;
+    background-size: contain;
+}
+
 @media screen and (max-width: 768px) {
     .site-header {
         margin: 0;
@@ -726,6 +768,10 @@ h5 {
     .overview-text {
         min-width: 100%;
     }
+
+    .park-holder {
+        height: 400px;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -748,10 +794,18 @@ h5 {
     .overview-text {
         min-width: 400px;
     }
+
+    .park-holder {
+        height: 400px;
+    }
 }
 
 @media screen and (min-width: 992px) {
     .overview-text {
         min-width: 600px;
+    }
+
+    .park-holder {
+        height: 600px;
     }
 }

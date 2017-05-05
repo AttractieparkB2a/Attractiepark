@@ -46,7 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/attraction/rollercoasterForm",
                             "/attraction/info/**",
 
+                            "/contact",
                             "/home",
+                            "/park",
                             "/registration",
                             "/shop"
                         ).permitAll()
