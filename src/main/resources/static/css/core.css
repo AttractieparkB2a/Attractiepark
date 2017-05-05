@@ -488,6 +488,11 @@ h5 {
     margin-bottom: 5px;
 }
 
+.extra-input-margin {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
 /* Overview */
 .overview-text {
     min-width: 600px;

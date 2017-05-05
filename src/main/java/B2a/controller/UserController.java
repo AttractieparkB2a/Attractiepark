@@ -70,9 +70,9 @@ public class UserController {
     public String account(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(authentication.getName());
-        model.addAttribute("user", user);
+        model.addAttribute("userForm", user);
 
-        return "account";
+        return "registration";
     }
 
     @RequestMapping(value = "/user/index", method = RequestMethod.GET)
