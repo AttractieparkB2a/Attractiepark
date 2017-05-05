@@ -31,23 +31,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                     .antMatchers(
-                            "/webjars/**",
+                            "/",
                             "/resources/**",
                             "/static/**",
-                            "/",
-                            "/home",
-                            "/registration",
-                            "/shop",
-                            "/attraction/attractionsList",
-                            "/attraction/attractionForm",
-                            "/attraction/rollercoasterForm",
-                            "/attraction/attractionAdmin",
-                            "/attraction/attractionChooser",
-                            "/attraction/info/**",
+                            "/webjars/**",
+
+                            "/_layout",
                             "/attractions",
                             "/attraction/adminAttractionsList",
-                            "/_layout"
+                            "/attraction/attractionAdmin",
+                            "/attraction/attractionChooser",
+                            "/attraction/attractionForm",
+                            "/attraction/attractionsList",
+                            "/attraction/rollercoasterForm",
+                            "/attraction/info/**",
+
+                            "/home",
+                            "/registration",
+                            "/shop"
                         ).permitAll()
+                    .antMatchers(
+                            "/image/create/**",
+                            "/image/delete/**",
+                            "/image/edit/**",
+                            "/image/index/**",
+
+                            "/user/index/**",
+                            "/user/role/**"
+                        ).access("hasRole('ADMIN')")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
