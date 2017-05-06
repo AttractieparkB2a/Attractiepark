@@ -12,6 +12,14 @@
     <div layout:fragment="content">
         <section id="home" class="home-section">
             <div class="page-container">
+                <div th:if="${userForm.id != null}">
+                    <div class="col-lg-12 extra-padding">
+                        <ul class="account-navigation">
+                            <li><a class="menu-item-active" th:text="#{account.header.account}"></a></li>
+                            <li><a th:text="#{account.header.photo}" th:href="@{userPhoto}"></a></li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="col-lg-6 extra-padding">
                     <form th:action="@{/registration}" th:object="${userForm}" method="post">
                         <input type="hidden" name="id" th:value="${userForm.id}" />

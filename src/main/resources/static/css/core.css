@@ -733,6 +733,53 @@ h5 {
     background-size: contain;
 }
 
+.account-navigation {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    list-style: none;
+    text-align: center;
+    border-bottom: 1px solid #efeaea;
+}
+
+.account-navigation li {
+    float: left;
+    font-family: 'OptimusPrinceps', serif;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    line-height: 30px;
+    height: 30px;
+}
+
+
+.account-navigation a {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: block;
+    transition: .3s background-color;
+    white-space: nowrap;
+}
+
+.account-navigation li:first-child a {
+    padding-left: 0;
+}
+
+.account-navigation a:hover {
+    color: #b9132a;
+}
+
+.account-navigation a.active {
+    color: #b9132a;
+    cursor: default;
+}
+
+.menu-item-active {
+    color: #b9132a;
+}
+
 @media screen and (max-width: 768px) {
     .site-header {
         margin: 0;
