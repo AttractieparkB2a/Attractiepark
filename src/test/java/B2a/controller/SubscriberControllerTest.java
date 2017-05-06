@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("production")
+@ActiveProfiles("test")
 @SpringBootTest
 public class SubscriberControllerTest {
 

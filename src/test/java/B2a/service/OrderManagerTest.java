@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("production")
+@ActiveProfiles("test")
 @SpringBootTest
 public class OrderManagerTest {
 

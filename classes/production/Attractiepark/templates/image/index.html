@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
+<head>
+    <title th:text="#{image.index.title}"></title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+        <div class="page-container">
+            <div class="col-lg-12 extra-padding">
+                <h5 th:text="#{image.index.page}"></h5>
+                <a href="index.html" th:href="@{'/user/index/'}" th:text="#{image.index.back}" class="overview-back btn-subscribe"></a>
+                <a href="create.html" th:href="@{'/image/create/' + ${id}}" th:text="#{image.index.create}" class="overview-create btn-subscribe"></a>
+                <div th:each="image : ${images}">
+                    <div class="col-lg-12 extra-padding underline">
+                        <div class="overview-text">
+                            <div class="overview-photo-holder">
+                                <div class="overview-user-image"><img class="u-image" th:src="@{'data:image/jpeg;base64,'+${image.generateBase64Image()}}" /></div>
+                            </div>
+                            <p th:text="${image.name}"></p>
+                        </div>
+                        <div class="overview-icon">
+                            <a th:href="@{'/image/edit/' + ${image.id}}" class="btn-edit">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </div>
+                        <div class="overview-icon">
+                            <a href="index.html" th:href="@{'/image/delete/' + ${image.id}}" class="btn-delete">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

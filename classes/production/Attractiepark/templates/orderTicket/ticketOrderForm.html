@@ -5,7 +5,7 @@
       layout:decorator="_layout">
 
 <head>
-    <title>Attractiepark | Ticket</title>
+    <title th:text="#{order.title}"></title>
 </head>
 
 <body>
@@ -14,34 +14,35 @@
 
     <section id="home" class="home-section">
         <div class="page-container">
-            <div class="col-lg-12 extra-padding" style="width: 50%">
-                <h5>Order ticket</h5>
-                <form th:object="${order}" th:action="@{ticketOrderForm}" method="post">
-                    <b>Kies type ticket</b>
+            <div class="col-lg-12 extra-padding">
+                <h5 th:text="#{order.step2}"></h5>
 
-                    <div class="form-group blu-margin">
-                        <span th:each="o : ${order}">
-                            <select class="form-control" id="dropOperator">
-                               <option th:each="to : o.option" th:value="${to}" th:text="${to}"></option>
-                            </select>
-                        </span>
-                    </div>
+                    <form th:action="@{ticketOrderForm}" th:object="${ticketModel}" method="post">
+                        <div th:each="tproducts, stat : ${ticketModel.ticketProducts}">
+                            <div class="tproducts">
 
-                        <b>Kies Datum:</b>
-                        <input type="date" name="date" class="form-control"/>
-                    <div>
-                        <input type="submit" value="Bestel"/>
-                    </div>
-                </form>
+                                <label th:text="#{order.ticketName}"></label>
+                                <input class="form-control input-margin" type="text"
+                                       th:name="|tickets[__${stat.index}__].name|"  th:value="${tproducts.name}" readonly="readonly" />
+
+                                <label th:text="#{order.description}"></label>
+                                <input class="form-control input-margin" type="text"
+                                       th:placeholder="${tproducts.description}" readonly="readonly" />
+                                <input class="form-control input-margin" type="text"
+                                       th:name="|tickets[__${stat.index}__].price|" th:value="${tproducts.price}" readonly="readonly" style="display: none;"/>
+
+                                <label th:text="#{order.amount}"></label>
+                                <input class="form-control input-margin" type="text"
+                                       th:field="*{tickets[__${stat.index}__].amount}" th:placeholder="Amount" />
+                            </div>
+                        </div>
+                        <input type="submit" value="Bestel" class="btn-subscribe" />
+                    </form>
             </div>
         </div>
     </section>
 
-
 </div>
 
-<th:block layout:fragment="scripts">
-    <script type="text/javascript" src="/static/js/mail.result.js"></script>
-</th:block>
 </body>
 </html>
