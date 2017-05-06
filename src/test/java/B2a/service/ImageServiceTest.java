@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("local")
+@ActiveProfiles("production")
 @SpringBootTest
 public class ImageServiceTest {
 

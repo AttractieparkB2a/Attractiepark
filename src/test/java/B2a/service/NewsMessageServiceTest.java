@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("local")
+@ActiveProfiles("production")
 @SpringBootTest
 public class NewsMessageServiceTest {
 
