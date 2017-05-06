@@ -10,12 +10,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@Table(name = "park_user")
 public class User extends IUser{
 
     @Id

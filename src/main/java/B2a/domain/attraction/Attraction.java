@@ -13,10 +13,10 @@ import javax.persistence.Table;
 import java.io.File;
 import java.io.FileInputStream;
 
-@Table(name = "attraction")
 @Getter
 @Setter
 @Entity
+@Table(name = "attraction")
 public class Attraction {
     //ATTRIBUTES
     @Id
@@ -28,7 +28,8 @@ public class Attraction {
     protected int minimumHeight;
     protected String transportType;
     protected int amountStaff;
-    @Column(columnDefinition="longblob")
+
+    @Lob
     protected byte[] image;
 
     //@Embedded

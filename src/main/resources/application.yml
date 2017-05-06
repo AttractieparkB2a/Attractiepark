@@ -1,13 +1,13 @@
 spring:
   profiles:
-    active: "local"
+    active: "production"
 
 ---
 
 spring:
-  profiles: local
+  profiles: development
 
 ---
 
 spring:
-  profiles: heroku
+  profiles: production

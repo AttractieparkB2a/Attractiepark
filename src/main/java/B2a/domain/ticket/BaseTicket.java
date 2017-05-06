@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "base_ticket")
 public abstract class BaseTicket {
 
     @Id

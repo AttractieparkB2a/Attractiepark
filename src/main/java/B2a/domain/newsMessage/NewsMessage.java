@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Table(name = "newsmessage")
 public class NewsMessage implements INewsMessage {
 
     @Id

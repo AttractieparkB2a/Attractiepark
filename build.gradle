@@ -41,10 +41,10 @@ dependencies {
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
-    if(System.properties['spring.profiles.active'] == 'heroku') {
-		compile('org.postgresql:postgresql:9.4-1200-jdbc4')
-	} else {
+    if(System.properties['spring.profiles.active'] == 'development') {
 		runtime('mysql:mysql-connector-java')
+	} else {
+		compile('org.postgresql:postgresql:9.4-1200-jdbc4')
 	}
 //
 //	if(System.properties['spring.profiles.active'] == 'local') {
@@ -56,7 +56,7 @@ dependencies {
 }
 
 configurations {
-	if(System.properties['spring.profiles.active'] == 'heroku') {
+	if(System.properties['spring.profiles.active'] != 'development') {
 		all*.exclude module: 'spring-boot-starter-logging'
 	}
 }

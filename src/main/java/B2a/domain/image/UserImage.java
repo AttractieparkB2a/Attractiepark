@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 @Getter
 @Setter
 @Entity
+@Table(name = "user_image")
 public class UserImage implements Image {
 
     @Id
