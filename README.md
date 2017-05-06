@@ -10,6 +10,15 @@
 
 This project runs on a postgresql database hosted by heroku. Using travis this project is deployed to sonarqube & heroku every commit.
 
+
+**Sonarqube** project can be found under:
+
+https://sonarqube.com/dashboard?id=Attractiepark
+
+**Heroku** project can be found under:
+
+https://attractiepark.herokuapp.com/
+
 -----------------
 
 **Using a local mysql database**
