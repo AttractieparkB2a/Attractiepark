@@ -40,15 +40,26 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
 	compile('org.springframework.boot:spring-boot-starter-web')
-//    compile 'org.postgresql:postgresql:9.4-1200-jdbc4'
-	runtime('mysql:mysql-connector-java')
+
+    if(System.properties['spring.profiles.active'] == 'development') {
+		runtime('mysql:mysql-connector-java')
+	} else {
+		compile('org.postgresql:postgresql:9.4-1200-jdbc4')
+	}
+//
+//	if(System.properties['spring.profiles.active'] == 'local') {
+//		runtime('mysql:mysql-connector-java')
+//	}
+
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-//configurations {
-//    all*.exclude module : 'spring-boot-starter-logging'
-//}
+configurations {
+	if(System.properties['spring.profiles.active'] != 'development') {
+		all*.exclude module: 'spring-boot-starter-logging'
+	}
+}
 
 test {
 	testLogging {

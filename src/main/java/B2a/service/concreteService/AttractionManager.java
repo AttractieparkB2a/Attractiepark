@@ -95,7 +95,7 @@ public class AttractionManager implements AttractionManagerIF{
     public void changeState(Attraction attraction, String action){
 
         State oldState = stateRepository.save( attraction.getCurrentState() );
-        oldState.setAttraction( attraction );
+        //oldState.setAttraction( attraction );
         long oldId = oldState.getId();
 
         switch(action){

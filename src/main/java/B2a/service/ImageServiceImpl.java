@@ -10,7 +10,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -49,16 +51,19 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    @Transactional
     public UserImage findOne(Long id) {
         return imageRepository.findOne(id);
     }
 
     @Override
+    @Transactional
     public Iterable<UserImage> findAll() {
         return imageRepository.findAll();
     }
 
     @Override
+    @Transactional
     public LinkedHashMap<Long, Image> findPhotos() {
         List<Long> ids = imageRepository.findAllIdByUser_id(userService.findUser().getId());
 
@@ -70,9 +75,37 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    @Transactional
     public Image findPhoto(Long id) {
         Image image = images.get(id);
         Long userId = image.load();
         return imageRepository.findOneById(userId);
+    }
+
+    @Override
+    @Transactional
+    public List<Image> findByUserId(Long id) {
+        List<Long> ids = imageRepository.findAllIdByUser_id(id);
+        List<Image> loadedImages = new ArrayList<>();
+
+        for(Long i : ids)
+            loadedImages.add(imageRepository.findOneById(i));
+
+//        for(Long i : ids) {
+//            images.put(i, new ProxyImage(i));
+//        }
+//
+//        for(Image i : images.values()) {
+//            Image image = images.get(i);
+//            image.load();
+//            loadedImages.add(image);
+//        }
+
+        return loadedImages;
+    }
+
+    @Override
+    public Long findUserIdById(Long id) {
+        return imageRepository.findUserIdById(id);
     }
 }

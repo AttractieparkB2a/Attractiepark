@@ -9,7 +9,12 @@ addons:
 jdk:
   - oraclejdk8
 
-install: true
+deploy:
+  provider: heroku
+  api_key:
+      secure: "335fae74-285b-4389-afb0-233c806083d2"
+  app: attractiepark
+  env: SPRING_PROFILE_ACTIVE=heroku
 
 script:
   - ./gradlew sonarqube -Dsonar.host.url=https://sonarqube.com -Dsonar.organization=attractieparkkey -Dsonar.login=1e96152eda3f75bcedfc693825800ceb233f988e
@@ -22,4 +27,4 @@ cache:
     - '.gradle'
 
 notifications:
-  email: true
+  email: false

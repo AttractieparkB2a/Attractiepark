@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="_layout">
+
+<head>
+    <title th:text="#{contact.title}"></title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <section id="home" class="home-section">
+        <div class="page-container parent-height">
+            <div class="col-lg-6 child-height extra-padding">
+                <h5 th:text="#{contact.page}"></h5>
+                <div class="extra-margin">
+                    <p th:text="#{contact.phonenumber}"></p>
+                    <p th:text="#{contact.street}"></p>
+                    <p th:text="#{contact.city}"></p>
+                    <p th:text="#{contact.zipcode}"></p>
+                </div>
+            </div>
+            <div class="col-lg-6 child-height extra-padding">
+                <div class="location-holder">
+                    <div class="location-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
