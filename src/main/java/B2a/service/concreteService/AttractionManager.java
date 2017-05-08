@@ -48,8 +48,10 @@ public class AttractionManager implements AttractionManagerIF{
             default:
                 System.out.println("Default reached");
         }
-        Attraction attraction = builder.createNewAttraction();
+        Attraction attraction = builder.createNewAttraction(); // print constructor
+        System.out.println("after builder in manager");
         attractionRepository.save(attraction);
+        System.out.println("after save in builder");
 
 
         return attraction;
@@ -91,8 +93,10 @@ public class AttractionManager implements AttractionManagerIF{
 
     @Transactional
     public void changeState(Attraction attraction, String action){
-        Session session = HibernateUtil.getSession();
-        session.beginTransaction();
+
+        State oldState = stateRepository.save( attraction.getCurrentState() );
+        oldState.setAttraction( attraction );
+        long oldId = oldState.getId();
 
         switch(action){
             case "open":
@@ -112,42 +116,11 @@ public class AttractionManager implements AttractionManagerIF{
                 break;
         }
 
-        //System.out.println( attraction.getCurrentState() );
-        //Attraction newAttraction = attraction;
-
-        //attractionRepository.delete( attraction );
-
-        session.saveOrUpdate( attraction );
-
-
+        State newState = attraction.getCurrentState();
+        newState.setAttraction( attraction );
+        stateRepository.save( newState  ); // Give newstate an id.
         //attractionRepository.save( attraction );
-//        List<State> allStates = (List<State>) stateRepository.findAll();
-//        List<Attraction> allAttractions = (List<Attraction>) attractionRepository.findAll();
-//
-//        int counter = 0;
-//        for(State s : allStates){
-//            System.out.println("looping " + counter);
-//            if(s.getAttraction().getId() == attraction.getId()){
-//                counter++;
-//                try{
-//                    //System.out.println( "state id " + state.getId() );
-//                    System.out.println( "attraction id from state " + s.getAttraction().getId() );
-//                }
-//                catch(Exception ex){
-//
-//                }
-//            }
-//        }
-//        if(counter == 2)
-//            stateRepository.delete( state );
-//
-//        long toRemove = attraction.getCurrentState().getId() -1;
-//        System.out.println( "remove id = " + toRemove);
-//
-//        State removeState = stateRepository.findOne( toRemove );
-//        removeState.setAttraction( null );
-//
-//        stateRepository.delete( removeState );
+        stateRepository.delete( oldId );
 
     }
 

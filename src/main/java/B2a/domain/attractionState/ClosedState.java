@@ -30,7 +30,10 @@ public class ClosedState extends State {
         //attraction.setState(attraction.getWaitingState());
         //attraction.setState(new ClosedState(attraction));
         //this.attraction.setOldId( attraction.getCurrentState().getId() );
-        this.attraction.setState( new WaitingState(this.attraction) );
+        State s = new WaitingState(this.attraction);
+
+        // this.attraction.setState( new WaitingState(this.attraction) );
+        this.attraction.setState( s );
         //attraction.setState( new WaitingState(attraction));
 
     }

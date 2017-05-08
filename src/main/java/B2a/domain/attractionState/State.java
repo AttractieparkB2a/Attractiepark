@@ -24,6 +24,7 @@ public class State {
     @OneToOne
     Attraction attraction;
 
+
     public State() {
 
     }

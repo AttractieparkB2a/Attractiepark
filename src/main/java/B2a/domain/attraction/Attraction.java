@@ -53,6 +53,7 @@ public class Attraction {
 
 
     public Attraction(){
+        System.out.println("atractie constructor" + this);
 //        closedState = new ClosedState(this);
 //        //closedState.setName("closed");
 //        waitingState = new WaitingState(this);
@@ -60,8 +61,11 @@ public class Attraction {
 //        defectState = new DefectState(this);
 //        runningState = new RunningState(this);
 //        currentState = closedState;
+        if(currentState == null){
+            System.out.println("atractie currentstate is null");
+            currentState = new ClosedState(this);
+        }
 
-        currentState = new ClosedState(this);
     }
 
     //METHODS START HERE
@@ -71,7 +75,7 @@ public class Attraction {
     };
 
     public void open(){
-        System.out.println("open in attraction");
+        //System.out.println("open in attraction");
         System.out.println("status is: " + currentState);
         currentState.open();
         System.out.println("status is after: " + currentState);
@@ -118,7 +122,7 @@ public class Attraction {
 
     @Override
     public String toString(){
-        return "Naam: " + name + " Duur: " + duration + " minimum lengte: " + minimumHeight;
+        return "Id " + id + "Naam: " + name + " Duur: " + duration + " minimum lengte: " + minimumHeight;
     }
 
 }

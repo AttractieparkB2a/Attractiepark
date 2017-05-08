@@ -49,10 +49,11 @@ public class AttractionController {
         //System.out.println("a = " + a.getName() + " with id: " + a.getId());
         long id = attraction.getId();
         State s = attraction.getCurrentState();
-
+        long oldStateID = s.getId();
+        //System.out.println( "old state id " + oldStateID);
 
         attractionManagerIF.changeState(attraction, action);
-        attractionManagerIF.CustomDeleteForDoubles( id, s );
+        //attractionManagerIF.CustomDeleteForDoubles( id, s );
         return "redirect:/attraction/adminAttractionsList";
     }
 
