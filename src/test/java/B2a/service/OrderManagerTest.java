@@ -1,11 +1,7 @@
 package B2a.service;
 
-import B2a.domain.order.Order;
-import B2a.model.OrderModel;
-import B2a.service.concreteService.OrderManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;

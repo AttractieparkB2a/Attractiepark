@@ -50,7 +50,7 @@ public class TicketController {
 
         if(account != null) {
             order.setAccount(account);
-            order.getOrder().setClientId(account.getId());
+            order.getOrder().setClientId(account);
             model.addAttribute("account", account);
             return "orderTicket/ticketOrder";
         }

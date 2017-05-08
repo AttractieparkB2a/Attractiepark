@@ -1,11 +1,13 @@
 package B2a.domain;
 
 import B2a.domain.newsMessage.IUser;
+import B2a.domain.newsMessage.NewsMessage;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -15,10 +17,13 @@ import javax.persistence.*;
 public class Subscriber extends IUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String email;
+
+    @ManyToMany(mappedBy = "subscribers")
+    List<NewsMessage> newsMessages;
 
     @Override
     public String update() {

@@ -1,6 +1,6 @@
 package B2a.service.concreteService;
 
-import B2a.domain.order.Order;
+import B2a.domain.ticket.Order;
 import B2a.model.OrderModel;
 import B2a.model.order.OrderCaretaker;
 import B2a.model.order.OrderOriginator;

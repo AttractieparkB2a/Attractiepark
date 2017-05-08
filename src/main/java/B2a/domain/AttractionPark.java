@@ -6,7 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AttractionPark {
+
     private static AttractionPark instance = new AttractionPark();
+
     private String name;
     private String address;
 

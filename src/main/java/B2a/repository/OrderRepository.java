@@ -1,6 +1,6 @@
 package B2a.repository;
 
-import B2a.domain.order.Order;
+import B2a.domain.ticket.Order;
 import org.springframework.data.repository.CrudRepository;
 
 public interface OrderRepository extends CrudRepository<Order, Long> {

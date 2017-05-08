@@ -1,16 +1,15 @@
 package B2a.domain.image;
 
 import B2a.domain.User;
-import B2a.service.ImageService;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -18,7 +17,7 @@ import javax.transaction.Transactional;
 public class UserImage implements Image {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -32,8 +31,6 @@ public class UserImage implements Image {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    public UserImage() {}
 
     public UserImage(Long id) {
         this.id = id;

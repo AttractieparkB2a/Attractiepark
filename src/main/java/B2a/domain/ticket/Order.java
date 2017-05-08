@@ -1,5 +1,6 @@
-package B2a.domain.order;
+package B2a.domain.ticket;
 
+import B2a.domain.User;
 import B2a.domain.ticket.Ticket;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,10 +19,13 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long clientId;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private User clientId;
+
     private Long ticketId;
     private Date date;
     private int totalPrice;
@@ -29,7 +33,7 @@ public class Order {
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "order")
     private List<Ticket> tickets = new ArrayList<>();
 
-    public Order(Long id, Long clientId, Long ticketId, Date date, int totalPrice){
+    public Order(Long id, User clientId, Long ticketId, Date date, int totalPrice){
         this.id = id;
         this.clientId = clientId;
         this.ticketId = ticketId;
