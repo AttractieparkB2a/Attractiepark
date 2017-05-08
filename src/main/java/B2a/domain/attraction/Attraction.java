@@ -4,8 +4,7 @@ import B2a.domain.attractionState.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
+import javax.persistence.CascadeType;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -13,28 +12,26 @@ import javax.persistence.Table;
 import java.io.File;
 import java.io.FileInputStream;
 
-@Table(name = "attraction")
 @Getter
 @Setter
 @Entity
+@Table(name = "attraction")
 public class Attraction {
     //ATTRIBUTES
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected long id;
+    protected Long id;
     protected String name;
 
     protected int duration;
     protected int minimumHeight;
     protected String transportType;
     protected int amountStaff;
-    @Column(columnDefinition="longblob")
+
+    @Lob
     protected byte[] image;
 
-    //@Embedded
-    // mappedby = attraction
-    @OneToOne(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.EAGER)
-    //@ManyToOne(targetEntity=State.class, cascade = javax.persistence.CascadeType.ALL)
+    @OneToOne(cascade = javax.persistence.CascadeType.ALL, mappedBy = "attraction")
     protected State currentState;
 
     //private long oldId;

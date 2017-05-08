@@ -18,11 +18,10 @@ public class State {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    private Long id;
 
-    //cascade = javax.persistence.CascadeType.ALL
     @OneToOne
-    Attraction attraction;
+    protected Attraction attraction;
 
 
     public State() {
