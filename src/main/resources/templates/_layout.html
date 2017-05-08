@@ -30,7 +30,7 @@
                         <input id="logout" class="logout" type="submit" th:value="#{header.meta.logout}"/>
                     </form>
                 </li>
-                <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><b th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></b></a></li>
+                <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><strong th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></strong></a></li>
                 <li th:if="${#httpServletRequest.remoteUser == null}" class="login"><a th:text="#{header.meta.login}" th:href="@{/login}"></a></li>
                 <li th:if="${#httpServletRequest.remoteUser == null}" class="register"><a th:text="#{header.meta.register}" th:href="@{/registration}"></a></li>
                 <li class="contact"><a th:text="#{header.meta.contact}" th:href="@{/contact}"></a></li>
@@ -68,7 +68,7 @@
 
         <!-- Expanded menu for Member role -->
         <ul sec:authorize="!hasRole('ROLE_ADMIN')" class="responsive-navigation">
-            <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><b th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></b></a></li>
+            <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><strong th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></strong></a></li>
             <li th:if="${#httpServletRequest.remoteUser != null}">
                 <form id="form-logout" th:action="@{/logout}" method="post">
                     <input id="logout" class="logout" type="submit" th:value="#{header.meta.logout}"/>
@@ -84,7 +84,7 @@
 
         <!-- Expanded menu for Admin role -->
         <ul sec:authorize="hasRole('ROLE_ADMIN')" class="responsive-navigation">
-            <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><b th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></b></a></li>
+            <li th:if="${#httpServletRequest.remoteUser != null}"><a th:href="@{/account}"><strong th:text="#{header.meta.loggedin} + ${#httpServletRequest.remoteUser}" th:inline="text"></strong></a></li>
             <li th:if="${#httpServletRequest.remoteUser != null}">
                 <form id="form-logout" th:action="@{/logout}" method="post">
                     <input id="logout" class="logout" type="submit" th:value="#{header.meta.logout}"/>
