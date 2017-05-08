@@ -21,6 +21,7 @@ import java.util.List;
 @Service
 public class AttractionManager implements AttractionManagerIF{
     private AttractionBuilder builder;
+
     @Autowired
     private final AttractionRepository attractionRepository;
     private final StateRepository stateRepository;
@@ -67,8 +68,10 @@ public class AttractionManager implements AttractionManagerIF{
         return attractionRepository.findAll();
     }
 
+
     // FIND ONE ATTRACTION BY IT'S ID
-    public Attraction findAttraction(long id){
+    @Override
+    public Attraction findAttraction(Long id){
         return attractionRepository.findOne(id);
     }
 
@@ -124,7 +127,12 @@ public class AttractionManager implements AttractionManagerIF{
 
     }
 
-    public void CustomDeleteForDoubles(long id, State state){
+    @Override
+    public void CustomDeleteForDoubles(Long id, State state){
     }
 
+    @Override
+    public void deleteState(Long id) {
+        stateRepository.delete(id);
+    }
 }

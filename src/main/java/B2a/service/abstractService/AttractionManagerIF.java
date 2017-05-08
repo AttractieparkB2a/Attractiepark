@@ -11,12 +11,14 @@ public interface AttractionManagerIF {
 
     Iterable<Attraction> findAllAttractions();
 
-     Attraction findAttraction(long id);
+     Attraction findAttraction(Long id);
 
     Iterable<String> findAllAttractionTypes();
 
     void changeState(Attraction attraction, String action);
 
-    void CustomDeleteForDoubles(long id, State state);
+    void CustomDeleteForDoubles(Long id, State state);
 
-   }
+    void deleteState(Long id);
+
+}

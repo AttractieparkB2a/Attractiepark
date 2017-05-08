@@ -43,17 +43,18 @@ public class AttractionController {
     // POST THE ACTION ON BUTTON CLICK
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
     public String adminAttractionsList(@ModelAttribute("attraction") Attraction attraction, Model model, @RequestParam(value="action", required = true) String action){
-        //System.out.println("getting attraction with id: " + attraction.getId());
-        //Attraction a = attractionManagerIF.findAttraction( attraction.getId() );
-        System.out.println("attraction = " + attraction.getName() + " with id: " + attraction.getId());
-        //System.out.println("a = " + a.getName() + " with id: " + a.getId());
-        long id = attraction.getId();
-        State s = attraction.getCurrentState();
-        long oldStateID = s.getId();
-        //System.out.println( "old state id " + oldStateID);
+        System.out.println("Attraction = " + attraction.getName() + " with id: " + attraction.getId());
 
-        attractionManagerIF.changeState(attraction, action);
-        //attractionManagerIF.CustomDeleteForDoubles( id, s );
+        Attraction attractionWithState = attractionManagerIF.findAttraction(attraction.getId());
+        System.out.println("State id = " + attractionWithState.getCurrentState().getId());
+
+        attractionManagerIF.changeState(attractionWithState, action);
+
+        Attraction attractionChanged = attractionManagerIF.findAttraction(attraction.getId());
+        System.out.println("---------------------------------------------------------");
+        System.out.println("Attraction = " + attractionChanged.getName() + " with id: " + attraction.getId());
+        System.out.println("State id = " + attractionChanged.getCurrentState().getId());
+
         return "redirect:/attraction/adminAttractionsList";
     }
 
