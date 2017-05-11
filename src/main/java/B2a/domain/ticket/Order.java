@@ -5,6 +5,7 @@ import B2a.domain.ticket.Ticket;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,7 +27,9 @@ public class Order {
     @JoinColumn(name = "client_id")
     private User clientId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
+
     private int totalPrice;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "order")

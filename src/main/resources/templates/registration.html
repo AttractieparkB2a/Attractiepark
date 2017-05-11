@@ -34,7 +34,7 @@
                         <div class="error-message" th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></div>
                         <input type="text" th:classappend="${#fields.hasErrors('lastName')} ? 'has-error'" name="lastName" class="form-control input-margin" th:placeholder="#{account.lastname}" th:value="${userForm.lastName}"/>
                         <div class="error-message" th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></div>
-                        <input type="date" th:classappend="${#fields.hasErrors('birthday')} ? 'has-error'" name="birthday" class="form-control input-margin" th:placeholder="#{account.birthdate}" th:value="${userForm.birthday}"/>
+                        <input type="date" th:classappend="${#fields.hasErrors('birthday')} ? 'has-error'" name="birthday" class="form-control input-margin" th:placeholder="#{account.birthdate}" th:value="${#dates.format(userForm.birthday, 'yyyy-MM-dd')}"/>
                         <div class="error-message" th:each="err : ${#fields.errors('birthday')}" th:text="${err}"></div>
                         <input type="text" th:classappend="${#fields.hasErrors('address')} ? 'has-error'" name="address" class="form-control extra-input-margin" th:placeholder="#{account.address}" th:value="${userForm.address}"/>
                         <div class="error-message" th:each="err : ${#fields.errors('address')}" th:text="${err}"></div>

@@ -87,6 +87,7 @@ public class TicketController {
         List<Ticket> ticketsList = new ArrayList<>();
         for(Ticket tm : tickets.getTickets()) {
             if(tm.getAmount() != 0) {
+                tm.setPrice(tm.getPrice() * tm.getAmount());
                 ticketsList.add(tm);
             }
         }
@@ -117,7 +118,7 @@ public class TicketController {
         int totalPrice = 0;
 
         for (Ticket t: order.getTicket()){
-            totalPrice += t.getPrice() * t.getAmount();
+            totalPrice += t.getPrice();
         }
         for(TicketOption o : order.getOption()) {
             totalPrice += o.getPrice() * o.getAmount();

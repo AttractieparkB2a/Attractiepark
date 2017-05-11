@@ -31,8 +31,8 @@
 
                     <div th:if="${order != null}">
                         <form th:object="${order}" method="post">
-                            <label class="form-label extra-input-margin" th:text="#{ticketOverview.order.date}"></label><input type="text" name="date" class="form-control extra-input-margin smaller-input" th:value="${order.date}"/>
-                            <label class="form-label input-margin" th:text="#{ticketOverview.order.totalPrice}"></label><input type="text" name="totalPrice" class="form-control input-margin smaller-input" th:value="${order.totalPrice}"/>
+                            <label class="form-label extra-input-margin" th:text="#{ticketOverview.order.date}"></label><input type="date" name="date" th:type="date" class="form-control extra-input-margin smaller-input" th:value="${#dates.format(order.date, 'yyyy-MM-dd')}" readonly="readonly"/>
+                            <label class="form-label input-margin" th:text="#{ticketOverview.order.totalPrice}"></label><input type="text" name="totalPrice" class="form-control input-margin smaller-input" th:value="${order.totalPrice}" readonly="readonly"/>
                         </form>
                     </div>
                 </div>
@@ -43,9 +43,9 @@
                     <div th:if="${order != null}">
                         <div th:each="t : ${tickets}">
                             <form th:object="${t}" method="post">
-                                <label class="form-label extra-input-margin" th:text="#{ticketOverview.ticket.name}"></label><input type="text" name="name" class="form-control extra-input-margin smaller-input" th:value="${t.name}"/>
-                                <label class="form-label input-margin" th:text="#{ticketOverview.ticket.amount}"></label><input type="text" name="amount" class="form-control input-margin smaller-input" th:value="${t.amount}"/>
-                                <label class="form-label input-margin" th:text="#{ticketOverview.ticket.price}"></label><input type="text" name="price" class="form-control input-margin smaller-input" th:value="${t.price}"/>
+                                <label class="form-label extra-input-margin" th:text="#{ticketOverview.ticket.name}"></label><input type="text" name="name" class="form-control extra-input-margin smaller-input" th:value="${t.name}" readonly="readonly"/>
+                                <label class="form-label input-margin" th:text="#{ticketOverview.ticket.amount}"></label><input type="text" name="amount" class="form-control input-margin smaller-input" th:value="${t.amount}" readonly="readonly"/>
+                                <label class="form-label input-margin" th:text="#{ticketOverview.ticket.price}"></label><input type="text" name="price" class="form-control input-margin smaller-input" th:value="${t.price}" readonly="readonly"/>
                             </form>
                         </div>
                     </div>
