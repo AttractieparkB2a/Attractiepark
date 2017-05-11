@@ -1,6 +1,7 @@
 package B2a.controller;
 
 import B2a.domain.User;
+import B2a.domain.ticket.Order;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
 import B2a.model.ticket.TicketModel;
@@ -131,15 +132,15 @@ public class TicketController {
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.POST)
     public String ticketOrderResult(Model model, @RequestParam String action) {
         if (action.equals("buy")) {
+            orderManager.createOrder(order.getOrder());
+
+            for(Ticket t : order.getTicket()) {
+                t.setOrder(order.getOrder());
+            }
 
             ticketManager.createTicket(order);
             ticketManager.decorateTicket(order);
 
-            for (Ticket t: order.getTicket()) {
-                order.getOrder().setTicketId(t.getId());
-            }
-
-            orderManager.createOrder(order.getOrder());
         }else if(action.equals("cancel")){
             order = orderManager.getMemento(0);
             return "redirect:/orderTicket/ticketOrderForm";
@@ -147,5 +148,20 @@ public class TicketController {
         order = orderManager.getMemento(0);
         return "redirect:/";
 
+    }
+
+    @RequestMapping(value = "ticketOverview", method = RequestMethod.GET)
+    public String ticketOverview(Model model) {
+        User user = userService.findUser();
+
+        if(user != null) {
+            Order order = orderManager.findByClientId(user);
+            model.addAttribute("order", order);
+
+            Iterable<Ticket> tickets = ticketManager.findByOrderId(order);
+            model.addAttribute("tickets", tickets);
+        }
+
+        return "ticketOverview";
     }
 }

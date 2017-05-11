@@ -1,6 +1,7 @@
 package B2a.service.concreteService;
 
 import B2a.domain.ticket.BaseTicket;
+import B2a.domain.ticket.Order;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
 import B2a.model.OrderModel;
@@ -38,5 +39,10 @@ public class TicketManager implements TicketManagerIF{
                baseTicketRepository.save(o);
             }
         }
+    }
+
+    @Override
+    public Iterable<Ticket> findByOrderId(Order order) {
+        return baseTicketRepository.findAllByOrder(order);
     }
 }

@@ -26,17 +26,15 @@ public class Order {
     @JoinColumn(name = "client_id")
     private User clientId;
 
-    private Long ticketId;
     private Date date;
     private int totalPrice;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "order")
     private List<Ticket> tickets = new ArrayList<>();
 
-    public Order(Long id, User clientId, Long ticketId, Date date, int totalPrice){
+    public Order(Long id, User clientId, Date date, int totalPrice){
         this.id = id;
         this.clientId = clientId;
-        this.ticketId = ticketId;
         this.date = date;
         this.totalPrice = totalPrice;
     }

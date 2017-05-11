@@ -59,7 +59,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/image/index/**",
 
                             "/user/index/**",
-                            "/user/role/**"
+                            "/user/role/**",
+
+                            "/newsmessage/**"
                         ).access("hasRole('ADMIN')")
                     .anyRequest().authenticated()
                     .and()

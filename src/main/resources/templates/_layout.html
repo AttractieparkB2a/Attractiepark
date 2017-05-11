@@ -47,6 +47,7 @@
             <ul sec:authorize="hasRole('ROLE_ADMIN')" class="site-navigation">
                 <li class="news"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
                 <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+                <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{newsmessage}"></a></li>
             </ul>
         </nav>
     </header>
@@ -90,8 +91,9 @@
                     <input id="logout" class="logout" type="submit" th:value="#{header.meta.logout}"/>
                 </form>
             </li>
-            <li class="news"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
+            <li class="user"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
             <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+            <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{newsmessage}"></a></li>
         </ul>
 
     </header>
@@ -119,8 +121,9 @@
 
                 <!-- Footer menu for Admin role -->
                 <ul sec:authorize="hasRole('ROLE_ADMIN')">
-                    <li class="news"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
+                    <li class="user"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
                     <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+                    <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{newsmessage}"></a></li>
                 </ul>
 
             </div>
@@ -162,6 +165,9 @@
                 </div>
                 <div class="footer-text-layout">
                     <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
+                </div>
+                <div class="footer-text-layout">
+                    <h4><a th:text="#{header.site.newsletter}" th:href="@{newsmessage}"></a></h4>
                 </div>
             </div>
 

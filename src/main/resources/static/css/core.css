@@ -35,7 +35,7 @@ body {
 
 .welcome-text {
     padding-top: 200px;
-    width: 1000px;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -778,6 +778,18 @@ h5 {
 
 .menu-item-active {
     color: #b9132a;
+}
+
+.form-label {
+    float: left;
+    width: 20%;
+    height: 34px;
+    line-height: 34px;
+}
+
+.smaller-input {
+    float: left;
+    width: 80%;
 }
 
 @media screen and (max-width: 768px) {
