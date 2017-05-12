@@ -36,9 +36,7 @@ public class RunningState extends State {
     @Override
     public void damaged(){
         System.out.println("attraction was damaged");
-        //attraction.setState(attraction.getDefectState());
-        //attraction.setState(new DefectState());
-        //attraction.setState(new DefectState(this.getStateAttraction()));
+        attraction.setState(new DefectState(this.attraction));
     }
 
 }

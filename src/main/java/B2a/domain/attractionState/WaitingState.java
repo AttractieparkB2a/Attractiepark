@@ -30,14 +30,11 @@ public class WaitingState extends State {
     @Override
     public void close() {
         System.out.println("Closing the attraction. No more visitors allowed in the line");
-        //attraction.setState(attraction.getClosedState());
-        //attraction.setState(new ClosedState());
         attraction.setState(new ClosedState(this.getStateAttraction() ));
     }
 
     @Override
     public String start() {
-        //attraction.setState( attraction.getRunningState());
         attraction.setState(new RunningState(attraction));
         return "Starting the attraction";
     }
@@ -46,8 +43,7 @@ public class WaitingState extends State {
     @Override
     public void damaged(){
         System.out.println("attraction was damaged");
-        //attraction.setState(attraction.getDefectState());
-        //attraction.setState(new DefectState());
+        attraction.setState(new DefectState(attraction));
     }
 
 }

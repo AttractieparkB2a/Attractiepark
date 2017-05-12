@@ -31,8 +31,6 @@ public class DefectState extends State{
     @Override
     public void repair() {
         System.out.println("Repairing the attraction. It can be opened in a minute");
-        //attraction.setState( attraction.getWaitingState());
-        //attraction.setState(new WaitingState(attraction));
-        //this.getStateAttraction().setState( new WaitingState(State(this.getStateAttraction() ) ) );
+        this.getStateAttraction().setState( new WaitingState( this.attraction ) );
     }
 }
