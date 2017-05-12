@@ -5,45 +5,35 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
-//@Embeddable
-//@Getter
-//@Setter
-@Entity
 @NoArgsConstructor
+@Getter
+@Setter
+@Entity
 public class WaitingState extends State {
-    Attraction attraction;
+
+    private Attraction attraction;
 
     public WaitingState(Attraction attraction){
-        //this.attraction = super.attraction;
         this.attraction = attraction;
     }
-
-//    public WaitingState(){
-//        this.attraction = super.attraction;
-//    }
 
     @Override
     public void close() {
         System.out.println("Closing the attraction. No more visitors allowed in the line");
-        attraction.setState(new ClosedState(this.getStateAttraction() ));
+        this.attraction.setState(new ClosedState(this.attraction));
     }
 
     @Override
-    public String start() {
-        attraction.setState(new RunningState(attraction));
-        return "Starting the attraction";
+    public void start() {
+        System.out.println("The attraction is now running");
+        this.attraction.setState(new RunningState(this.attraction));
     }
-
 
     @Override
     public void damaged(){
-        System.out.println("attraction was damaged");
-        attraction.setState(new DefectState(attraction));
+        System.out.println("Attraction was damaged");
+        this.attraction.setState(new DefectState(this.attraction));
     }
-
 }

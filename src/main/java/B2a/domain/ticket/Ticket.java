@@ -1,7 +1,6 @@
 package B2a.domain.ticket;
 
 
-import B2a.domain.order.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

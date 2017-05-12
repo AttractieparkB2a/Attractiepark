@@ -1,6 +1,7 @@
 package B2a.service.concreteService;
 
-import B2a.domain.order.Order;
+import B2a.domain.User;
+import B2a.domain.ticket.Order;
 import B2a.model.OrderModel;
 import B2a.model.order.OrderCaretaker;
 import B2a.model.order.OrderOriginator;
@@ -39,5 +40,10 @@ public class OrderManager implements OrderManagerIF {
     @Override
     public OrderModel getMemento(int index){
         return originator.restoreFromMemento(caretaker.getMemento(index));
+    }
+
+    @Override
+    public Order findByClientId(User user) {
+        return orderRepository.findByClientId(user);
     }
 }

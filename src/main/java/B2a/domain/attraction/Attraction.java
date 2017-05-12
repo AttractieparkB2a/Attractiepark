@@ -17,70 +17,40 @@ import java.io.FileInputStream;
 @Entity
 @Table(name = "attraction")
 public class Attraction {
-    //ATTRIBUTES
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
-    protected String name;
 
-    protected int duration;
-    protected int minimumHeight;
-    protected String transportType;
-    protected int amountStaff;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private int duration;
+    private int minimumHeight;
+    private String transportType;
+    private int amountStaff;
 
     @Lob
-    protected byte[] image;
+    private byte[] image;
 
-    @OneToOne(cascade = javax.persistence.CascadeType.ALL, mappedBy = "attraction")
-    protected State currentState;
-
-    //private long oldId;
-    //@Embedded
-    //@OneToOne
-    //private State closedState;
-    //@Embedded
-    //@OneToOne
-    //private State waitingState;
-    //@Embedded
-    //@OneToOne
-    //private State defectState;
-    //@Embedded
-    //@OneToOne
-    //private State runningState;
-
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "attraction")
+    private State currentState;
 
     public Attraction(){
-        System.out.println("atractie constructor" + this);
-//        closedState = new ClosedState(this);
-//        //closedState.setName("closed");
-//        waitingState = new WaitingState(this);
-//        //waitingState.setName("waiting");
-//        defectState = new DefectState(this);
-//        runningState = new RunningState(this);
-//        currentState = closedState;
         if(currentState == null){
-            System.out.println("atractie currentstate is null");
             currentState = new ClosedState(this);
         }
-
     }
 
-    //METHODS START HERE
-    public String start(){
-        System.out.println("teststart");
-        return currentState.start();
-    };
+    public void start(){
+        currentState.start();
+    }
 
     public void open(){
-        //System.out.println("open in attraction");
-        System.out.println("status is: " + currentState);
         currentState.open();
-        System.out.println("status is after: " + currentState);
     }
 
     public void stop(){
         currentState.stop();
-    };
+    }
 
     public void close(){
         currentState.close();
@@ -99,12 +69,12 @@ public class Attraction {
     }
 
     public void customSetImage(String type){
+
         File file = new File("src/main/resources/static/img/"+type+".png");
         byte[] bFile = new byte[(int) file.length()];
 
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
-            //convert file into array of bytes
             fileInputStream.read(bFile);
             fileInputStream.close();
         } catch (Exception e) {
@@ -116,10 +86,4 @@ public class Attraction {
     public String generateBase64Image(){
         return Base64.encodeBase64String(this.getImage());
     }
-
-    @Override
-    public String toString(){
-        return "Id " + id + "Naam: " + name + " Duur: " + duration + " minimum lengte: " + minimumHeight;
-    }
-
 }

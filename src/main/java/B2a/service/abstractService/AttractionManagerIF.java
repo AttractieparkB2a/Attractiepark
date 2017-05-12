@@ -17,8 +17,6 @@ public interface AttractionManagerIF {
 
     void changeState(Attraction attraction, String action);
 
-    void CustomDeleteForDoubles(Long id, State state);
-
     void deleteState(Long id);
 
 }

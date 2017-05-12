@@ -18,7 +18,7 @@
                 <a th:text="#{selectedphoto.back}" th:href="@{/userPhoto}"></a>
                 <div th:each="image : ${images}">
                     <div class="photo-holder">
-                        <div class="user-image"><img class="u-image" th:src="@{'data:image/jpeg;base64,'+${image.generateBase64Image()}}" /></div>
+                        <div class="user-image"><img class="u-image" th:src="@{'data:image/jpeg;base64,'+${image.generateBase64Image()}}"  th:alt="${image.name}" /></div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 package B2a.controller;
 
 import B2a.domain.User;
+import B2a.domain.ticket.Order;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
 import B2a.model.ticket.TicketModel;
@@ -50,7 +51,7 @@ public class TicketController {
 
         if(account != null) {
             order.setAccount(account);
-            order.getOrder().setClientId(account.getId());
+            order.getOrder().setClientId(account);
             model.addAttribute("account", account);
             return "orderTicket/ticketOrder";
         }
@@ -86,6 +87,7 @@ public class TicketController {
         List<Ticket> ticketsList = new ArrayList<>();
         for(Ticket tm : tickets.getTickets()) {
             if(tm.getAmount() != 0) {
+                tm.setPrice(tm.getPrice() * tm.getAmount());
                 ticketsList.add(tm);
             }
         }
@@ -116,7 +118,7 @@ public class TicketController {
         int totalPrice = 0;
 
         for (Ticket t: order.getTicket()){
-            totalPrice += t.getPrice() * t.getAmount();
+            totalPrice += t.getPrice();
         }
         for(TicketOption o : order.getOption()) {
             totalPrice += o.getPrice() * o.getAmount();
@@ -131,15 +133,15 @@ public class TicketController {
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.POST)
     public String ticketOrderResult(Model model, @RequestParam String action) {
         if (action.equals("buy")) {
+            orderManager.createOrder(order.getOrder());
+
+            for(Ticket t : order.getTicket()) {
+                t.setOrder(order.getOrder());
+            }
 
             ticketManager.createTicket(order);
             ticketManager.decorateTicket(order);
 
-            for (Ticket t: order.getTicket()) {
-                order.getOrder().setTicketId(t.getId());
-            }
-
-            orderManager.createOrder(order.getOrder());
         }else if(action.equals("cancel")){
             order = orderManager.getMemento(0);
             return "redirect:/orderTicket/ticketOrderForm";
@@ -147,5 +149,20 @@ public class TicketController {
         order = orderManager.getMemento(0);
         return "redirect:/";
 
+    }
+
+    @RequestMapping(value = "ticketOverview", method = RequestMethod.GET)
+    public String ticketOverview(Model model) {
+        User user = userService.findUser();
+
+        if(user != null) {
+            Order order = orderManager.findByClientId(user);
+            model.addAttribute("order", order);
+
+            Iterable<Ticket> tickets = ticketManager.findByOrderId(order);
+            model.addAttribute("tickets", tickets);
+        }
+
+        return "ticketOverview";
     }
 }

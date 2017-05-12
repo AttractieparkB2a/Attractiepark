@@ -6,17 +6,17 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
-@Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
+@Entity
 @Table(name = "base_ticket")
 public abstract class BaseTicket {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     public abstract String name();
     public abstract int price();
 }

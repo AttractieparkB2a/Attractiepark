@@ -46,10 +46,6 @@ dependencies {
 	} else {
 		compile('org.postgresql:postgresql:9.4-1200-jdbc4')
 	}
-//
-//	if(System.properties['spring.profiles.active'] == 'local') {
-//		runtime('mysql:mysql-connector-java')
-//	}
 
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

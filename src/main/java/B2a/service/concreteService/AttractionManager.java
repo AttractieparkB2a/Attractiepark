@@ -35,26 +35,23 @@ public class AttractionManager implements AttractionManagerIF{
     public Attraction createNewAttraction(String type) {
         switch(type){
             case "rollercoaster":
-                System.out.println("rollercoaster");
+                System.out.println("rollercoaster builder set");
                 builder = new RollercoasterBuilder();
                 break;
             case "pendulum":
-                System.out.println("pendulum");
+                System.out.println("pendulum builder set");
                 builder = new PendulumBuilder();
                 break;
             case "waterattraction":
-                System.out.println("water");
+                System.out.println("water builder set");
                 builder = new WaterBuilder();
                 break;
             default:
                 System.out.println("Default reached");
         }
         Attraction attraction = builder.createNewAttraction(); // print constructor
-        System.out.println("after builder in manager");
+        System.out.println("Building a new attraction and saving it");
         attractionRepository.save(attraction);
-        System.out.println("after save in builder");
-
-
         return attraction;
     }
 
@@ -82,12 +79,9 @@ public class AttractionManager implements AttractionManagerIF{
         for(Attraction a : attractions){
             boolean inList = false;
 
-            // Write code to compare with list.
-
             if(inList == false){
                 returnIter.add(a.getTransportType() );
             }
-
         }
 
         return null;
@@ -96,9 +90,7 @@ public class AttractionManager implements AttractionManagerIF{
 
     @Transactional
     public void changeState(Attraction attraction, String action){
-
         State oldState = stateRepository.save( attraction.getCurrentState() );
-        //oldState.setAttraction( attraction );
         long oldId = oldState.getId();
 
         switch(action){
@@ -122,13 +114,7 @@ public class AttractionManager implements AttractionManagerIF{
         State newState = attraction.getCurrentState();
         newState.setAttraction( attraction );
         stateRepository.save( newState  ); // Give newstate an id.
-        //attractionRepository.save( attraction );
         stateRepository.delete( oldId );
-
-    }
-
-    @Override
-    public void CustomDeleteForDoubles(Long id, State state){
     }
 
     @Override

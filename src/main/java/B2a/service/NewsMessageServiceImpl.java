@@ -9,11 +9,8 @@ import B2a.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 @Service
 public class NewsMessageServiceImpl implements NewsMessageService {
@@ -55,60 +52,31 @@ public class NewsMessageServiceImpl implements NewsMessageService {
         List<User> users = userRepository.findByNewsletter(true);
         Iterable<Subscriber> subscribers = subscriberRepository.findAll();
 
+        List<User> user = new ArrayList<>();
+        List<Subscriber> subscriber = new ArrayList<>();
+
         String subject = messageForm.getSubject();
         String content = messageForm.getMessage();
 
         NewsMessage newsMessage = new NewsMessage(subject, content);
 
         for(User u : users) {
-            newsMessage.attach(u);
+            if (u.isNewsletter()) {
+                newsMessage.attach(u);
+                user.add(u);
+            }
         }
 
         for(Subscriber s : subscribers) {
             newsMessage.attach(s);
+            subscriber.add(s);
         }
 
-        List<String> emails = newsMessage.notifyUsers();
+        if(newsMessage.notifyUsers()) {
+            newsMessage.setUser(user);
+            newsMessage.setSubscribers(subscriber);
 
-        if(!emails.isEmpty()) {
-            sendNewsLetter(emails, subject, content);
             newsMessageRepository.save(newsMessage);
         }
-    }
-
-    @Override
-    public void sendNewsLetter(List<String> email, String subject, String content) {
-        final String username = "AttractieparkB2a@gmail.com";
-        final String password = "B2aAttractiepar";
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.ssl.trust", "*");
-
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("AttractieparkB2a@gmail.com"));
-            for (String anEmail : email) {
-                message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(anEmail));
-            }
-
-            message.setSubject(subject);
-            message.setContent(content, "text/html");
-
-            Transport.send(message);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 }
