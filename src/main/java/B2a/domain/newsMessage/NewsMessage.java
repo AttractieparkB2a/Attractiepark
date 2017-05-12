@@ -48,14 +48,10 @@ public class NewsMessage implements INewsMessage {
     }
 
     @Override
-    public List<String> notifyUsers() {
-        List<String> emails = new ArrayList<>();
-
-        for (IUser m : users) {
-            String email = m.update();
-            if(!emails.contains(email))
-                emails.add(email);
+    public boolean notifyUsers() {
+        for(IUser iUser : users) {
+            iUser.update(subject, message);
         }
-        return emails;
+        return users.size() > 0;
     }
 }

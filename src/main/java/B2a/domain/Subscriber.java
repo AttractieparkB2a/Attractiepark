@@ -1,5 +1,6 @@
 package B2a.domain;
 
+import B2a.domain.newsMessage.EmailService;
 import B2a.domain.newsMessage.IUser;
 import B2a.domain.newsMessage.NewsMessage;
 import lombok.Getter;
@@ -26,8 +27,8 @@ public class Subscriber extends IUser {
     List<NewsMessage> newsMessages;
 
     @Override
-    public String update() {
-        return email;
+    public void update(String subject, String message) {
+        EmailService emailService = EmailService.getInstance();
+        emailService.sendNewsLetter(email, subject, message);
     }
-
 }

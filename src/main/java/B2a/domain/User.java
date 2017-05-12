@@ -1,6 +1,7 @@
 package B2a.domain;
 
 import B2a.domain.image.UserImage;
+import B2a.domain.newsMessage.EmailService;
 import B2a.domain.newsMessage.IUser;
 import B2a.domain.newsMessage.NewsMessage;
 import B2a.domain.ticket.Order;
@@ -69,7 +70,8 @@ public class User extends IUser{
     }
 
     @Override
-    public String update() {
-        return username;
+    public void update(String subject, String message) {
+        EmailService emailService = EmailService.getInstance();
+        emailService.sendNewsLetter(username, subject, message);
     }
 }

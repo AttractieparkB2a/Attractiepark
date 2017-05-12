@@ -10,5 +10,4 @@ public interface NewsMessageService {
     NewsMessage findOne(Long id);
     Iterable<NewsMessage> findAll();
     void findEmails(NewsMessage messageForm);
-    void sendNewsLetter(List<String> email, String subject, String content);
 }

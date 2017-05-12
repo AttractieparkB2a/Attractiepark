@@ -38,7 +38,7 @@
 
             <!-- Lower navigation for Member role -->
             <ul sec:authorize="!hasRole('ROLE_ADMIN')" class="site-navigation">
-                <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></li>
+                <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/orderTicket/ticketOrder}"></a></li>
                 <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
                 <li class="park"><a th:text="#{header.site.park}" th:href="@{/park}"></a></li>
             </ul>
@@ -47,7 +47,7 @@
             <ul sec:authorize="hasRole('ROLE_ADMIN')" class="site-navigation">
                 <li class="news"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
                 <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
-                <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{newsmessage}"></a></li>
+                <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{/newsmessage}"></a></li>
             </ul>
         </nav>
     </header>
@@ -78,7 +78,7 @@
             <li th:if="${#httpServletRequest.remoteUser == null}" class="login"><a th:text="#{header.meta.login}" th:href="@{/login}"></a></li>
             <li th:if="${#httpServletRequest.remoteUser == null}" class="register"><a th:text="#{header.meta.register}" th:href="@{/registration}"></a></li>
             <li class="contact"><a th:text="#{header.meta.contact}" th:href="@{/contact}"></a></li>
-            <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></li>
+            <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/orderTicket/ticketOrder}"></a></li>
             <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
             <li class="park"><a th:text="#{header.site.park}" th:href="@{/park}"></a></li>
         </ul>
@@ -93,7 +93,7 @@
             </li>
             <li class="user"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
             <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
-            <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{newsmessage}"></a></li>
+            <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{/newsmessage}"></a></li>
         </ul>
 
     </header>
@@ -114,7 +114,7 @@
 
                 <!-- Footer menu for Member role -->
                 <ul sec:authorize="!hasRole('ROLE_ADMIN')">
-                    <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></li>
+                    <li class="tickets"><a th:text="#{header.site.tickets}" th:href="@{/orderTicket/ticketOrder}"></a></li>
                     <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
                     <li class="park"><a th:text="#{header.site.park}" th:href="@{/park}"></a></li>
                 </ul>
@@ -123,7 +123,7 @@
                 <ul sec:authorize="hasRole('ROLE_ADMIN')">
                     <li class="user"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
                     <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
-                    <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{newsmessage}"></a></li>
+                    <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{/newsmessage}"></a></li>
                 </ul>
 
             </div>
@@ -148,7 +148,7 @@
             <!-- Mobile footer menu for Member role -->
             <div sec:authorize="!hasRole('ROLE_ADMIN')">
                 <div class="footer-text-layout">
-                    <h4><a th:text="#{header.site.tickets}" th:href="@{orderTicket/ticketOrder}"></a></h4>
+                    <h4><a th:text="#{header.site.tickets}" th:href="@{/orderTicket/ticketOrder}"></a></h4>
                 </div>
                 <div class="footer-text-layout">
                     <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
@@ -167,7 +167,7 @@
                     <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
                 </div>
                 <div class="footer-text-layout">
-                    <h4><a th:text="#{header.site.newsletter}" th:href="@{newsmessage}"></a></h4>
+                    <h4><a th:text="#{header.site.newsletter}" th:href="@{/newsmessage}"></a></h4>
                 </div>
             </div>
 
