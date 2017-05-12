@@ -28,6 +28,6 @@ public class ClosedState extends State {
     @Override
     public void damaged(){
         System.out.println("Attraction was damaged");
-        this.attraction.setState(new ClosedState(this.attraction));
+        this.attraction.setState(new DefectState(this.attraction));
     }
 }
