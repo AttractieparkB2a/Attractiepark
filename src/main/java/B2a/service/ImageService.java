@@ -10,11 +10,12 @@ import java.util.List;
 public interface ImageService {
     void addImage(MultipartFile file, UserImage imageForm);
     void delete(Long id);
+    void deleteImage(Long id);
+
     UserImage findOne(Long id);
     Iterable<UserImage> findAll();
-    LinkedHashMap<Long, Image> findPhotos();
-    Image findPhoto(Long id);
     Long findUserIdById(Long id);
-
-    List<Image> findByUserId(Long id);
+    List<UserImage> findByUserId(Long id);
+    LinkedHashMap<String, Image> findNamesByUser();
+    Image findPhotoByUserId(String name);
 }

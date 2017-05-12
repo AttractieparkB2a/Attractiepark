@@ -5,14 +5,13 @@ import B2a.domain.image.Image;
 import B2a.domain.image.ProxyImage;
 import B2a.domain.image.UserImage;
 import B2a.repository.ImageRepository;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class ImageServiceImpl implements ImageService {
 
     private ImageRepository imageRepository;
     private UserService userService;
-    private LinkedHashMap<Long, Image> images = new LinkedHashMap<>();
+    private LinkedHashMap<String, Image> images = new LinkedHashMap<>();
 
     public ImageServiceImpl(ImageRepository imageRepository, UserService userService) {
         this.imageRepository = imageRepository;
@@ -30,24 +29,29 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public void addImage(MultipartFile file, UserImage imageForm) {
-        byte[] fileContent = null;
-
-        if(file != null) {
-            try {
-                fileContent = file.getBytes();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            BufferedImage bi = ImageIO.read(file.getInputStream());
+            File outputfile = new File("src/main/resources/static/img/" + imageForm.getName() + ".png");
+            ImageIO.write(bi, "png", outputfile);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        imageForm.setImage(fileContent);
-
         imageRepository.save(imageForm);
     }
 
     @Override
     public void delete(Long id) {
         imageRepository.delete(id);
+    }
+
+    @Override
+    public void deleteImage(Long id) {
+        UserImage image = imageRepository.findOne(id);
+
+        File file = new File("src/main/resources/static/img/" + image.getName() + ".png");
+
+        if(file.isFile())
+            file.delete();
     }
 
     @Override
@@ -64,48 +68,32 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public LinkedHashMap<Long, Image> findPhotos() {
-        List<Long> ids = imageRepository.findAllIdByUser_id(userService.findUser().getId());
+    public List<UserImage> findByUserId(Long id) {
+        User user = userService.findById(id);
 
-        for(Long id : ids) {
-            images.put(id, new ProxyImage(id));
-        }
-
-        return images;
-    }
-
-    @Override
-    @Transactional
-    public Image findPhoto(Long id) {
-        Image image = images.get(id);
-        Long userId = image.load();
-        return imageRepository.findOneById(userId);
-    }
-
-    @Override
-    @Transactional
-    public List<Image> findByUserId(Long id) {
-        List<Long> ids = imageRepository.findAllIdByUser_id(id);
-        List<Image> loadedImages = new ArrayList<>();
-
-        for(Long i : ids)
-            loadedImages.add(imageRepository.findOneById(i));
-
-//        for(Long i : ids) {
-//            images.put(i, new ProxyImage(i));
-//        }
-//
-//        for(Image i : images.values()) {
-//            Image image = images.get(i);
-//            image.load();
-//            loadedImages.add(image);
-//        }
-
-        return loadedImages;
+        return imageRepository.findByUser(user);
     }
 
     @Override
     public Long findUserIdById(Long id) {
         return imageRepository.findUserIdById(id);
+    }
+
+    @Override
+    public LinkedHashMap<String, Image> findNamesByUser() {
+        Iterable<String> fileNames = imageRepository.findAllNameByUser(userService.findUser());
+
+        for(String file : fileNames) {
+            images.put(file, new ProxyImage(file));
+        }
+        return images;
+    }
+
+    @Override
+    public Image findPhotoByUserId(String name) {
+        Image image = images.get(name);
+        image.load();
+
+        return image;
     }
 }

@@ -1,23 +1,24 @@
 package B2a.domain.image;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ProxyImage implements Image {
 
     private UserImage userImage;
-    private Long id;
+    private String name;
 
-    public ProxyImage(Long id){
-        this.id = id;
-    }
-
-    public Long getId() {
-        return this.id;
+    public ProxyImage(String name){
+        this.name = name;
     }
 
     @Override
-    public Long load() {
+    public void load() {
         if(userImage == null){
-            userImage = new UserImage(id);
+            userImage = new UserImage(name);
         }
-        return userImage.load();
+        userImage.load();
     }
 }

@@ -1,5 +1,6 @@
 package B2a.domain.attraction;
 
+import B2a.domain.LoadFile;
 import B2a.domain.attractionState.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,8 +10,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.io.File;
-import java.io.FileInputStream;
 
 @Getter
 @Setter
@@ -69,18 +68,8 @@ public class Attraction {
     }
 
     public void customSetImage(String type){
-
-        File file = new File("src/main/resources/static/img/"+type+".png");
-        byte[] bFile = new byte[(int) file.length()];
-
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(bFile);
-            fileInputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        image = bFile;
+        LoadFile loadFile = new LoadFile();
+        image = loadFile.load(type);
     }
 
     public String generateBase64Image(){

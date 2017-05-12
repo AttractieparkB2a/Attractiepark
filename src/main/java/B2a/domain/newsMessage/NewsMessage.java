@@ -44,7 +44,8 @@ public class NewsMessage implements INewsMessage {
 
     @Override
     public void attach(IUser user) {
-        users.add(user);
+        if(!users.contains(user))
+            users.add(user);
     }
 
     @Override

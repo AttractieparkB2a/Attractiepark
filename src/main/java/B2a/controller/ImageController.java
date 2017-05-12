@@ -1,7 +1,7 @@
 package B2a.controller;
 
-import B2a.domain.User;
 import B2a.domain.image.Image;
+import B2a.domain.image.ProxyImage;
 import B2a.domain.image.UserImage;
 import B2a.service.ImageService;
 import B2a.service.UserService;
@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 @Controller
 public class ImageController {
@@ -57,6 +56,10 @@ public class ImageController {
             model.addAttribute("imageForm", imageForm);
             return "image/create";
         }
+
+        if(imageForm.getId() != null)
+            imageService.deleteImage(imageForm.getId());
+
         imageService.addImage(file, imageForm);
 
         return "redirect:/image/index/" + imageForm.getUser().getId();
@@ -74,23 +77,26 @@ public class ImageController {
 
     @RequestMapping(value = "/image/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") String id) {
-        Long user_id = imageService.findUserIdById(Long.parseLong(id));
-        imageService.delete(Long.parseLong(id));
+        Long longId = Long.parseLong(id);
+
+        Long user_id = imageService.findUserIdById(longId);
+        imageService.deleteImage(longId);
+        imageService.delete(longId);
 
         return "redirect:/image/index/" + user_id;
     }
 
     @RequestMapping(value = "/userPhoto", method = RequestMethod.GET)
     public ModelAndView userPhoto() {
-        LinkedHashMap<Long, Image> images = imageService.findPhotos();
+        LinkedHashMap<String, Image> images = imageService.findNamesByUser();
 
         return new ModelAndView("userPhoto", "images", images.values());
     }
 
     @RequestMapping(value = "selectedPhoto/{id}", method = RequestMethod.GET)
-    public ModelAndView selectedPhoto(@PathVariable("id") String id) {
-        Image userImage = imageService.findPhoto(Long.parseLong(id));
+    public ModelAndView selectedPhoto(@PathVariable("id") String id, Model model) {
+        ProxyImage image = (ProxyImage) imageService.findPhotoByUserId(id);
 
-        return new ModelAndView("selectedPhoto", "images", userImage);
+        return new ModelAndView("selectedPhoto", "images", image.getUserImage());
     }
 }
