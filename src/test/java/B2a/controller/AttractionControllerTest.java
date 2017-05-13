@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("production")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public class AttractionControllerTest {
     @Mock
     AttractionManagerIF attractionManagerIF;

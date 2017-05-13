@@ -1,5 +1,6 @@
 package B2a.service;
 
+import B2a.AttractieparkApplication;
 import B2a.domain.attraction.Attraction;
 import B2a.domain.attraction.Rollercoaster;
 import B2a.domain.attractionState.*;
@@ -10,18 +11,19 @@ import B2a.service.concreteService.AttractionManager;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("production")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public class AttractionManagerTest {
     AttractionManagerIF attractionManagerIF;
     AttractionRepository attractionRepository;
