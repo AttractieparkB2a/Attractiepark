@@ -22,8 +22,7 @@ public class TicketManagerTest {
 
     @Test
     public void sqlTicketsCreateTest() {
-//        Iterable<BaseTicket> iterableTickets = ticketManager.getAllTicket();
-//        assertNotNull(iterableTickets);
-        assert(1 == 1);
+        Iterable<BaseTicket> iterableTickets = ticketManager.getAllTicket();
+        assertNotNull(iterableTickets);
         }
     }

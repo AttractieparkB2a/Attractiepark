@@ -1,22 +1,15 @@
 package B2a.service.concreteService;
 
-import B2a.config.HibernateUtil;
 import B2a.domain.attraction.*;
 import B2a.domain.attractionState.State;
 import B2a.repository.AttractionRepository;
 import B2a.repository.StateRepository;
 import B2a.service.abstractService.AttractionManagerIF;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.stereotype.Service;
-//import com.journaldev.hibernate.util.HibernateUtil;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 @Service
 public class AttractionManager implements AttractionManagerIF{

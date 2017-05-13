@@ -8,6 +8,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.io.File;
+
 @Component
 public class ImageValidator implements Validator {
 
@@ -25,6 +27,10 @@ public class ImageValidator implements Validator {
 
         ValidationUtils.rejectIfEmpty(errors, "name", "not.empty");
         ValidationUtils.rejectIfEmpty(errors, "user", "not.empty");
+
+        if(new File("src/main/resources/static/img/" + userImage.getName() + ".png").isFile()) {
+            errors.rejectValue("name", "file.duplicate");
+        }
 
         if(userImage.getFile() != null && userImage.getFile().isEmpty())
             errors.rejectValue("file", "file.empty");

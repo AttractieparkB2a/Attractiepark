@@ -16,7 +16,7 @@
         <div th:each="attraction : ${attractions}" class="attractionListItem col-md-12">
             <div class="col-md-4 img-panel">
 
-                <img width="120" height="180" th:src="@{'data:image/jpeg;base64,'+${attraction.generateBase64Image()}}"/>
+                <img width="120" height="180" th:src="@{'data:image/jpeg;base64,'+${attraction.generateBase64Image()}}" alt="attractionList"/>
 
             </div>
             <div class="col-md-8">

@@ -66,21 +66,6 @@ public class NewsMessageServiceTest {
         assertNotEquals("message", "Test Message4", newsMessage2.getMessage());
     }
 
-    @Test
-    public void findNewsLetters() {
-//        NewsMessage newsMessage = new NewsMessage("Test Subject5", "Test Subject5");
-//        newsMessageService.findEmails(newsMessage);
-//
-//        Iterable<NewsMessage> newsMessages = newsMessageService.findAll();
-//        boolean notSaved = true;
-//        for(NewsMessage n : newsMessages) {
-//            if(newsMessage.getSubject().equals((n.getSubject())))
-//                notSaved = false;
-//        }
-//        assertTrue(notSaved);
-        assert(1 == 1);
-    }
-
     private NewsMessage createNewsMessage(String subject, String message) {
         NewsMessage newsMessage = new NewsMessage();
         newsMessage.setSubject(subject);

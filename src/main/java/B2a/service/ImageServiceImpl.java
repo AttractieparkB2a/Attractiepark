@@ -14,6 +14,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service
 public class ImageServiceImpl implements ImageService {
@@ -21,6 +23,7 @@ public class ImageServiceImpl implements ImageService {
     private ImageRepository imageRepository;
     private UserService userService;
     private LinkedHashMap<String, Image> images = new LinkedHashMap<>();
+    private static final Logger logger = Logger.getLogger(ImageServiceImpl.class.getName());
 
     public ImageServiceImpl(ImageRepository imageRepository, UserService userService) {
         this.imageRepository = imageRepository;
@@ -34,7 +37,7 @@ public class ImageServiceImpl implements ImageService {
             File outputfile = new File("src/main/resources/static/img/" + imageForm.getName() + ".png");
             ImageIO.write(bi, "png", outputfile);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Error in writing image to directory");
         }
         imageRepository.save(imageForm);
     }

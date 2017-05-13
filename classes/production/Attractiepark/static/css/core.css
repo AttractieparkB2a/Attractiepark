@@ -35,7 +35,7 @@ body {
 
 .welcome-text {
     padding-top: 200px;
-    width: 1000px;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -731,6 +731,65 @@ h5 {
     width: 100%;
     background: url(/static/img/park.jpg) no-repeat;
     background-size: contain;
+}
+
+.account-navigation {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    list-style: none;
+    text-align: center;
+    border-bottom: 1px solid #efeaea;
+}
+
+.account-navigation li {
+    float: left;
+    font-family: 'OptimusPrinceps', serif;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    line-height: 30px;
+    height: 30px;
+}
+
+
+.account-navigation a {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: block;
+    transition: .3s background-color;
+    white-space: nowrap;
+}
+
+.account-navigation li:first-child a {
+    padding-left: 0;
+}
+
+.account-navigation a:hover {
+    color: #b9132a;
+}
+
+.account-navigation a.active {
+    color: #b9132a;
+    cursor: default;
+}
+
+.menu-item-active {
+    color: #b9132a;
+}
+
+.form-label {
+    float: left;
+    width: 20%;
+    height: 34px;
+    line-height: 34px;
+}
+
+.smaller-input {
+    float: left;
+    width: 80%;
 }
 
 @media screen and (max-width: 768px) {
