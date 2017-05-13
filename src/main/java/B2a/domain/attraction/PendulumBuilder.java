@@ -1,7 +1,6 @@
 package B2a.domain.attraction;
 
 public class PendulumBuilder extends AttractionBuilder {
-
     private Attraction pendulumRide;
 
     @Override

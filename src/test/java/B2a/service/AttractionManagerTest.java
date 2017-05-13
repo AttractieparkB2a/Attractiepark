@@ -2,6 +2,7 @@ package B2a.service;
 
 import B2a.domain.attraction.Attraction;
 import B2a.domain.attraction.Rollercoaster;
+import B2a.domain.attractionState.*;
 import B2a.repository.AttractionRepository;
 import B2a.repository.StateRepository;
 import B2a.service.abstractService.AttractionManagerIF;
@@ -10,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.Assert;
 
 public class AttractionManagerTest {
@@ -57,18 +60,136 @@ public class AttractionManagerTest {
         Assert.assertEquals("Log boats" ,testAttraction.getTransportType());
     }
 
-
+    // Openening a rollercoaster
     @Test
-    public void changeState(){
+    public void changeStateOpen(){
         // Arrange
         Attraction testAttraction = new Rollercoaster();
-        testAttraction.setId(999l);
+        testAttraction.setId(999L);
 
+        State testState = new ClosedState(testAttraction);
+        testState.setId(9999L);
+        testAttraction.setState( testState );
+
+        String testAction = "open";
+
+        when(stateRepository.save(testState)).thenReturn( testState );
 
         // Act
+        attractionManagerIF.changeState( testAttraction, testAction);
 
         // Assert
+        Assert.assertEquals(WaitingState.class, testAttraction.getCurrentState().getClass());
+    }
 
+    @Test
+    public void changeStateClose(){
+        // Arrange
+        Attraction testAttraction = new Rollercoaster();
+        testAttraction.setId(999L);
+
+        State testState = new WaitingState(testAttraction);
+        testState.setId(9999L);
+        testAttraction.setState( testState );
+
+        String testAction = "close";
+
+        when(stateRepository.save(testState)).thenReturn( testState );
+
+        // Act
+        attractionManagerIF.changeState( testAttraction, testAction);
+
+        // Assert
+        Assert.assertEquals(ClosedState.class, testAttraction.getCurrentState().getClass());
+    }
+
+
+    @Test
+    public void changeStateDamage(){
+        // Arrange
+        Attraction testAttraction = new Rollercoaster();
+        testAttraction.setId(999L);
+
+        State testState = new WaitingState(testAttraction);
+        testState.setId(9999L);
+        testAttraction.setState( testState );
+
+        String testAction = "damage";
+
+        when(stateRepository.save(testState)).thenReturn( testState );
+
+        // Act
+        attractionManagerIF.changeState( testAttraction, testAction);
+
+        // Assert
+        Assert.assertEquals(DefectState.class, testAttraction.getCurrentState().getClass());
+    }
+
+
+    @Test
+    public void changeStateStart(){
+        // Arrange
+        Attraction testAttraction = new Rollercoaster();
+        testAttraction.setId(999L);
+
+        State testState = new WaitingState(testAttraction);
+        testState.setId(9999L);
+        testAttraction.setState( testState );
+
+        String testAction = "start";
+
+        when(stateRepository.save(testState)).thenReturn( testState );
+
+        // Act
+        attractionManagerIF.changeState( testAttraction, testAction);
+
+        // Assert
+        Assert.assertEquals(RunningState.class, testAttraction.getCurrentState().getClass());
+    }
+
+
+
+    @Test
+    public void changeStateStartInvalid(){
+        // Arrange
+        Attraction testAttraction = new Rollercoaster();
+        testAttraction.setId(999L);
+
+        State testState = new ClosedState(testAttraction);
+        testState.setId(9999L);
+        testAttraction.setState( testState );
+
+        String testAction = "start";
+
+        when(stateRepository.save(testState)).thenReturn( testState );
+
+        // Act
+        attractionManagerIF.changeState( testAttraction, testAction);
+
+        // Assert
+        Assert.assertEquals(ClosedState.class, testAttraction.getCurrentState().getClass());
+    }
+
+
+    @Test
+    public void changeStateCloseInvalid(){
+        // Arrange
+        Attraction testAttraction = new Rollercoaster();
+        testAttraction.setId(999L);
+
+        State testState = new RunningState(testAttraction);
+        testState.setId(9999L);
+        testAttraction.setState( testState );
+
+        String testAction = "close";
+
+        when(stateRepository.save(testState)).thenReturn( testState );
+
+        // Act
+        attractionManagerIF.changeState( testAttraction, testAction);
+
+        // Assert
+        Assert.assertEquals(RunningState.class, testAttraction.getCurrentState().getClass());
     }
 
 }
