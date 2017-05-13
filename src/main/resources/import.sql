@@ -19,3 +19,8 @@ insert into park_user (address, birthday, city, first_name, last_name, newslette
 insert into park_user (address, birthday, city, first_name, last_name, newsletter, password, username, zipcode, role_id) values ('Beren-straat 193', '1996-01-28 00:00:00', 'Amsterdam', 'Bart', 'Helleman', FALSE, '$2a$10$6AtBQ6d2FBa0q7jIkJfIDuaNf03rpRz7TRzix1F8A8gPwbmUuLVF6', 'b.helleman1@student.avans.nl', '1938 MK', 1);
 insert into park_user (address, birthday, city, first_name, last_name, newsletter, password, username, zipcode, role_id) values ('Haagweg 72', '1991-03-23 00:00:00', 'Breda', 'Ferdinand', 'van Disseldorp', FALSE, '$2a$10$wreYxlnR9qPdTECU1Brmsu.hx3q2Ar5fniNaZUyuhGNA6ufcKNOLW', 'fjp.vandisseldorp@student.avans.nl', '4812 XB', 1);
 insert into park_user (address, birthday, city, first_name, last_name, newsletter, password, username, zipcode, role_id) values ('Handelsweg 23', '1983-09-11 00:00:00', 'Emmen', 'Mohamed', 'Charif', FALSE, '$2a$10$a7pcN3yeNRGX2DWiW0BggeNVuH6Ik0BSPEq.rvpi8I1pOXaclDp1.', 'm.charif@student.avans.nl', '7928 KI', 1);
+
+-- UserImage
+insert into user_image (name, user_id) values ('mickey', 2);
+insert into user_image (name, user_id) values ('goofy', 2);
+insert into user_image (name, user_id) values ('donald', 2);

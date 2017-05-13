@@ -1,5 +1,6 @@
 package B2a.domain.image;
 
+import B2a.domain.LoadFile;
 import B2a.domain.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class UserImage implements Image {
     @Transient
     private MultipartFile file;
 
+    @Transient
     @Lob()
     private byte[] image;
 
@@ -32,16 +34,19 @@ public class UserImage implements Image {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public UserImage(Long id) {
-        this.id = id;
+    public UserImage(String name) {
+        this.name = name;
     }
 
-    public String generateBase64Image() {
+    public String display() {
         return Base64.encodeBase64String(this.getImage());
     }
 
     @Override
-    public Long load() {
-        return id;
+    public void load() {
+        LoadFile loadFile = new LoadFile();
+        image = loadFile.load(name);
+
+        System.out.println("Loaded image: " + name);
     }
 }
