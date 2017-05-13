@@ -2,6 +2,7 @@ package B2a.controller;
 
 import B2a.domain.attraction.Attraction;
 import B2a.domain.attraction.Rollercoaster;
+import B2a.domain.attractionState.State;
 import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,11 +43,18 @@ public class AttractionController {
     // POST THE ACTION ON BUTTON CLICK
     @RequestMapping(value = "attraction/adminAttractionsList", method = RequestMethod.POST)
     public String adminAttractionsList(@ModelAttribute("attraction") Attraction attraction, Model model, @RequestParam(value="action", required = true) String action){
-        //System.out.println("getting attraction with id: " + attraction.getId());
-        Attraction a = attractionManagerIF.findAttraction( attraction.getId() );
-        System.out.println("attraction = " + attraction.getName() + " with id: " + attraction.getId());
-        //System.out.println("a = " + a.getName() + " with id: " + a.getId());
-        attractionManagerIF.changeState(attraction, action);
+        System.out.println("Attraction = " + attraction.getName() + " with id: " + attraction.getId());
+
+        Attraction attractionWithState = attractionManagerIF.findAttraction(attraction.getId());
+        System.out.println("State id = " + attractionWithState.getCurrentState().getId());
+
+        attractionManagerIF.changeState(attractionWithState, action);
+
+        Attraction attractionChanged = attractionManagerIF.findAttraction(attraction.getId());
+        System.out.println("---------------------------------------------------------");
+        System.out.println("Attraction = " + attractionChanged.getName() + " with id: " + attraction.getId());
+        System.out.println("State id = " + attractionChanged.getCurrentState().getId());
+
         return "redirect:/attraction/adminAttractionsList";
     }
 

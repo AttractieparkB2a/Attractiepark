@@ -11,4 +11,14 @@ public class HomeController {
     public String index() {
         return "home";
     }
+
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public String contact() {
+        return "contact";
+    }
+
+    @RequestMapping(value = "/park", method = RequestMethod.GET)
+    public String park() {
+        return "park";
+    }
 }

@@ -1,23 +1,19 @@
 package B2a.domain.attraction;
 
 public class WaterBuilder extends AttractionBuilder {
-    Attraction waterAttraction;
+
+    private Attraction waterAttraction;
 
     @Override
     public Attraction createNewAttraction() {
         waterAttraction = new Attraction();
-        setName();
-        setDuration();
-        setMinimumHeight();
-        setTransportType();
-        setAmountStaff();
-        setImage();
+        build();
         return waterAttraction;
     }
 
     @Override
     public void setName() {
-        waterAttraction.setName("Waterrrride");
+        waterAttraction.setName("Waterride");
     }
 
     @Override

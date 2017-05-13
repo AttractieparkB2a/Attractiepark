@@ -1,7 +1,9 @@
 package B2a.service.concreteService;
 
 import B2a.domain.attraction.*;
+import B2a.domain.attractionState.State;
 import B2a.repository.AttractionRepository;
+import B2a.repository.StateRepository;
 import B2a.service.abstractService.AttractionManagerIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,34 +14,37 @@ import java.util.ArrayList;
 @Service
 public class AttractionManager implements AttractionManagerIF{
     private AttractionBuilder builder;
+
     @Autowired
     private final AttractionRepository attractionRepository;
+    private final StateRepository stateRepository;
 
-    public AttractionManager(AttractionRepository attractionRepository){
+    public AttractionManager(AttractionRepository attractionRepository, StateRepository stateRepository){
         this.attractionRepository = attractionRepository;
+        this.stateRepository = stateRepository;
     }
 
     @Override
     public Attraction createNewAttraction(String type) {
         switch(type){
             case "rollercoaster":
-                System.out.println("rollercoaster");
+                System.out.println("rollercoaster builder set");
                 builder = new RollercoasterBuilder();
                 break;
             case "pendulum":
-                System.out.println("pendulum");
+                System.out.println("pendulum builder set");
                 builder = new PendulumBuilder();
                 break;
             case "waterattraction":
-                System.out.println("water");
+                System.out.println("water builder set");
                 builder = new WaterBuilder();
                 break;
             default:
                 System.out.println("Default reached");
         }
-        Attraction attraction = builder.createNewAttraction();
+        Attraction attraction = builder.createNewAttraction(); // print constructor
+        System.out.println("Building a new attraction and saving it");
         attractionRepository.save(attraction);
-
         return attraction;
     }
 
@@ -53,8 +58,10 @@ public class AttractionManager implements AttractionManagerIF{
         return attractionRepository.findAll();
     }
 
+
     // FIND ONE ATTRACTION BY IT'S ID
-    public Attraction findAttraction(long id){
+    @Override
+    public Attraction findAttraction(Long id){
         return attractionRepository.findOne(id);
     }
 
@@ -65,12 +72,9 @@ public class AttractionManager implements AttractionManagerIF{
         for(Attraction a : attractions){
             boolean inList = false;
 
-            // Write code to compare with list.
-
             if(inList == false){
                 returnIter.add(a.getTransportType() );
             }
-
         }
 
         return null;
@@ -79,13 +83,15 @@ public class AttractionManager implements AttractionManagerIF{
 
     @Transactional
     public void changeState(Attraction attraction, String action){
-        System.out.println("attraction in manager: " + attraction);
-        System.out.println("action in manager: " + action);
+        State oldState = stateRepository.save( attraction.getCurrentState() );
+        long oldId = oldState.getId();
+
         switch(action){
             case "open":
                 attraction.open();
-                //attractionRepository.save(attraction);
-                System.out.println("status after in manager = " + attraction.getCurrentState());
+                break;
+            case "start":
+                attraction.start();
                 break;
             case "stop":
                 attraction.stop();
@@ -101,34 +107,15 @@ public class AttractionManager implements AttractionManagerIF{
                 break;
         }
 
-        updateAttraction(attraction);
-
-
-//        System.out.println("test attractie" + attraction.getCurrentState() );
-//        Attraction tempA = attractionRepository.findOne( attraction.getId() );
-//        tempA.setState( attraction.getCurrentState() );
-//
-//
-//
-//        //attractionRepository.delete( attraction.getId() );
-//        attractionRepository.save(tempA);
+        State newState = attraction.getCurrentState();
+        newState.setAttraction( attraction );
+        stateRepository.save( newState  ); // Give newstate an id.
+        stateRepository.delete( oldId );
+        //stateRepository.delete( oldState.getId() );
     }
 
-
-    @Transactional
-    public void updateAttraction(Attraction toDeleteAttraction){
-
-        System.out.println("test attractie" + toDeleteAttraction.getCurrentState() );
-        Attraction tempA = new Attraction();
-        tempA.setName( toDeleteAttraction.getName() );
-        tempA.setDuration( toDeleteAttraction.getDuration() );
-        tempA.setAmountStaff( toDeleteAttraction.getAmountStaff() );
-
-        tempA.setState( toDeleteAttraction.getCurrentState() );
-
-        //attractionRepository.delete( toDeleteAttraction.getId() );
-        attractionRepository.save(tempA);
-
+    @Override
+    public void deleteState(Long id) {
+        stateRepository.delete(id);
     }
-
 }

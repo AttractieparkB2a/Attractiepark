@@ -1,7 +1,7 @@
 package B2a.model;
 
 import B2a.domain.User;
-import B2a.domain.order.Order;
+import B2a.domain.ticket.Order;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
 import lombok.Getter;

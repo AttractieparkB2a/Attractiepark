@@ -11,8 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -66,8 +70,22 @@ public class UserController {
     public String account(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(authentication.getName());
-        model.addAttribute("user", user);
+        model.addAttribute("userForm", user);
 
-        return "account";
+        return "registration";
+    }
+
+    @RequestMapping(value = "/user/index", method = RequestMethod.GET)
+    public ModelAndView index() {
+        List<User> users = userService.findAll();
+
+        return new ModelAndView("/user/index", "users", users);
+    }
+
+    @RequestMapping(value = "/user/role/{id}", method = RequestMethod.GET)
+    public String role(@PathVariable("id") String id) {
+        userService.switchRole(Long.parseLong(id));
+
+        return  "redirect:/user/index";
     }
 }

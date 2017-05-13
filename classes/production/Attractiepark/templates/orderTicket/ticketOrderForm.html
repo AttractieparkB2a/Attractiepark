@@ -5,7 +5,7 @@
       layout:decorator="_layout">
 
 <head>
-    <title>Attractiepark | Ticket</title>
+    <title th:text="#{order.title}"></title>
 </head>
 
 <body>
@@ -14,6 +14,7 @@
 
     <section id="home" class="home-section">
         <div class="page-container">
+<<<<<<< HEAD
             <div class="col-lg-12 extra-padding" style="width: 50%">
                 <h5>Order ticket</h5>
 
@@ -34,15 +35,37 @@
                 </form>
 
 
+=======
+            <div class="col-lg-12 extra-padding">
+                <h5 th:text="#{order.step2}"></h5>
+
+                    <form th:action="@{ticketOrderForm}" th:object="${ticketModel}" method="post">
+                        <div th:each="tproducts, stat : ${ticketModel.ticketProducts}">
+                            <div class="tproducts">
+
+                                <label th:text="#{order.ticketName}"></label>
+                                <input class="form-control input-margin" type="text"
+                                       th:name="|tickets[__${stat.index}__].name|"  th:value="${tproducts.name}" readonly="readonly" />
+
+                                <label th:text="#{order.description}"></label>
+                                <input class="form-control input-margin" type="text"
+                                       th:placeholder="${tproducts.description}" readonly="readonly" />
+                                <input class="form-control input-margin" type="text"
+                                       th:name="|tickets[__${stat.index}__].price|" th:value="${tproducts.price}" readonly="readonly" style="display: none;"/>
+
+                                <label th:text="#{order.amount}"></label>
+                                <input class="form-control input-margin" type="text"
+                                       th:field="*{tickets[__${stat.index}__].amount}" th:placeholder="Amount" />
+                            </div>
+                        </div>
+                        <input type="submit" value="Bestel" class="btn-subscribe" />
+                    </form>
+>>>>>>> 450923d539c4c597a14787ec84f1cf5b4358d8f2
             </div>
         </div>
     </section>
 
-
 </div>
 
-<th:block layout:fragment="scripts">
-    <script type="text/javascript" src="/static/js/mail.result.js"></script>
-</th:block>
 </body>
 </html>

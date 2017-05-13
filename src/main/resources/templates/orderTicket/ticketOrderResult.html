@@ -14,6 +14,7 @@
                 <h5 th:text="#{order.step3}"></h5>
 
                 <form th:action="@{ticketOrderResult}" th:object="${order}" method="post">
+
                     <b th:text="#{account.check}"> </b>
 
                     <p th:text="#{account.firstname}"></p>
@@ -40,6 +41,7 @@
                            th:field="*{account.city}"
                            th:placeholder="#{account.city}"
                            th:value="${order.account.city}" readonly="readonly"/>
+
 
                     <label th:text="#{order.total}"></label>
                         <span th:each="o : ${order.order}">

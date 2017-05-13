@@ -1,7 +1,10 @@
 package B2a.domain;
 
 import B2a.domain.image.UserImage;
+import B2a.domain.newsMessage.EmailService;
 import B2a.domain.newsMessage.IUser;
+import B2a.domain.newsMessage.NewsMessage;
+import B2a.domain.ticket.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,17 +13,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
+@Table(name = "park_user")
 public class User extends IUser{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
@@ -48,6 +50,12 @@ public class User extends IUser{
     @OneToMany(mappedBy = "user")
     List<UserImage> userImages;
 
+    @OneToMany(mappedBy = "clientId")
+    List<Order> orders;
+
+    @ManyToMany(mappedBy = "user")
+    List<NewsMessage> newsMessages;
+
     public User(String username, String password, String passwordConfirm, String firstName, String lastName, Date birthday, String address, String city, String zipcode, boolean newsletter) {
         this.username = username;
         this.password = password;
@@ -62,7 +70,8 @@ public class User extends IUser{
     }
 
     @Override
-    public String update() {
-        return username;
+    public void update(String subject, String message) {
+        EmailService emailService = EmailService.getInstance();
+        emailService.sendNewsLetter(username, subject, message);
     }
 }

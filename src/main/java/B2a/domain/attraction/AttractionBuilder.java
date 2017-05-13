@@ -1,8 +1,6 @@
 package B2a.domain.attraction;
 
 public abstract class AttractionBuilder {
-    //Attraction attraction;
-
     public abstract Attraction createNewAttraction();
 
     public abstract void setName();
@@ -11,5 +9,13 @@ public abstract class AttractionBuilder {
     public abstract void setTransportType();
     public abstract void setAmountStaff();
     public abstract void setImage();
-    //public abstract void setState();
+
+    void build() {
+        setName();
+        setDuration();
+        setMinimumHeight();
+        setTransportType();
+        setAmountStaff();
+        setImage();
+    }
 }

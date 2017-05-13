@@ -1,13 +1,15 @@
 package B2a.domain.ticket;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
 
-@Entity
+@NoArgsConstructor
 @Getter
 @Setter
+@Entity
 public class TicketOption extends DecoratedTicket {
 
     private String name;

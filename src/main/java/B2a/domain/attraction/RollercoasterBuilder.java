@@ -1,28 +1,18 @@
 package B2a.domain.attraction;
 
-import B2a.domain.attractionState.ClosedState;
-
 public class RollercoasterBuilder extends AttractionBuilder {
-    Attraction rollercoaster;
-
+    private Attraction rollercoaster;
 
     @Override
     public Attraction createNewAttraction() {
         rollercoaster = new Attraction();
-        setName();
-        setDuration();
-        setMinimumHeight();
-        setTransportType();
-        setAmountStaff();
-        setImage();
-        //setState();
+        build();
         return rollercoaster;
-
     }
 
     @Override
     public void setName() {
-        rollercoaster.setName("rollercoasterrrrrr");
+        rollercoaster.setName("rollercoaster");
     }
 
     @Override
@@ -49,12 +39,4 @@ public class RollercoasterBuilder extends AttractionBuilder {
     public void setImage() {
         rollercoaster.customSetImage("rollercoaster");
     }
-
-//    public void setState(){
-//        ClosedState test = new ClosedState(rollercoaster);
-//        //test.setName("teststate");
-//        rollercoaster.setState(test);
-//    }
-
-
 }
