@@ -90,6 +90,9 @@ public class AttractionManager implements AttractionManagerIF{
             case "open":
                 attraction.open();
                 break;
+            case "start":
+                attraction.start();
+                break;
             case "stop":
                 attraction.stop();
                 break;
@@ -108,6 +111,7 @@ public class AttractionManager implements AttractionManagerIF{
         newState.setAttraction( attraction );
         stateRepository.save( newState  ); // Give newstate an id.
         stateRepository.delete( oldId );
+        //stateRepository.delete( oldState.getId() );
     }
 
     @Override

@@ -1,7 +1,6 @@
 package B2a.domain.attraction;
 
 public class RollercoasterBuilder extends AttractionBuilder {
-
     private Attraction rollercoaster;
 
     @Override
