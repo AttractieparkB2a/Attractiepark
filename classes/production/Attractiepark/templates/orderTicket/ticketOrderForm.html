@@ -16,6 +16,8 @@
         <div class="page-container">
             <div class="col-lg-12 extra-padding" style="width: 50%">
                 <h5>Order ticket</h5>
+
+
                 <form th:object="${order}" th:action="@{ticketOrderForm}" method="post">
                     <b>Kies type ticket</b>
 
@@ -26,13 +28,12 @@
                             </select>
                         </span>
                     </div>
-
-                        <b>Kies Datum:</b>
-                        <input type="date" name="date" class="form-control"/>
                     <div>
                         <input type="submit" value="Bestel"/>
                     </div>
                 </form>
+
+
             </div>
         </div>
     </section>

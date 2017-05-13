@@ -3,12 +3,14 @@ package B2a.controller;
 import B2a.domain.User;
 import B2a.domain.ticket.Ticket;
 import B2a.domain.ticket.TicketOption;
-import B2a.model.ticket.TicketModel;
 import B2a.model.OrderModel;
+import B2a.model.ticket.TicketModel;
 import B2a.service.UserService;
-import B2a.service.abstractService.OrderManagerIF;
 import B2a.service.abstractService.TicketManagerIF;
 import B2a.service.abstractService.TicketProductService;
+import B2a.service.concreteService.OrderManager;
+import B2a.validator.OrderUserValidator;
+import B2a.validator.OrderValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,20 +21,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
 public class TicketController {
 
-    private OrderManagerIF orderManager;
+    private OrderManager orderManager;
     private TicketManagerIF ticketManager;
     private UserService userService;
     private TicketProductService ticketProductService;
     private TicketModel ticketModel;
     private OrderModel order = new OrderModel();
+    private OrderUserValidator orderUserValidator;
+    private OrderValidator orderValidator;
 
-    public TicketController(OrderManagerIF orderManager, TicketManagerIF ticketManager, UserService userService, TicketProductService ticketProductService) {
+    public TicketController(OrderManager orderManager, TicketManagerIF ticketManager, UserService userService, TicketProductService ticketProductService) {
         this.orderManager = orderManager;
         this.ticketManager = ticketManager;
         this.userService = userService;
@@ -47,6 +50,7 @@ public class TicketController {
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.GET)
     public String ticketOrder(Model model) {
         User account = userService.findUser();
+        this.orderUserValidator = new OrderUserValidator(userService);
 
         if(account != null) {
             order.setAccount(account);
@@ -58,7 +62,14 @@ public class TicketController {
     }
 
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.POST)
-    public String ticketOrder() {
+    public String ticketOrder(@ModelAttribute("account") User account, BindingResult result, Model model) {
+        orderUserValidator.validate(account, result);
+
+        if (result.hasErrors()) {
+            model.addAttribute("account", account);
+            return "orderTicket/ticketOrder";
+        }
+
         orderManager.addMemento(order);
         return "redirect:/orderTicket/ticketOrderForm";
     }
@@ -102,8 +113,7 @@ public class TicketController {
            }
        }
        order.setOption(option);
-
-        orderManager.addMemento(order);
+       orderManager.addMemento(order);
        return "redirect:/orderTicket/ticketOrderResult";
     }
 
@@ -114,23 +124,33 @@ public class TicketController {
     public ModelAndView ticketOrderResult() {
 
         int totalPrice = 0;
-
         for (Ticket t: order.getTicket()){
             totalPrice += t.getPrice() * t.getAmount();
         }
+
         for(TicketOption o : order.getOption()) {
             totalPrice += o.getPrice() * o.getAmount();
         }
 
         order.getOrder().setTotalPrice(totalPrice);
-        order.getOrder().setDate(new Date());
+        //order.getOrder().setDate(new Date());
 
         return new ModelAndView("orderTicket/ticketOrderResult", "order", order);
     }
 
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.POST)
-    public String ticketOrderResult(Model model, @RequestParam String action) {
+    public String ticketOrderResult(@RequestParam String action, OrderModel eOrder, BindingResult result, Model model) {
         if (action.equals("buy")) {
+
+            order.getOrder().setDate(eOrder.getOrder().getDate());
+            this.orderValidator = new OrderValidator(orderManager);
+            orderValidator.validate(order, result);
+
+            if (result.hasErrors()) {
+                model.addAttribute("order", order);
+                return "orderTicket/ticketOrderResult";
+            }
+
 
             ticketManager.createTicket(order);
             ticketManager.decorateTicket(order);
@@ -138,7 +158,6 @@ public class TicketController {
             for (Ticket t: order.getTicket()) {
                 order.getOrder().setTicketId(t.getId());
             }
-
             orderManager.createOrder(order.getOrder());
         }else if(action.equals("cancel")){
             order = orderManager.getMemento(0);
