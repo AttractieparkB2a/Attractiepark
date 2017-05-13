@@ -1,6 +1,5 @@
 package B2a.controller;
 
-import B2a.AttractieparkApplication;
 import B2a.repository.ImageRepository;
 import B2a.repository.UserRepository;
 import org.junit.Before;
@@ -12,14 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -53,8 +49,7 @@ public class ImageControllerTest {
     public void index() throws Exception {
         this.mockMvc.perform(
                 get("/image/index/1"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>Foto | Overzicht")));
+                .andExpect(status().isOk());
     }
 
     @Test

@@ -1,6 +1,5 @@
 package B2a.service;
 
-import B2a.AttractieparkApplication;
 import B2a.domain.User;
 import B2a.domain.image.UserImage;
 import B2a.repository.UserRepository;
@@ -9,9 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 
