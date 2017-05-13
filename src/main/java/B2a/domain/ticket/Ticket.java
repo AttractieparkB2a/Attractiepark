@@ -17,7 +17,7 @@ public class Ticket extends BaseTicket {
 
     private String name;
     private int amount;
-    public int price;
+    private int price;
 
     @ManyToOne
     @JoinColumn(name = "order_id")

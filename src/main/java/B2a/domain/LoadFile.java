@@ -2,8 +2,12 @@ package B2a.domain;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoadFile {
+
+    private static final Logger logger = Logger.getLogger(LoadFile.class.getName());
 
     public byte[] load(String name) {
         File file = new File("src/main/resources/static/img/"+ name +".png");
@@ -14,7 +18,7 @@ public class LoadFile {
             fileInputStream.read(bFile);
             fileInputStream.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Error in converting file to byte[]");
         }
         return bFile;
     }

@@ -1,6 +1,5 @@
 package B2a.service;
 
-
 import B2a.domain.ticket.BaseTicket;
 import B2a.service.concreteService.TicketManager;
 import org.junit.Test;
@@ -22,8 +21,7 @@ public class TicketManagerTest {
 
     @Test
     public void sqlTicketsCreateTest() {
-//        Iterable<BaseTicket> iterableTickets = ticketManager.getAllTicket();
-//        assertNotNull(iterableTickets);
-        assert(1 == 1);
+        Iterable<BaseTicket> iterableTickets = ticketManager.getAllTicket();
+        assertNotNull(iterableTickets);
         }
     }

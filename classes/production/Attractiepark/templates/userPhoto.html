@@ -15,9 +15,16 @@
     <section id="home" class="home-section">
         <div class="page-container">
             <div class="col-lg-12 extra-padding">
+                <ul class="account-navigation">
+                    <li><a th:text="#{account.header.account}" th:href="@{account}"></a></li>
+                    <li><a th:text="#{account.header.photo}"></a></li>
+                    <li><a th:text="#{account.header.ticket}" th:href="@{ticketOverview}"></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12 extra-padding">
                 <div th:each="image : ${images}">
                     <div class="photo-holder">
-                        <a href="userPhoto.html" th:href="@{'/selectedPhoto/' + ${image.id}}" th:text="${image.id}"></a>
+                        <a href="userPhoto.html" th:href="@{'/selectedPhoto/' + ${image.name}}" th:text="${image.name}"></a>
                     </div>
                 </div>
             </div>

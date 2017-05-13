@@ -54,6 +54,8 @@ public class ImageController {
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("imageForm", imageForm);
+            model.addAttribute("users", imageForm.getUser());
+
             return "image/create";
         }
 
