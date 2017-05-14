@@ -36,6 +36,11 @@
                            th:placeholder="#{account.address}"
                            th:value="${order.account.address}" readonly="readonly"/>
 
+                    <p th:text="#{account.zipcode}"></p>
+                    <input type="text" name="zipcode" class="form-control"
+                           th:field="*{account.zipcode}"
+                           th:placeholder="#{account.zipcode}" readonly="readonly"/>
+
                     <p th:text="#{account.city}"></p>
                     <input type="text" name="city" class="form-control"
                            th:field="*{account.city}"
@@ -52,11 +57,17 @@
                             <div class="error-message" th:each="err : ${#fields.errors('order.totalPrice')}" th:text="${err}"></div>
                         </span>
 
+                    <label th:text="#{order.date}"></label>
                     <input type="date" name="date" class="form-control"
                            th:field="*{order.date}"
                            th:classappend="${#fields.hasErrors('order.date')} ? 'has-error'"
-                           th:value="${order.order.date}"/>
+                           th:value="${order.order.date}"
+                           th:required="true"/>
                     <div class="error-message" th:each="err : ${#fields.errors('order.date')}" th:text="${err}"></div>
+
+
+
+
 
                     <div>
                         <input type="submit" name="action" value="buy" />
