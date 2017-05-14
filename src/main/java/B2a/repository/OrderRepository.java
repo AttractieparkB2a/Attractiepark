@@ -8,6 +8,6 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
     @Override
     Iterable<Order> findAll();
 
-    Order findByClientId(User user);
+    Iterable<Order> findAllByClientId(User user);
 }
 

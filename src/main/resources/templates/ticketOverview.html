@@ -24,30 +24,34 @@
 
                 <div class="col-lg-6 extra-padding">
                     <h5 th:text="#{ticketOverview.order.form}"></h5>
-
-                    <div th:if="${order == null}">
-                        Geen order beschikbaar
-                    </div>
-
-                    <div th:if="${order != null}">
-                        <form th:object="${order}" method="post">
-                            <label class="form-label extra-input-margin" th:text="#{ticketOverview.order.date}"></label><input type="date" name="date" th:type="date" class="form-control extra-input-margin smaller-input" th:value="${#dates.format(order.date, 'yyyy-MM-dd')}" readonly="readonly"/>
-                            <label class="form-label input-margin" th:text="#{ticketOverview.order.totalPrice}"></label><input type="text" name="totalPrice" class="form-control input-margin smaller-input" th:value="${order.totalPrice}" readonly="readonly"/>
-                        </form>
-                    </div>
                 </div>
 
                 <div class="col-lg-6 extra-padding">
                     <h5 th:text="#{ticketOverview.ticket.form}"></h5>
+                </div>
 
-                    <div th:if="${order != null}">
-                        <div th:each="t : ${tickets}">
-                            <form th:object="${t}" method="post">
-                                <label class="form-label extra-input-margin" th:text="#{ticketOverview.ticket.name}"></label><input type="text" name="name" class="form-control extra-input-margin smaller-input" th:value="${t.name}" readonly="readonly"/>
-                                <label class="form-label input-margin" th:text="#{ticketOverview.ticket.amount}"></label><input type="text" name="amount" class="form-control input-margin smaller-input" th:value="${t.amount}" readonly="readonly"/>
-                                <label class="form-label input-margin" th:text="#{ticketOverview.ticket.price}"></label><input type="text" name="price" class="form-control input-margin smaller-input" th:value="${t.price}" readonly="readonly"/>
+                <div th:each="o : ${orders}">
+                    <div class="">
+
+                        <div class="col-lg-6 extra-padding">
+                            <form th:object="${o}" method="post">
+                                <label class="form-label extra-input-margin" th:text="#{ticketOverview.order.date}"></label><input type="date" name="date" th:type="date" class="form-control extra-input-margin smaller-input" th:value="${#dates.format(o.date, 'yyyy-MM-dd')}" readonly="readonly"/>
+                                <label class="form-label input-margin" th:text="#{ticketOverview.order.totalPrice}"></label><input type="text" name="totalPrice" class="form-control input-margin smaller-input" th:value="${o.totalPrice}" readonly="readonly"/>
                             </form>
                         </div>
+
+                        <div class="col-lg-6 extra-padding">
+                            <div th:each="t : ${tickets}">
+                                <div th:if="${o.id == t.order.id}">
+                                    <form th:object="${t}" method="post">
+                                        <label class="form-label extra-input-margin" th:text="#{ticketOverview.ticket.name}"></label><input type="text" name="name" class="form-control extra-input-margin smaller-input" th:value="${t.name}" readonly="readonly"/>
+                                        <label class="form-label input-margin" th:text="#{ticketOverview.ticket.amount}"></label><input type="text" name="amount" class="form-control input-margin smaller-input" th:value="${t.amount}" readonly="readonly"/>
+                                        <label class="form-label input-margin" th:text="#{ticketOverview.ticket.price}"></label><input type="text" name="price" class="form-control input-margin smaller-input" th:value="${t.price}" readonly="readonly"/>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

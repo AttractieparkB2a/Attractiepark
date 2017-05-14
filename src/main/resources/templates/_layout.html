@@ -46,7 +46,7 @@
             <!-- Lower navigation for Admin role -->
             <ul sec:authorize="hasRole('ROLE_ADMIN')" class="site-navigation">
                 <li class="news"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
-                <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+                <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/adminAttractionsList}"></a></li>
                 <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{/newsmessage}"></a></li>
             </ul>
         </nav>
@@ -92,7 +92,7 @@
                 </form>
             </li>
             <li class="user"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
-            <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+            <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/adminAttractionsList}"></a></li>
             <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{/newsmessage}"></a></li>
         </ul>
 
@@ -122,7 +122,7 @@
                 <!-- Footer menu for Admin role -->
                 <ul sec:authorize="hasRole('ROLE_ADMIN')">
                     <li class="user"><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></li>
-                    <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></li>
+                    <li class="attractions"><a th:text="#{header.site.attractions}" th:href="@{/attraction/adminAttractionsList}"></a></li>
                     <li class="newsletter"><a th:text="#{header.site.newsletter}" th:href="@{/newsmessage}"></a></li>
                 </ul>
 
@@ -164,7 +164,7 @@
                     <h4><a th:text="#{header.site.user}" th:href="@{/user/index}"></a></h4>
                 </div>
                 <div class="footer-text-layout">
-                    <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/attractionsList}"></a></h4>
+                    <h4><a th:text="#{header.site.attractions}" th:href="@{/attraction/adminAttractionsList}"></a></h4>
                 </div>
                 <div class="footer-text-layout">
                     <h4><a th:text="#{header.site.newsletter}" th:href="@{/newsmessage}"></a></h4>

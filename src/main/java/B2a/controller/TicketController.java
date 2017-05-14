@@ -177,10 +177,15 @@ public class TicketController {
         User user = userService.findUser();
 
         if(user != null) {
-            Order order = orderManager.findByClientId(user);
-            model.addAttribute("order", order);
+            Iterable<Order> orders = orderManager.findByClientId(user);
+            model.addAttribute("orders", orders);
 
-            Iterable<Ticket> tickets = ticketManager.findByOrderId(order);
+            List<Ticket> tickets = new ArrayList<>();
+
+            for(Order o : orders) {
+                List<Ticket> tempTicket = ticketManager.findByOrderId(o);
+                tickets.addAll(tempTicket);
+            }
             model.addAttribute("tickets", tickets);
         }
 

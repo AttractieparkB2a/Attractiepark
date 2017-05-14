@@ -14,7 +14,7 @@
                 <h5 th:text="#{order.step1}"></h5>
                 <form th:action="@{ticketOrder}" th:object="${account}" method="post">
 
-                    <b th:text="#{account.check}"> </b>
+                    <strong th:text="#{account.check}"> </strong>
 
                     <input type="text" name="username" class="form-control" th:classappend="${#fields.hasErrors('username')} ? 'has-error'"
                            th:value="${account.username}" th:placeholder="#{account.email}" th:required="true"/>

@@ -53,8 +53,10 @@ public class ImageServiceImpl implements ImageService {
 
         File file = new File("src/main/resources/static/img/" + image.getName() + ".png");
 
-        if(file.isFile())
-            file.delete();
+        if(file.isFile()) {
+            if(file.delete())
+                logger.log(Level.FINE, "Successful deleted from directory");
+        }
     }
 
     @Override

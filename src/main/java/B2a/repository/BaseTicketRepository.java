@@ -5,11 +5,13 @@ import B2a.domain.ticket.Order;
 import B2a.domain.ticket.Ticket;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface BaseTicketRepository extends CrudRepository<BaseTicket, Long> {
 
     @Override
     Iterable<BaseTicket> findAll();
 
-    Iterable<Ticket> findAllByOrder(Order order);
+    List<Ticket> findAllByOrder(Order order);
 }
 

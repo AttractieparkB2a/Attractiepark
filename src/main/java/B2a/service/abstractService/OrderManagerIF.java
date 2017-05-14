@@ -8,5 +8,5 @@ public interface OrderManagerIF {
     void addMemento(OrderModel model);
     OrderModel getMemento(int index);
     void createOrder(Order order);
-    Order findByClientId(User user);
+    Iterable<Order> findByClientId(User user);
 }

@@ -43,7 +43,7 @@ public class OrderManager implements OrderManagerIF {
     }
 
     @Override
-    public Order findByClientId(User user) {
-        return orderRepository.findByClientId(user);
+    public Iterable<Order> findByClientId(User user) {
+        return orderRepository.findAllByClientId(user);
     }
 }

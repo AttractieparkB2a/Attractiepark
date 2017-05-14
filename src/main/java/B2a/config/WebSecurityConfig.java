@@ -61,6 +61,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/user/index/**",
                             "/user/role/**",
 
+                            "/attraction/adminAttractionsList",
+                            "/attraction/attractionChooser",
+
                             "/newsmessage/**"
                         ).access("hasRole('ADMIN')")
                     .anyRequest().authenticated()

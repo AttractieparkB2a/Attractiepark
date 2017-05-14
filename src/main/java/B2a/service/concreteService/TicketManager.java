@@ -10,6 +10,8 @@ import B2a.service.abstractService.TicketManagerIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TicketManager implements TicketManagerIF{
 
@@ -42,7 +44,7 @@ public class TicketManager implements TicketManagerIF{
     }
 
     @Override
-    public Iterable<Ticket> findByOrderId(Order order) {
+    public List<Ticket> findByOrderId(Order order) {
         return baseTicketRepository.findAllByOrder(order);
     }
 }
