@@ -53,7 +53,7 @@
                             <input type="text" name="totalPrice" class="form-control"
                                    th:field="*{order.totalPrice}"
                                    th:classappend="${#fields.hasErrors('order.totalPrice')} ? 'has-error'"
-                                   th:value="${o.totalPrice}"/>
+                                   th:value="${o.totalPrice}"  readonly="readonly"/>
                             <div class="error-message" th:each="err : ${#fields.errors('order.totalPrice')}" th:text="${err}"></div>
                         </span>
 
@@ -61,8 +61,7 @@
                     <input type="date" name="date" class="form-control"
                            th:field="*{order.date}"
                            th:classappend="${#fields.hasErrors('order.date')} ? 'has-error'"
-                           th:value="${order.order.date}"
-                           th:required="true"/>
+                           th:value="${order.order.date}" />
                     <div class="error-message" th:each="err : ${#fields.errors('order.date')}" th:text="${err}"></div>
 
 

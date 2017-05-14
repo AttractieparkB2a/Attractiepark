@@ -17,30 +17,30 @@
                     <strong th:text="#{account.check}"> </strong>
 
                     <input type="text" name="username" class="form-control" th:classappend="${#fields.hasErrors('username')} ? 'has-error'"
-                           th:value="${account.username}" th:placeholder="#{account.email}" th:required="true"/>
+                           th:value="${account.username}" th:placeholder="#{account.email}" readonly="readonly" />
                     <div class="error-message" th:each="err : ${#fields.errors('username')}" th:text="${err}"></div>
 
                     <input type="text" name="firstName" class="form-control" th:classappend="${#fields.hasErrors('firstName')} ? 'has-error'"
-                           th:value="${account.firstName}" th:placeholder="#{account.firstname}" th:required="true"/>
+                           th:value="${account.firstName}" th:placeholder="#{account.firstname}" readonly="readonly" />
                     <div class="error-message" th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></div>
 
                     <input type="text" name="lastName" class="form-control" th:classappend="${#fields.hasErrors('lastName')} ? 'has-error'"
-                           th:value="${account.lastName}" th:placeholder="#{account.lastname}" th:required="true"/>
+                           th:value="${account.lastName}" th:placeholder="#{account.lastname}" readonly="readonly" />
                     <div class="error-message" th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></div>
 
                     <input type="text" name="birthday" class="form-control" th:value="${account.birthday}"
-                           th:placeholder="#{account.birthdate}" th:required="true"/>
+                           th:placeholder="#{account.birthdate}" readonly="readonly" />
 
                     <input type="text" name="address" class="form-control" th:classappend="${#fields.hasErrors('address')} ? 'has-error'"
-                           th:value="${account.address}" th:placeholder="#{account.address}" th:required="true"/>
+                           th:value="${account.address}" th:placeholder="#{account.address}" readonly="readonly" />
                     <div class="error-message" th:each="err : ${#fields.errors('address')}" th:text="${err}"></div>
 
                     <input type="text" name="city" class="form-control" th:classappend="${#fields.hasErrors('city')} ? 'has-error'"
-                           th:value="${account.city}" th:placeholder="#{account.city}" th:required="true"/>
+                           th:value="${account.city}" th:placeholder="#{account.city}" readonly="readonly" />
                     <div class="error-message" th:each="err : ${#fields.errors('city')}" th:text="${err}"></div>
 
                     <input type="text" name="zipcode" class="form-control" th:classappend="${#fields.hasErrors('zipcode')} ? 'has-error'"
-                           th:value="${account.zipcode}" th:placeholder="#{account.zipcode}" th:required="true"/>
+                           th:value="${account.zipcode}" th:placeholder="#{account.zipcode}" readonly="readonly" />
                     <div class="error-message" th:each="err : ${#fields.errors('zipcode')}" th:text="${err}"></div>
 
                     <div><input type="submit" /></div>

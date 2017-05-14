@@ -32,16 +32,17 @@ public class TicketController {
     private UserService userService;
     private TicketProductService ticketProductService;
     private TicketModel ticketModel;
-    private OrderModel order = new OrderModel();
+    private OrderModel order;
     private OrderUserValidator orderUserValidator;
     private OrderValidator orderValidator;
 
-    public TicketController(OrderManager orderManager, TicketManagerIF ticketManager, UserService userService, TicketProductService ticketProductService) {
+    public TicketController(OrderManager orderManager, TicketManagerIF ticketManager, UserService userService, TicketProductService ticketProductService, OrderValidator orderValidator) {
         this.orderManager = orderManager;
         this.ticketManager = ticketManager;
         this.userService = userService;
         this.ticketProductService = ticketProductService;
         this.ticketModel = new TicketModel();
+        this.orderValidator = orderValidator;
     }
 
 
@@ -50,6 +51,8 @@ public class TicketController {
     //=======================================================TICKETORDER=========================================//
     @RequestMapping(value = "orderTicket/ticketOrder", method = RequestMethod.GET)
     public String ticketOrder(Model model) {
+        order = new OrderModel();
+
         User account = userService.findUser();
         this.orderUserValidator = new OrderUserValidator(userService);
 
@@ -142,15 +145,10 @@ public class TicketController {
 
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.POST)
     public String ticketOrderResult(@RequestParam String action, OrderModel eOrder, BindingResult result, Model model) {
-        this.orderValidator = new OrderValidator(orderManager);
-
         if (action.equals("buy")) {
-//            for(Ticket t : order.getTicket()) {
-//                t.setOrder(order.getOrder());
-//            }
-
             //Set Date from last page
             order.getOrder().setDate(eOrder.getOrder().getDate());
+
             orderValidator.validate(order, result);
 
             //if validator finds mistake go back to this page
@@ -160,9 +158,14 @@ public class TicketController {
             }
 
             //create ticket and decorate and from there create memento
+            orderManager.createOrder(order.getOrder());
+
+            for(Ticket t : order.getTicket()) {
+                t.setOrder(order.getOrder());
+            }
+
             ticketManager.createTicket(order);
             ticketManager.decorateTicket(order);
-            orderManager.createOrder(order.getOrder());
 
             //make order empty and send back to homepage
             order = orderManager.getMemento(0);

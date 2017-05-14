@@ -1,8 +1,11 @@
 package B2a.validator;
 
+import B2a.domain.ticket.Order;
 import B2a.model.OrderModel;
+import B2a.repository.OrderRepository;
 import B2a.service.concreteService.OrderManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -11,14 +14,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+@Component
 public class OrderValidator implements Validator {
 
-    private OrderManager manager;
-
     @Autowired
-    public OrderValidator(OrderManager manager) {
-        this.manager = manager;
-    }
+    OrderRepository orderRepository;
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -44,9 +44,8 @@ public class OrderValidator implements Validator {
         Date d1 = c.getTime();
 
         //MODEL.DATE KOMT LEEG AAN
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order." +
-                "date", "NotEmpty");
-        if (d1.after(model.getOrder().getDate())) {
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.date", "NotEmpty");
+        if (model.getOrder().getDate() == null || d1.after(model.getOrder().getDate())) {
             errors.rejectValue("order.date", "Size.order.DateError");
         }
     }
