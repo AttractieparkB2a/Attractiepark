@@ -142,33 +142,41 @@ public class TicketController {
 
     @RequestMapping(value = "orderTicket/ticketOrderResult", method = RequestMethod.POST)
     public String ticketOrderResult(@RequestParam String action, OrderModel eOrder, BindingResult result, Model model) {
+        this.orderValidator = new OrderValidator(orderManager);
+
         if (action.equals("buy")) {
-            orderManager.createOrder(order.getOrder());
+//            for(Ticket t : order.getTicket()) {
+//                t.setOrder(order.getOrder());
+//            }
 
-            for(Ticket t : order.getTicket()) {
-                t.setOrder(order.getOrder());
-            }
-
+            //Set Date from last page
             order.getOrder().setDate(eOrder.getOrder().getDate());
-            this.orderValidator = new OrderValidator(orderManager);
             orderValidator.validate(order, result);
 
+            //if validator finds mistake go back to this page
             if (result.hasErrors()) {
                 model.addAttribute("order", order);
                 return "orderTicket/ticketOrderResult";
             }
 
-
+            //create ticket and decorate and from there create memento
             ticketManager.createTicket(order);
             ticketManager.decorateTicket(order);
             orderManager.createOrder(order.getOrder());
 
+            //make order empty and send back to homepage
+            order = orderManager.getMemento(0);
+            return "redirect:/";
+
         }else if(action.equals("cancel")){
+            //1 step back
             order = orderManager.getMemento(0);
             return "redirect:/orderTicket/ticketOrderForm";
+        }else{
+            //back to homepage there is something wrong
+            order = orderManager.getMemento(0);
+            return "redirect:/";
         }
-        order = orderManager.getMemento(0);
-        return "redirect:/";
 
     }
 

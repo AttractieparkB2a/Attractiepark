@@ -44,8 +44,9 @@ public class OrderValidator implements Validator {
         Date d1 = c.getTime();
 
         //MODEL.DATE KOMT LEEG AAN
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.date", "NotEmpty");
-        if (!d1.after(model.getOrder().getDate())) {
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order." +
+                "date", "NotEmpty");
+        if (d1.after(model.getOrder().getDate())) {
             errors.rejectValue("order.date", "Size.order.DateError");
         }
     }
