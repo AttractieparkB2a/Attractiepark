@@ -12,4 +12,8 @@ public class OrderCaretaker {
     public OrderMemento getMemento(int index){
         return savedStates.get(index);
     }
+
+    public void clearMemento (){
+        savedStates.clear();
+    };
 }

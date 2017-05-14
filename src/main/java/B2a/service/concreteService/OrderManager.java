@@ -42,6 +42,11 @@ public class OrderManager implements OrderManagerIF {
         return originator.restoreFromMemento(caretaker.getMemento(index));
     }
 
+    public void clearMemento(){
+        originator.clearMemento();
+        caretaker.clearMemento();
+    }
+
     @Override
     public Iterable<Order> findByClientId(User user) {
         return orderRepository.findAllByClientId(user);

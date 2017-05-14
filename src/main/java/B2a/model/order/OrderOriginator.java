@@ -23,4 +23,8 @@ public class OrderOriginator {
 
         return orderState = m.getSavedState();
     }
+
+    public void clearMemento(){
+        orderState = null;
+    }
 }

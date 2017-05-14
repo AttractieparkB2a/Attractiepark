@@ -84,14 +84,25 @@ public class TicketController {
     //=======================================================TICKETFORM=========================================//
     @RequestMapping(value = "orderTicket/ticketOrderForm", method = RequestMethod.GET)
     public String ticketOrderForm(Model model) {
+
+        if(order.getTicket() == null){
         ArrayList<Ticket> tickets = new ArrayList<>();
         ticketModel.setTickets(tickets);
         ticketModel.setTicketProducts(ticketProductService.findAll());
-
         model.addAttribute("ticketModel", ticketModel);
-
         orderManager.addMemento(order);
         return "orderTicket/ticketOrderForm";
+        }
+        else
+        {
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        ticketModel.setTickets(tickets);
+        ticketModel.setTicketProducts(ticketProductService.findAll());
+        //add ticket from memento to ticketModel
+        ticketModel.setTickets(order.getTicket());
+        model.addAttribute("ticketModel", ticketModel);
+        return "orderTicket/ticketOrderForm";
+        }
     }
 
 
@@ -169,15 +180,17 @@ public class TicketController {
 
             //make order empty and send back to homepage
             order = orderManager.getMemento(0);
+            orderManager.clearMemento();
             return "redirect:/";
 
         }else if(action.equals("cancel")){
             //1 step back
-            order = orderManager.getMemento(0);
+            order = orderManager.getMemento(2);
             return "redirect:/orderTicket/ticketOrderForm";
         }else{
             //back to homepage there is something wrong
             order = orderManager.getMemento(0);
+            orderManager.clearMemento();
             return "redirect:/";
         }
 
